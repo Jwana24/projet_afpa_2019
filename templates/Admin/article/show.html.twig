@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{article.TitleArticle}}{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Contenu de l'article</th>
+        <tr>
+
+        <tr>
+            <td>{{article.TitleArticle}}</td>
+            <td>{{article.DateArticle|date('d-m-Y')}}</td>
+            <td>{{article.TextArticle}}</td>
+        </tr>
+    </table>
+
+    {% if sameUser %}
+        {{ include('article/delete.html.twig') }}
+    {% endif %}
+
+    {% if user %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Envoyer">
+        {{ form_end(form) }}
+    {% else %}
+        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+    {% endif %}
+    
+    {% for comment in comments %}
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Membre</th>
+                <th>Commentaire</th>
+            </tr>
+
+            <tr>
+                <td>{{ comment.DateComment|date('d-m-Y') }}</td>
+                <td>{{ comment.IdMemberFK.username }}</td>
+                <td>{{ comment.TextComment }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+
+    <a href="{{ path('articles_list') }}">Revenir à la liste des articles</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

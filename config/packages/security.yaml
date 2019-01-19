@@ -1,0 +1,31 @@
+security:
+    encoders:
+        App\entity\Members:
+            algorithm: bcrypt
+
+    providers:
+        my_provider:
+            entity:
+                class: App\Entity\Members
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            form_login:
+                login_path: login
+                check_path: login
+                provider: my_provider
+                failure_path: login
+
+            logout:
+                path:   /logout
+                target: /accueil
+
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

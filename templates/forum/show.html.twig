@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{post.TitlePost}}{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Membre</th>
+            <th>Catégorie</th>
+            <th>Contenu du post</th>
+        <tr>
+
+        <tr>
+            <td>{{post.TitlePost}}</td>
+            <td>{{post.DatePost|date('d-m-Y')}}</td>
+            <td>{{post.IdMemberFK.username}}</td>
+            <td>{{post.categorie}}</td>
+            <td>{{post.TextPost}}</td>
+        </tr>
+    </table>
+
+    {% if is_granted('MODIFPOST', post) %}
+        {{ include('forum/delete.html.twig') }}
+        <a href="{{ path('post_edit', {'id' : post.Id}) }}">Editer</a>
+    {% endif %}
+
+    {% if user %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Envoyer">
+        {{ form_end(form) }}
+    {% else %}
+        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+    {% endif %}
+    
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Membre</th>
+                <th>Commentaire</th>
+            </tr>
+
+    {% for comment in comments %}
+            <tr>
+                <td>{{ comment.DateCommentPost|date('d-m-Y') }}</td>
+                <td>{{ comment.IdMemberFK.username }}</td>
+                <td>{{ comment.TextCommentPost }}</td>
+
+                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                    <td><a href="{{ path('edit_comment_post', {'id':comment.Id}) }}">Editer</a></td>
+                {% endif %}
+
+                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                    <td>{{ include('forum/commentsPost/delete.html.twig') }}</td>
+                {% endif %}
+            </tr>
+    {% endfor %}
+
+        </table>
+
+    <a href="{{ path('posts_list') }}">Revenir à la liste des posts</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

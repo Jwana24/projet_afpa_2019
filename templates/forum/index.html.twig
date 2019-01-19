@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le forum{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Catégorie</th>
+        <tr>
+
+        {% for post in posts %}
+            <tr>
+                <td>{{post.TitlePost}}</td>
+                <td>{{post.DatePost|date('d-m-y')}}</td>
+                <td>{{post.categorie}}</td>
+                <td><a href="{{ path('show_post', {'id' : post.Id}) }}"> Voir</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <select name="Catégories">
+        <option value="mammifères">mammifères</option>
+        <option value="reptiles">reptiles</option>
+        <option value="amphibiens">amphibiens</option>
+        <option value="oiseaux">oiseaux</option>
+        <option value="poissons">poissons</option>
+    </select>
+
+    <a href="{{ path('add_post') }}">Ajouter un post</a>
+    <a href="{{ path('accueil') }}">Revenir à l'accueil du site</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

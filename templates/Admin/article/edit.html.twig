@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un article{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Editer">
+    {{ form_end(form) }}
+
+    {{ include('Admin/article/delete.html.twig') }}
+
+
+{% endblock %}

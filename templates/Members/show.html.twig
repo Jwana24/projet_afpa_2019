@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ member.username }}{% endblock %}
+
+{% block body %}
+    
+    <ul>
+        <li>Nom : {{ member.LastName }}</li>
+        <li>Prénom : {{ member.FirstName }}</li>
+        <li>Email : {{ member.Mail }}</li>
+        <img src="{{ member.Avatar }}"/>
+    </ul>
+
+    <a href="{{ path('member_edit', {'id':member.id}) }}">Editer mon profil</a>
+
+    <a href="{{ path('accueil') }}">Revenir à la page d'accueil</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

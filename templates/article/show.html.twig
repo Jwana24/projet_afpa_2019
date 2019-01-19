@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+    <table>
+        <tr>
+            <td>{{article.TitleArticle}}</td>
+            <td>{{article.DateArticle|date('d-m-y')}}</td>
+            <td>{{article.TextArticle|slice(0, 150)}}</td>
+        </tr>
+    </table>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('Admin/article/delete.html.twig') }}
+        <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer</a>
+    {% endif %}
+
+    {% if user %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Envoyer">
+        {{ form_end(form) }}
+    {% else %}
+        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+    {% endif %}
+    
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Membre</th>
+                <th>Commentaire</th>
+            </tr>
+
+    {% for comment in comments %}
+            <tr>
+                <td>{{ comment.DateComment|date('d-m-Y') }}</td>
+                <td>{{ comment.IdMemberFK.username }}</td>
+                <td>{{ comment.TextComment }}</td>
+
+                {% if is_granted('MODIF', comment) %}
+                    <td><a href="{{ path('edit_comment', {'id':comment.Id}) }}">Editer</a></td>
+                {% endif %}
+
+                {% if is_granted('MODIF', comment) %}
+                    <td>{{ include('article/comments/delete.html.twig') }}</td>
+                {% endif %}
+            </tr>
+    {% endfor %}
+
+        </table>
+    
+    <a href="{{ path('articles_list') }}">Revenir à la liste des articles</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

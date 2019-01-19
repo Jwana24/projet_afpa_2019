@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les articles{% endblock %}
+
+{% block body %}
+
+    <table>
+        {% for article in articles %}
+            <tr>
+                <td>{{article.TitleArticle}}</td>
+                <td>{{article.DateArticle|date('d-m-y')}}</td>
+                <td>{{article.TextArticle|slice(0, 150)}}</td>
+                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">En savoir plus</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ path('accueil') }}">Revenir à l'accueil du site</a>
+
+    {% for message in app.flashes('success') %}
+        <div id="flash-notice" class="text-center mx-auto">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}
