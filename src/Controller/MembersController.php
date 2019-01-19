@@ -82,28 +82,17 @@ class MembersController extends Controller
     /**
      * @Route("/{id}", name="member_delete", methods="DELETE")
      */
-    public function delete(Request $request, Members $member, PostsRepository $manager): Response
+    public function delete(Request $request, Members $member, PostsRepository $PostsRepository): Response
     {
-        $posts = $member->getPosts();
-        $manager = $this->getDoctrine()->getManager();
-
-        foreach($posts as $post)
-        {
-            $post->setIdMemberFK(NULL);
-            $manager->flush();
-        }
-
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token')))
         {
+            $PostsRepository->setNullById($member->getId());
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($member);
             $manager->flush();
-            
-
-            
         }
 
-        return $this->redirectToRoute('accueil');
+        return $this->redirectToRoute('logout');
     }
 
     /**
