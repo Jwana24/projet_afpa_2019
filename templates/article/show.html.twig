@@ -9,6 +9,7 @@
             <td>{{article.TitleArticle}}</td>
             <td>{{article.DateArticle|date('d-m-y')}}</td>
             <td>{{article.TextArticle|slice(0, 150)}}</td>
+            <td>{{likes}}</td>
         </tr>
     </table>
 
@@ -24,6 +25,15 @@
         {{ form_end(form) }}
     {% else %}
         <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+    {% endif %}
+
+    {% if user %}
+        {{ form_start(formLike) }}
+        {{ form_widget(formLike) }}
+        <input type="submit" value="Liker">
+        {{ form_end(formLike) }}
+    {% else %}
+        <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
     {% endif %}
     
         <table>
