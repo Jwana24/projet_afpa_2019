@@ -87,9 +87,9 @@ class MembersController extends Controller
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token')))
         {
             $PostsRepository->setNullById($member->getId());
-            $manager = $this->getDoctrine()->getManager();
-            $manager->remove($member);
-            $manager->flush();
+            $memberManager = $this->getDoctrine()->getManager();
+            $memberManager->remove($member);
+            $memberManager->flush();
         }
 
         return $this->redirectToRoute('logout');
