@@ -6,6 +6,7 @@ use App\Entity\Members;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -26,7 +27,8 @@ class MemberType extends AbstractType
                 'second_options' => ['label' => 'Confirmation du mot de passe'],
             ])
             ->add('mail')
-            ->add('avatar');
+            ->add('description')
+            ->add('avatar', FileType::class, ['label' => 'Avatar']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

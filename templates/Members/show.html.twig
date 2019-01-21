@@ -8,7 +8,8 @@
         <li>Nom : {{ member.LastName }}</li>
         <li>Prénom : {{ member.FirstName }}</li>
         <li>Email : {{ member.Mail }}</li>
-        <img src="{{ member.Avatar }}"/>
+        <li>Description : {{ member.Description }}</li>
+        <img class="avatar" src="{{ asset(member.Avatar) }}"/>
     </ul>
 
     <a href="{{ path('member_edit', {'id':member.id}) }}">Editer mon profil</a>
