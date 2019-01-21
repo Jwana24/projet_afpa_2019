@@ -73,6 +73,11 @@ class Members implements UserInterface
      */
     private $date_inscription;
 
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -250,6 +255,18 @@ class Members implements UserInterface
     public function setDateInscription(\DateTimeInterface $date_inscription): self
     {
         $this->date_inscription = $date_inscription;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
