@@ -54,7 +54,7 @@ class Members implements UserInterface
     private $roles;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, options={"default":"avatars/default-avatar.jpg"})
      */
     private $avatar;
 

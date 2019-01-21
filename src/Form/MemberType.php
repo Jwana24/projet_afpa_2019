@@ -28,7 +28,8 @@ class MemberType extends AbstractType
             ])
             ->add('mail')
             ->add('description')
-            ->add('avatar', FileType::class, ['label' => 'Avatar']);
+            ->add('avatar', FileType::class, ['label' => 'Avatar',
+            'data_class' => null, 'required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

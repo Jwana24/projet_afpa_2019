@@ -40,12 +40,20 @@ class MembersController extends Controller
         if($form->isSubmitted() && $form->isValid())
         {
             $avatar = $form['avatar']->getData();
-            $folder = 'avatars/';
-            $newName = strtr($avatar->getClientOriginalName(),
-            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
-            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-            $avatar->move($folder, $newName);
-            $member->setAvatar($folder.$newName);
+            
+            if($avatar)
+            {
+                $folder = 'avatars/';
+                $newName = strtr($avatar->getClientOriginalName(),
+                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                $avatar->move($folder, $newName);
+                $member->setAvatar($folder.$newName);
+            }
+            else
+            {
+                $member->setAvatar('avatars/default-avatar.jpg');
+            }
 
             $memberManager = $this->getDoctrine()->getManager();
             $member->setDateInscription(new \DateTime('NOW'));
