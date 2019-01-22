@@ -32,6 +32,16 @@ class Responses
      */
     private $id_comment_FK;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $text_response;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_response;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Responses
     public function setIdCommentFK(?Comments $id_comment_FK): self
     {
         $this->id_comment_FK = $id_comment_FK;
+
+        return $this;
+    }
+
+    public function getTextResponse(): ?string
+    {
+        return $this->text_response;
+    }
+
+    public function setTextResponse(string $text_response): self
+    {
+        $this->text_response = $text_response;
+
+        return $this;
+    }
+
+    public function getDateResponse(): ?\DateTimeInterface
+    {
+        return $this->date_response;
+    }
+
+    public function setDateResponse(\DateTimeInterface $date_response): self
+    {
+        $this->date_response = $date_response;
 
         return $this;
     }
