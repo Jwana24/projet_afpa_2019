@@ -14,7 +14,7 @@ class ResponseType extends AbstractType
     {
         $builder
             ->add('text_response', TextareaType::class, [
-                'label'=> NULL
+                'label'=> 'contenu'
             ]);
     }
 
