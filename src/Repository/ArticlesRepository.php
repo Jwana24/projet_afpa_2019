@@ -28,6 +28,17 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function setNullById($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->update()
+            ->set('p.id_member_FK', 'NULL')
+            ->Where('p.id_member_FK = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */

@@ -35,7 +35,7 @@ class Articles
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Members")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $id_member_FK;
 

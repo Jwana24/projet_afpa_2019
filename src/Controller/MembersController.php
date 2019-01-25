@@ -8,6 +8,7 @@ use App\Form\LanguageType;
 use App\Form\LostPasswordType;
 use App\Repository\PostsRepository;
 use App\Repository\MembersRepository;
+use App\Repository\ArticlesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -169,11 +170,12 @@ class MembersController extends Controller implements EventSubscriberInterface
     /**
      * @Route("/{id}", name="member_delete", methods="DELETE")
      */
-    public function delete(Request $request, Members $member, PostsRepository $postRepository): Response
+    public function delete(Request $request, Members $member, PostsRepository $postRepository, ArticlesRepository $articlesRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token')))
         {
             $postRepository->setNullById($member->getId());
+            $articlesRepository->setNullById($member->getId());
             $memberManager = $this->getDoctrine()->getManager();
             $memberManager->remove($member);
             $memberManager->flush();
