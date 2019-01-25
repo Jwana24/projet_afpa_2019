@@ -15,7 +15,8 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('text_comment', TextareaType::class, [
-                'label'=> 'Contenu du commentaire'])
+                'label' => ' '
+            ])
         ;
     }
 

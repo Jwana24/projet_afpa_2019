@@ -10,12 +10,17 @@
                 <td>{{article.TitleArticle}}</td>
                 <td>{{article.DateArticle|date('d-m-y')}}</td>
                 <td>{{article.TextArticle|slice(0, 150)}}</td>
-                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">En savoir plus</a></td>
+                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a></td>
             </tr>
         {% endfor %}
     </table>
 
-    <a href="{{ path('accueil') }}">Revenir à l'accueil du site</a>
+    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
+    {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">

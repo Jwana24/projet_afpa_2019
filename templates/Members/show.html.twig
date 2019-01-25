@@ -5,20 +5,20 @@
 {% block body %}
     
     <ul>
-        <li>Nom : {{ member.LastName }}</li>
-        <li>Prénom : {{ member.FirstName }}</li>
-        <li>Email : {{ member.Mail }}</li>
+        <li>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</li>
+        <li>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</li>
+        <li>{% trans %}Email{% endtrans %} : {{ member.Mail }}</li>
         <li>Description : {{ member.Description }}</li>
         <img class="avatar" src="{{ asset(member.Avatar) }}"/>
     </ul>
 
     <a href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
 
-    <a href="{{ path('accueil') }}">Revenir à la page d'accueil</a>
+    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Sauvegarder">
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
     {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}

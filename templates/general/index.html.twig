@@ -27,7 +27,7 @@
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Sauvegarder">
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
     {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}

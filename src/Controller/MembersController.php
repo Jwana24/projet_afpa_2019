@@ -146,9 +146,23 @@ class MembersController extends Controller implements EventSubscriberInterface
             return $this->redirectToRoute('member_edit', ['id' => $member->getId()]);
         }
 
+        $formLanguage = $this->createForm(LanguageType::class);
+        $formLanguage->handleRequest($request);
+
+        if($formLanguage->isSubmitted() && $formLanguage->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $formLanguage->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLocale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('Members/edit.html.twig', [
             'member' => $member,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'formLanguage' => $formLanguage->createView()
         ]);
     }
 

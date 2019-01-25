@@ -8,6 +8,7 @@ use App\Entity\Articles;
 use App\Entity\Comments;
 use App\Entity\Responses;
 use App\Form\CommentType;
+use App\Form\LanguageType;
 use App\Form\ResponseType;
 use App\Repository\LikesRepository;
 use App\Repository\ArticlesRepository;
@@ -26,10 +27,25 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="articles_list")
      */
-    public function list(ArticlesRepository $articlesRepository): Response
+    public function list(Request $request, ArticlesRepository $articlesRepository): Response
     {
+        $form = $this->createForm(LanguageType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $form->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLocale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articlesRepository->findAll()
+            'articles' => $articlesRepository->findAll(),
+            'user' => $this->getUser(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -83,6 +99,19 @@ class ArticleController extends AbstractController
             $responseManager->flush();
         }
 
+        $formLanguage = $this->createForm(LanguageType::class);
+        $formLanguage->handleRequest($request);
+
+        if($formLanguage->isSubmitted() && $formLanguage->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $formLanguage->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLOcale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
@@ -90,7 +119,8 @@ class ArticleController extends AbstractController
             'comments' => $article->getComments(),
             'likes' => count($article->getLikes()),
             'formLike' => $formLike->createView(),
-            'formResponse' => $formResponse->createView()
+            'formResponse' => $formResponse->createView(),
+            'formLanguage' => $formLanguage->createView()
         ]);
     }
 }
