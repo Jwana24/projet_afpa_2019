@@ -28,7 +28,7 @@ class DefaultController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $locale = $form->getData()['locale'];
             $user = $this->getUser();
-            $user->setLOcale($locale);
+            $user->setLocale($locale);
             $em->persist($user);
             $em->flush();
         }

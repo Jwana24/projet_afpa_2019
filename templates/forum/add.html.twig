@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un post{% endblock %}
+{% block title %}{% trans %}Ajouter un post{% endtrans %}{% endblock %}
 
 {% block body %}
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
+
+    <a href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+
+    {{ form_start(formLanguage) }}
+    {{ form_widget(formLanguage) }}
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
+    {{ form_end(formLanguage) }}
 
 {% endblock %}

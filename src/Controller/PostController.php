@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Form\PostType;
 use App\Entity\Responses;
+use App\Form\LanguageType;
 use App\Form\ResponseType;
 use App\Entity\CommentsPost;
 use App\Form\CommentPostType;
@@ -24,10 +25,25 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="posts_list", methods={"GET"})
      */
-    public function list(PostsRepository $postsRepository): Response
+    public function list(Request $request, PostsRepository $postsRepository): Response
     {
+        $form = $this->createForm(LanguageType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $form->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLocale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('forum/index.html.twig', [
-            'posts' => $postsRepository->findAll()
+            'posts' => $postsRepository->findAll(),
+            'user' => $this->getUser(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -64,12 +80,27 @@ class PostController extends AbstractController
             $responseManager->flush();
         }
 
+        $formLanguage = $this->createForm(LanguageType::class);
+        $formLanguage->handleRequest($request);
+
+        if($formLanguage->isSubmitted() && $formLanguage->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $formLanguage->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLocale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('forum/show.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
             'user' => $this->getUser(),
             'comments' => $post->getCommentsPosts(),
-            'formResponse' => $formResponse->createView()
+            'formResponse' => $formResponse->createView(),
+            'user' => $this->getUser(),
+            'formLanguage' => $formLanguage->createView()
         ]);
     }
 
@@ -93,9 +124,23 @@ class PostController extends AbstractController
             return $this->redirectToRoute('posts_list');
         }
 
+        $formLanguage = $this->createForm(LanguageType::class);
+        $formLanguage->handleRequest($request);
+
+        if($formLanguage->isSubmitted() && $formLanguage->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $formLanguage->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLocale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
         return $this->render('forum/add.html.twig', [
             'posts' => $post,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'formLanguage' => $formLanguage->createView()
         ]);
     }
 

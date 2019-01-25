@@ -14,7 +14,8 @@ class CommentPostType extends AbstractType
     {
         $builder
             ->add('text_comment_post', TextareaType::class, [
-                'label'=> 'Contenu du commentaire']);
+                'label'=> ' '
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

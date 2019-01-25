@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editer mon profil{% endblock %}
+{% block title %}{% trans %}Editer mon profil{% endtrans %}{% endblock %}
 
 {% block body %}
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Editer">
+    <input type="submit" value="{% trans %}Editer{% endtrans %}">
     {{ form_end(form) }}
 
     {{ include('Members/desinscription.html.twig') }}
 
-    <a href="{{ path('member_show', {'id':member.id}) }}">Revenir à ma page de profil</a>
+    <a href="{{ path('member_show', {'id':member.id}) }}">{% trans %}Revenir à ma page de profil{% endtrans %}</a>
+
+    {{ form_start(formLanguage) }}
+    {{ form_widget(formLanguage) }}
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
+    {{ form_end(formLanguage) }}
 
 {% endblock %}

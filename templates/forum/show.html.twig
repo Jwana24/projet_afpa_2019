@@ -5,11 +5,11 @@
 {% block body %}
     <table>
         <tr>
-            <th>Titre</th>
-            <th>Date</th>
-            <th>Membre</th>
-            <th>Catégorie</th>
-            <th>Contenu du post</th>
+            <th>{% trans %}Titre{% endtrans %}</th>
+            <th>{% trans %}Date{% endtrans %}</th>
+            <th>{% trans %}Membre{% endtrans %}</th>
+            <th>{% trans %}Catégorie{% endtrans %}</th>
+            <th>{% trans %}Contenu du post{% endtrans %}</th>
         <tr>
 
         <tr>
@@ -23,13 +23,13 @@
 
     {% if is_granted('MODIFPOST', post) %}
         {{ include('forum/delete.html.twig') }}
-        <a href="{{ path('post_edit', {'id' : post.Id}) }}">Editer</a>
+        <a href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer{% endtrans %}</a>
     {% endif %}
 
     {% if user %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Envoyer">
+        <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
         {{ form_end(form) }}
     {% else %}
         <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
@@ -42,14 +42,14 @@
             <p>{{ comment.TextCommentPost }}</p>
 
             {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                <a href="{{ path('edit_comment_post', {'id':comment.Id}) }}">Editer</a>
+                <a href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
             {% endif %}
 
             {% if is_granted('MODIFPOSTCOMMENT', comment) %}
                 {{ include('forum/commentsPost/delete.html.twig') }}
             {% endif %}
 
-            <a class="response_btn" href="#" data-id="{{ comment.Id }}">Répondre</a>
+            <a class="response_btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
 
             {% for response in comment.getResponses %}
 
@@ -59,7 +59,7 @@
                     <p>{{ response.TextResponse }}</p>
 
                     {% if is_granted('MODIFRESPONSE', response) %}
-                        <a href="{{ path('edit_response_post', {'id':response.Id}) }}">Editer</a>
+                        <a href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
                     {% endif %}
 
                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -82,7 +82,12 @@
         </article>
     </section>
 
-    <a href="{{ path('posts_list') }}">Revenir à la liste des posts</a>
+    <a href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+
+    {{ form_start(formLanguage) }}
+    {{ form_widget(formLanguage) }}
+    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
+    {{ form_end(formLanguage) }}
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">
