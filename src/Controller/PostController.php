@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Posts;
 use App\Form\PostType;
+use App\Entity\Responses;
+use App\Form\ResponseType;
 use App\Entity\CommentsPost;
 use App\Form\CommentPostType;
 use App\Repository\PostsRepository;
+use App\Repository\CommentsPostRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +34,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}/show", name="show_post")
      */
-    public function show(Posts $post, Request $request, AuthorizationCheckerInterface $authChecker): Response
+    public function show(CommentsPostRepository $commentPostRepository, Posts $post, Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
         $comment = new CommentsPost();
         $form = $this->createForm(CommentPostType::class, $comment);
@@ -47,11 +50,26 @@ class PostController extends AbstractController
             $commentManager->flush();
         }
 
+        $response = new Responses();
+        $formResponse = $this->createForm(ResponseType::class, $response);
+        $formResponse->handleRequest($request);
+
+        if($formResponse->isSubmitted() && $formResponse->isValid())
+        {
+            $responseManager = $this->getDoctrine()->getManager();
+            $response->setDateResponse(new \DateTime('NOW'));
+            $response->setIdCommentPostFK($commentPostRepository->find($request->get('id_comment')));
+            $response->setIdMemberFK($this->getUser());
+            $responseManager->persist($response);
+            $responseManager->flush();
+        }
+
         return $this->render('forum/show.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
             'user' => $this->getUser(),
-            'comments' => $post->getCommentsPosts()
+            'comments' => $post->getCommentsPosts(),
+            'formResponse' => $formResponse->createView()
         ]);
     }
 

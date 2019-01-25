@@ -19,7 +19,7 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
-    function setNullById($id)
+    public function setNullById($id)
     {
         return $this->createQueryBuilder('p')
             ->update()
@@ -27,7 +27,7 @@ class PostsRepository extends ServiceEntityRepository
             ->Where('p.id_member_FK = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult(); 
+            ->getResult();
     }
 
     // /**

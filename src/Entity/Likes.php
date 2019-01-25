@@ -20,7 +20,7 @@ class Likes
      * @ORM\ManyToOne(targetEntity="App\Entity\Members")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_membre_FK;
+    private $id_member_FK;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Articles", inversedBy="likes")
@@ -33,14 +33,14 @@ class Likes
         return $this->id;
     }
 
-    public function getIdMembreFK(): ?members
+    public function getIdMemberFK(): ?members
     {
-        return $this->id_membre_FK;
+        return $this->id_member_FK;
     }
 
-    public function setIdMembreFK(?members $id_membre_FK): self
+    public function setIdMemberFK(?members $id_member_FK): self
     {
-        $this->id_membre_FK = $id_membre_FK;
+        $this->id_member_FK = $id_member_FK;
 
         return $this;
     }

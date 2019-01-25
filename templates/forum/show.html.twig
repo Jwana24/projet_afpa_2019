@@ -34,31 +34,53 @@
     {% else %}
         <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
     {% endif %}
-    
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Membre</th>
-                <th>Commentaire</th>
-            </tr>
 
     {% for comment in comments %}
-            <tr>
-                <td>{{ comment.DateCommentPost|date('d-m-Y') }}</td>
-                <td>{{ comment.IdMemberFK.username }}</td>
-                <td>{{ comment.TextCommentPost }}</td>
+        <section>
+            <p>{{ comment.DateCommentPost|date('d-m-Y') }}</p>
+            <p>{{ comment.IdMemberFK.username }}</p>
+            <p>{{ comment.TextCommentPost }}</p>
 
-                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                    <td><a href="{{ path('edit_comment_post', {'id':comment.Id}) }}">Editer</a></td>
-                {% endif %}
+            {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                <a href="{{ path('edit_comment_post', {'id':comment.Id}) }}">Editer</a>
+            {% endif %}
 
-                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                    <td>{{ include('forum/commentsPost/delete.html.twig') }}</td>
-                {% endif %}
-            </tr>
+            {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                {{ include('forum/commentsPost/delete.html.twig') }}
+            {% endif %}
+
+            <a class="response_btn" href="#" data-id="{{ comment.Id }}">Répondre</a>
+
+            {% for response in comment.getResponses %}
+
+                <article>
+                    <p>{{ response.DateResponse|date('d-m-Y') }}</p>
+                    <p>{{ response.IdMemberFK.username }}</p>
+                    <p>{{ response.TextResponse }}</p>
+
+                    {% if is_granted('MODIFRESPONSE', response) %}
+                        <a href="{{ path('edit_response_post', {'id':response.Id}) }}">Editer</a>
+                    {% endif %}
+
+                    {% if is_granted('MODIFRESPONSE', response) %}
+                        {{ include('forum/responsesPost/delete.html.twig') }}
+                    {% endif %}
+                </article>
+
+            {% endfor %}
+        </section>
     {% endfor %}
 
-        </table>
+    <section class="modal_response">
+        <article class="center_modal_response">
+        <span class="close_modal_response">&times;</span>
+            {{ form_start(formResponse) }}
+            {{ form_widget(formResponse.text_response) }}
+            <input type="hidden" value="" name="id_comment">
+            <input type="submit" value="Répondre">
+            {{ form_end(formResponse) }}
+        </article>
+    </section>
 
     <a href="{{ path('posts_list') }}">Revenir à la liste des posts</a>
 
@@ -68,4 +90,8 @@
         </div>
     {% endfor %}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

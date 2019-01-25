@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer ma réponse{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formPost) }}
+    {{ form_widget(formPost) }}
+    <input type="submit" value="Editer">
+    {{ form_end(formPost) }}
+{% endblock %}

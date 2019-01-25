@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class CommentsPost
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_post_FK;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Responses", mappedBy="id_comment_post_FK")
+     */
+    private $responses;
+
+    public function __construct()
+    {
+        $this->responses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,37 @@ class CommentsPost
     public function setIdPostFK(?posts $id_post_FK): self
     {
         $this->id_post_FK = $id_post_FK;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Responses[]
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(Responses $response): self
+    {
+        if (!$this->responses->contains($response)) {
+            $this->responses[] = $response;
+            $response->setIdCommentPostFK($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponse(Responses $response): self
+    {
+        if ($this->responses->contains($response)) {
+            $this->responses->removeElement($response);
+            // set the owning side to null (unless already changed)
+            if ($response->getIdCommentPostFK() === $this) {
+                $response->setIdCommentPostFK(null);
+            }
+        }
 
         return $this;
     }

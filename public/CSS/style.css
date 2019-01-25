@@ -1,0 +1,47 @@
+.avatar
+{
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+}
+
+.modal_response
+{
+    z-index: 1000000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.65;
+    background-color: black;
+}
+
+.center_modal_response
+{
+    background-color: #dfe6e9;
+    width: 500px;
+    height: 400px;
+    margin: auto;
+}
+
+.center_modal_response form
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.center_modal_response textarea
+{
+    margin: auto;
+    width: 400px;
+    height: 300px;
+}
+
+.close_modal_response
+{
+    cursor: pointer;
+}
