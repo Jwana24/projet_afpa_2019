@@ -16,19 +16,22 @@
     </table>
 
     {% if user %}
-    <a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
-    <a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a>
+
+        <a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+        <a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
+        {{ form_end(form) }}
+
     {% else %}
-    <a href="{{ path('login') }}">Connexion</a>
-    <a href="{{ path('inscription') }}">Inscription</a>
+
+        <a href="{{ path('login') }}">Connexion</a>
+        <a href="{{ path('inscription') }}">Inscription</a>
+
     {% endif %}
 
     <a href="{{ path('posts_list') }}">Forum</a>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
-    {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">
