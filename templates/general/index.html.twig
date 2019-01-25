@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue sur le site{% endblock %}
+{% block title %}{% trans %}Bienvenue sur le site{% endtrans %}{% endblock %}
 
 {% block body %}
 
@@ -10,20 +10,25 @@
                 <td>{{article.TitleArticle}}</td>
                 <td>{{article.DateArticle|date('d-m-y')}}</td>
                 <td>{{article.TextArticle|slice(0, 150)}}</td>
-                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">En savoir plus</a></td>
+                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a></td>
             </tr>
         {% endfor %}
     </table>
 
     {% if user %}
-    <a href="{{ path('logout') }}">Déconnexion</a>
-    <a href="{{ path('member_show', {'id':user.id}) }}">Voir mon profil</a>
+    <a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+    <a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a>
     {% else %}
     <a href="{{ path('login') }}">Connexion</a>
     <a href="{{ path('inscription') }}">Inscription</a>
     {% endif %}
 
     <a href="{{ path('posts_list') }}">Forum</a>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Sauvegarder">
+    {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">

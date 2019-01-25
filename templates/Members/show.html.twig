@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil de {{ member.username }}{% endblock %}
+{% block title %}{% trans %}Profil de{% endtrans %} {{ member.username }}{% endblock %}
 
 {% block body %}
     
@@ -12,9 +12,14 @@
         <img class="avatar" src="{{ asset(member.Avatar) }}"/>
     </ul>
 
-    <a href="{{ path('member_edit', {'id':member.id}) }}">Editer mon profil</a>
+    <a href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
 
     <a href="{{ path('accueil') }}">Revenir à la page d'accueil</a>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Sauvegarder">
+    {{ form_end(form) }}
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">

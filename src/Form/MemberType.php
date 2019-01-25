@@ -22,7 +22,7 @@ class MemberType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe ne correspond pas',
                 'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
+                'required' => false,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation du mot de passe'],
             ])

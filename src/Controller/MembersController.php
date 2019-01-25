@@ -4,28 +4,75 @@ namespace App\Controller;
 
 use App\Entity\Members;
 use App\Form\MemberType;
+use App\Form\LanguageType;
 use App\Form\LostPasswordType;
 use App\Repository\PostsRepository;
 use App\Repository\MembersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @Route("/members")
  */
-class MembersController extends Controller
+class MembersController extends Controller implements EventSubscriberInterface
 {
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
+    public function onLogin(InteractiveLoginEvent $event)
+    {
+        $user = $event->getAuthenticationToken()->getUser();
+
+        if(!is_null($user->getLocale()))
+        {
+            $this->session->set('_locale', $user->getLocale());
+        }
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            SecurityEvents::INTERACTIVE_LOGIN => [
+                ['onLogin', 15]
+            ]
+        ];
+    }
+
     /**
      * @Route("/{id}", requirements={"id"="[0-9]{1,}"}, name="member_show", methods="GET")
      */
-    public function show(Members $member): Response
+    public function show(Request $request, Members $member): Response
     {
-        return $this->render('members/show.html.twig', ['member' => $member]);
+        $form = $this->createForm(LanguageType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $locale = $form->getData()['locale'];
+            $user = $this->getUser();
+            $user->setLOcale($locale);
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->render('members/show.html.twig', [
+            'member' => $member,
+            'form' => $form->createView()
+            ]);
     }
 
     /**

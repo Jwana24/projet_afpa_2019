@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembersRepository")
  */
-class Members implements UserInterface
+class Members implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id()
@@ -77,6 +78,11 @@ class Members implements UserInterface
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $locale;
 
     public function __construct()
     {
@@ -222,6 +228,7 @@ class Members implements UserInterface
             $this->username,
             $this->mail,
             $this->password,
+            $this->locale
         ]);
     }
 
@@ -232,6 +239,7 @@ class Members implements UserInterface
             $this->username,
             $this->mail,
             $this->password,
+            $this->locale
         ) = unserialize($string, ['allowed_classes' => false]);
     }
 
@@ -269,5 +277,29 @@ class Members implements UserInterface
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        if($user instanceof self)
+        {
+            if($user->getLocale() != $this->locale)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
