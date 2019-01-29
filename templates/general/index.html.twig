@@ -3,6 +3,11 @@
 {% block title %}{% trans %}Bienvenue sur le site{% endtrans %}{% endblock %}
 
 {% block body %}
+    <div class="slider">
+        <img class="img-slider" src="{{ asset('images/pug.jpg') }}" alt="Un chien, de race Carlin ou Pug sous une couverture">
+        <img class="img-slider" src="{{ asset('images/cat.jpg') }}" alt="Profil d'un chat tigré">
+        <img class="img-slider" src="{{ asset('images/foal.jpg') }}" alt="Poulain couché dans l'herbe">
+    </div>
 
     <table>
         {% for article in articles %}
@@ -19,10 +24,6 @@
 
         <a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
         <a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
-        {{ form_end(form) }}
 
     {% else %}
 

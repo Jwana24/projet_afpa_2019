@@ -1,3 +1,22 @@
+@font-face
+{
+    font-family: 'Pique My Interest', Arial, Helvetica, sans-serif;
+    src: url('PiqueMyInterest.ttf') format ('ttf');
+}
+
+/* HOME PAGE */
+
+.slider
+{
+    
+}
+
+.slider-list
+{
+    
+}
+
+
 .avatar
 {
     object-fit: contain;

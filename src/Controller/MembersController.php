@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Members;
 use App\Form\MemberType;
-use App\Form\LanguageType;
 use App\Form\LostPasswordType;
 use App\Repository\PostsRepository;
 use App\Repository\MembersRepository;
@@ -56,22 +55,9 @@ class MembersController extends Controller implements EventSubscriberInterface
      */
     public function show(Request $request, Members $member): Response
     {
-        $form = $this->createForm(LanguageType::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $locale = $form->getData()['locale'];
-            $user = $this->getUser();
-            $user->setLOcale($locale);
-            $em->persist($user);
-            $em->flush();
-        }
-
         return $this->render('members/show.html.twig', [
             'member' => $member,
-            'form' => $form->createView()
+            'last_path' => 'member_show:id='.$member->getId()
             ]);
     }
 
@@ -146,23 +132,10 @@ class MembersController extends Controller implements EventSubscriberInterface
             return $this->redirectToRoute('member_edit', ['id' => $member->getId()]);
         }
 
-        $formLanguage = $this->createForm(LanguageType::class);
-        $formLanguage->handleRequest($request);
-
-        if($formLanguage->isSubmitted() && $formLanguage->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $locale = $formLanguage->getData()['locale'];
-            $user = $this->getUser();
-            $user->setLocale($locale);
-            $em->persist($user);
-            $em->flush();
-        }
-
         return $this->render('Members/edit.html.twig', [
             'member' => $member,
             'form' => $form->createView(),
-            'formLanguage' => $formLanguage->createView()
+            'last_path' => 'member_edit:id='.$member->getId()
         ]);
     }
 

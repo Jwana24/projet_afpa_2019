@@ -85,11 +85,6 @@
         </article>
     </section>
 
-    {{ form_start(formLanguage) }}
-    {{ form_widget(formLanguage) }}
-    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
-    {{ form_end(formLanguage) }}
-
     <a href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
 
     {% for message in app.flashes('success') %}
