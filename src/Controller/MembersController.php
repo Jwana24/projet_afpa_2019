@@ -7,6 +7,7 @@ use App\Form\MemberType;
 use App\Form\LostPasswordType;
 use App\Repository\PostsRepository;
 use App\Repository\MembersRepository;
+use App\Repository\ArticlesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -125,7 +126,21 @@ class MembersController extends Controller implements EventSubscriberInterface
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $member->setPassword($encoder->encodePassword($member, $form['newPassword']->getData()));
+            if($form['password']->getData() === $member->getPassword())
+            {
+                $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
+            }
+
+            $avatar = $form['avatar']->getData();
+            if(!is_string($avatar))
+            {
+                $folder = 'avatars/';
+                $newName = strtr($avatar->getClientOriginalName(),
+                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                $avatar->move($folder, $newName);
+                $member->setAvatar($folder.$newName);
+            }
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -142,11 +157,14 @@ class MembersController extends Controller implements EventSubscriberInterface
     /**
      * @Route("/{id}", name="member_delete", methods="DELETE")
      */
-    public function delete(Request $request, Members $member, PostsRepository $postRepository): Response
+    public function delete(Request $request, Members $member, PostsRepository $postRepository, ArticlesRepository $articleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token')))
         {
+
+            $this->session->invalidate();
             $postRepository->setNullById($member->getId());
+            $articleRepository->setNullById($member->getId());
             $memberManager = $this->getDoctrine()->getManager();
             $memberManager->remove($member);
             $memberManager->flush();

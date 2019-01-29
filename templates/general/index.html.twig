@@ -3,10 +3,39 @@
 {% block title %}{% trans %}Bienvenue sur le site{% endtrans %}{% endblock %}
 
 {% block body %}
-    <div class="slider">
-        <img class="img-slider" src="{{ asset('images/pug.jpg') }}" alt="Un chien, de race Carlin ou Pug sous une couverture">
-        <img class="img-slider" src="{{ asset('images/cat.jpg') }}" alt="Profil d'un chat tigré">
-        <img class="img-slider" src="{{ asset('images/foal.jpg') }}" alt="Poulain couché dans l'herbe">
+    <div class="wrap">
+
+        <div id="arrow-left" class="arrow">
+
+            <div id="slider">
+                <div class="slide slide1">
+                    <div class="slide-content">
+                        <img class="img-slider" src="{{ asset('images/pug.jpg') }}" alt="Un chien, de race Carlin ou Pug sous une couverture">
+                    </div>
+                </div>
+            </div>
+
+            <div id="slider">
+                <div class="slide slide2">
+                    <div class="slide-content">
+                        <img class="img-slider" src="{{ asset('images/cat.jpg') }}" alt="Profil d'un chat tigré">
+                    </div>
+                </div>
+            </div>
+
+            <div id="slider">
+                <div class="slide slide3">
+                    <div class="slide-content">
+                        <img class="img-slider" src="{{ asset('images/foal.jpg') }}" alt="Poulain couché dans l'herbe">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="arrow-right" class="arrow">
+        </div>
+
     </div>
 
     <table>
