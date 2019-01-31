@@ -10,13 +10,57 @@
     </head>
     <body>
 
-        <nav>
-            <ul>
-                <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
-                <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
+        <nav class="main-menu">
+            <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
+
+            <ul class="main-ul">
+                {% if is_granted('ROLE_USER')%}
+                    <li class="menu-language">
+                        <a><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
+                        <ul class="submenu">
+                            <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
+                            <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="container-registration">
+                        <a class="span-registration"><ion-icon name="person"></ion-icon></a>
+                        <ul class="submenu1">
+                            <li><a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
+                            <li><a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a></li>
+                        </ul>
+                    </li>
+                    
+                {% else %}
+
+                    <li class="item-main-menu">
+                        <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
+                        <ul class="submenu1">
+                            <li><a href="{{ path('login') }}">Connexion</a></li>
+                            <li><a href="{{ path('inscription') }}">Inscription</a></li>
+                        </ul>
+                    </li>
+
+                {% endif %}
+
+                <li class="btn-home">
+                    <a href="{{ path('accueil') }}">Accueil</a>
+                </li>
+
+                <li>
+                    <a href="{{ path('articles_list') }}">Articles</a>
+                </li>
+
+                <li>
+                    <a href="{{ path('posts_list') }}">Forum</a>
+                </li>
+
             </ul>
         </nav>
+
         {% block body %}{% endblock %}
+            <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+            <script src="{{ asset('js/menu.js') }}"></script>
             {# <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> #}
