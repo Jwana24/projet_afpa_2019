@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Members;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -12,8 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class MemberType extends AbstractType
 {
+    private $member;
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->member = $options['data'];
         $builder
             ->add('last_name')
             ->add('first_name')
@@ -30,6 +34,42 @@ class MemberType extends AbstractType
             ->add('description')
             ->add('avatar', FileType::class, ['label' => 'Avatar',
             'data_class' => null, 'required' => false]);
+
+            $builder
+            ->get('password')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($file)
+                {
+                    return $file;
+                },
+
+                function ($file)
+                {
+                    if($file === null)
+                    {
+                        return $this->member->getPassword();
+                    }
+                    return $file;
+                }
+            ));
+
+            $builder
+            ->get('avatar')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($file)
+                {
+                    return $file;
+                },
+                
+                function ($file)
+                {
+                    if($file === null)
+                    {
+                        return $this->member->getAvatar();
+                    }
+                    return $file;
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

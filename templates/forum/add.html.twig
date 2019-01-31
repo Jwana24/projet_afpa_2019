@@ -10,9 +10,4 @@
 
     <a href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
 
-    {{ form_start(formLanguage) }}
-    {{ form_widget(formLanguage) }}
-    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
-    {{ form_end(formLanguage) }}
-
 {% endblock %}

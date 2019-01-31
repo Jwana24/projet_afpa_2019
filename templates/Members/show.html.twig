@@ -16,11 +16,6 @@
 
     <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{% trans %}Sauvegarder{% endtrans %}">
-    {{ form_end(form) }}
-
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">
             {{ message }}

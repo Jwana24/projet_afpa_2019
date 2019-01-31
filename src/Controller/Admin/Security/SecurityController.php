@@ -21,7 +21,8 @@ class SecurityController extends Controller
 
         return $this->render('Admin/Security/login.html.twig', [
             'error' => $error,
-            'last_username' => $lastUsername
+            'last_username' => $lastUsername,
+            'last_path' => 'login'
         ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Languages;
+namespace App\EventSubscriber;
 
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;

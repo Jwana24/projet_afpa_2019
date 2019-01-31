@@ -2,7 +2,6 @@
 // src/Controller/DefaultController.php
 namespace App\Controller;
 
-use App\Form\LanguageType;
 use App\Repository\ArticlesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,28 +25,12 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="accueil", methods="GET|POST")
      */
-    public function list(ArticlesRepository $articlesRepository, Request $request): Response
+    public function list(SessionInterface $session, ArticlesRepository $articlesRepository, Request $request): Response
     {
- 
-        $form = $this->createForm(LanguageType::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $locale = $form->getData()['locale'];
-            $user = $this->getUser();
-            $user->setLocale($locale);
-            $em->persist($user);
-            $em->flush();
-
-            $this->session->set('_locale', $locale);
-        }
-
         return $this->render('general/index.html.twig', [
             'articles' => $articlesRepository->last_articles(),
             'user' => $this->getUser(),
-            'form' => $form->createView()
+            'last_path' => 'accueil'
         ]);
     }
 }
