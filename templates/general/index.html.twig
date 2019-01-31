@@ -3,65 +3,46 @@
 {% block title %}{% trans %}Bienvenue sur le site{% endtrans %}{% endblock %}
 
 {% block body %}
+
     <div class="wrap">
 
-        <div id="arrow-left" class="arrow">
+        <div id="arrow-left" class="arrow"></div>
 
             <div id="slider">
                 <div class="slide slide1">
                     <div class="slide-content">
-                        <img class="img-slider" src="{{ asset('images/pug.jpg') }}" alt="Un chien, de race Carlin ou Pug sous une couverture">
+                        <span>{% trans %}Bienvenue sur le site "Les Nouveaux Animaux de Compagnie"{% endtrans %}</span>
                     </div>
                 </div>
-            </div>
-
-            <div id="slider">
+            
                 <div class="slide slide2">
                     <div class="slide-content">
-                        <img class="img-slider" src="{{ asset('images/cat.jpg') }}" alt="Profil d'un chat tigré">
+                        <span>{% trans %}Retrouvez tous nos articles animaliers{% endtrans %}</span>
                     </div>
                 </div>
-            </div>
 
-            <div id="slider">
                 <div class="slide slide3">
                     <div class="slide-content">
-                        <img class="img-slider" src="{{ asset('images/foal.jpg') }}" alt="Poulain couché dans l'herbe">
+                        <span>{% trans %}N'hésitez pas à faire un tour sur notre forum{% endtrans %}</span>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <div id="arrow-right" class="arrow">
-        </div>
+        <div id="arrow-right" class="arrow"></div>
 
     </div>
 
-    <table>
+    <section class="article-box">
         {% for article in articles %}
-            <tr>
-                <td>{{article.TitleArticle}}</td>
-                <td>{{article.DateArticle|date('d-m-y')}}</td>
-                <td>{{article.TextArticle|slice(0, 150)}}</td>
-                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a></td>
-            </tr>
+            <article class="article">
+                <h2 class="title-article">{{article.TitleArticle}}</h2>
+                <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
+                <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
+                <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a>
+            </article>
+            <hr>
         {% endfor %}
-    </table>
-
-    {% if user %}
-
-        <a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
-        <a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a>
-
-    {% else %}
-
-        <a href="{{ path('login') }}">Connexion</a>
-        <a href="{{ path('inscription') }}">Inscription</a>
-
-    {% endif %}
-
-    <a href="{{ path('posts_list') }}">Forum</a>
+    </section>
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">
@@ -69,4 +50,8 @@
         </div>
     {% endfor %}
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/slider.js') }}"></script>
 {% endblock %}

@@ -1,7 +1,142 @@
 @font-face
 {
-    font-family: 'Pique My Interest', Arial, Helvetica, sans-serif;
-    src: url('PiqueMyInterest.ttf') format ('ttf');
+    font-family: 'PiqueMyInterest', Arial, Helvetica, sans-serif;
+    src: url('fonts/PiqueMyInterest.ttf') format ('ttf');
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MAIN MENU (base.html.twig) */
+
+.main-menu
+{
+    z-index: 1001;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    background-color: rgba(9, 132, 227, 1);
+}
+
+.main-menu > ul > li > a, .main-menu > ul > li > span
+{
+    color: white;
+    padding: 20px 30px;
+    text-decoration: none;
+}
+
+.main-menu > ul > li:hover a, .main-menu > ul > li:hover span
+{
+    padding: 15px 30px 20px 30px;
+}
+
+.main-menu li
+{
+    list-style: none;
+    position: relative;
+}
+
+.main-menu > li > span
+{
+    width: 100px;
+    height: 100%;
+}
+
+.main-menu > ul > li:hover
+{
+    border-top: 5px solid white;
+    background-color: rgba(228, 77, 38, 0.15);
+}
+
+.main-menu a
+{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.submenu, .submenu1
+{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0;
+    z-index: 1000;
+}
+
+.submenu li, .submenu1 li
+{
+    border-bottom: 1px solid #CCC;
+    background-color: #0984e3;
+}
+
+.submenu li:hover, .submenu1 li:hover
+{
+    background-color: #273c75;
+}
+
+.submenu li a, .submenu1 li a
+{
+    padding: 15px 30px;
+    font-size: 13px;
+    color: #222538;
+    width: 270px;
+}
+
+.main-menu .logo
+{
+    font-family: 'PiqueMyInterest';
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    left: calc(50vw - 50px);
+    top: 0;
+}
+
+.main-menu .main-ul
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-menu ul li
+{
+    list-style: none;
+}
+
+.icon, .span-registration .icon
+{
+    cursor: pointer;
+    font-size: 25px;
+    z-index: 9999;
+}
+
+.language a, .registration a
+{
+    padding: 15px 30px;
+}
+
+.registration
+{
+    width: 140px;
+    text-align: center;
+}
+
+.menu-language .language li
+{
+    margin-bottom: 5px;
+}
+
+.main-menu .btn-home
+{
+    position: relative;
+    left: -200px;
 }
 
 /* HOME PAGE */
@@ -10,9 +145,145 @@ body, #slider, .wrap, .slide-content
 {
     margin: 0;
     padding: 0;
-    font-family: 
+    width: 100%;
+    height: 100vh;
 }
 
+.wrap
+{
+    position: relative;
+}
+
+.slide
+{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide1
+{
+    background-image: url('../images/pug.jpg');
+    background-position: 0 0.2px;
+}
+
+.slide2
+{
+    background-image: url('../images/cat.jpg');
+    background-position: 0 1px;
+}
+
+.slide3
+{
+    background-image: url('../images/foal.jpg');
+}
+
+.slide-content
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-content span
+{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    font-size: 2.5rem;
+    top: 100px;
+    left: 100px;
+    color: #fff;
+    text-shadow: 3px 3px 2px #7f8c8d;
+}
+
+.slide2 span
+{
+    color: #7f8c8d;
+}
+
+.arrow
+{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -35px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+#arrow-left
+{
+    z-index: 1000;
+    border-width: 20px 30px 20px 0;
+    border-color: transparent #fff transparent transparent;
+    left: 0;
+    margin-left: 30px;
+}
+
+#arrow-right
+{
+    border-width: 20px 0px 20px 30px;
+    border-color: transparent transparent transparent #fff;
+    right: 0;
+    margin-right: 30px;
+}
+
+.article-box
+{
+    margin-left: 20px;
+}
+
+.article-box hr
+{
+    width: 1250px;
+}
+
+.article-box .article
+{
+    margin-bottom: 50px;
+}
+
+.article:first-child
+{
+    margin-top: 20px;
+}
+
+.article-box .title-article
+{
+    font-size: 30px;
+}
+
+.article-box .date-article
+{
+    font-style: italic;
+}
+
+.article-box .text-article
+{
+    font-size: 18px;
+}
+
+.article-box .article a, .article-box .article a:visited
+{
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #0984e3;
+    padding: 7px;
+
+}
+
+/* LOGIN PAGE */
+
+.login-container
+{
+    margin-top: 100px;
+}
+
+/* PROFILE PAGE */
 
 .avatar
 {
@@ -20,6 +291,11 @@ body, #slider, .wrap, .slide-content
     width: 100px;
     height: 100px;
 }
+
+/* ARTICLES PAGE */
+
+/* COMMENT ARTICLE PAGE */
+/* Modal window */
 
 .modal_response
 {

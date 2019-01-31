@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <table>
+    <table class="array-article">
         <tr>
-            <td>{{article.TitleArticle}}</td>
-            <td>{{article.DateArticle|date('d-m-y')}}</td>
-            <td>{{article.TextArticle|slice(0, 150)}}</td>
-            <td>{{likes}}</td>
+            <td class="title-article">{{article.TitleArticle}}</td>
+            <td class="date-article">{{article.DateArticle|date('d-m-y')}}</td>
+            <td class="text-article">{{article.TextArticle|slice(0, 150)}}</td>
+            <td class="like-article">{{likes}}</td>
         </tr>
     </table>
 
