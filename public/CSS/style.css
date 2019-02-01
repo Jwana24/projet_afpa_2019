@@ -11,133 +11,90 @@
     box-sizing: border-box;
 }
 
-/* MAIN MENU (base.html.twig) */
+/* Logo */
 
+.logo
+{
+    font-family: 'PiqueMyInterest';
+    width: 100px;
+    height: 100px;
+    /* margin: 0 auto;
+    left: calc(50vw - 50px);
+    top: 0; */
+}
+
+/* MAIN MENU (base.html.twig) */
 .main-menu
 {
-    z-index: 1001;
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
+    z-index: 999999;
     width: 100vw;
-    background-color: rgba(9, 132, 227, 1);
 }
 
-.main-menu > ul > li > a, .main-menu > ul > li > span
+.main-menu > ul
 {
-    color: white;
-    padding: 20px 30px;
-    text-decoration: none;
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgb(9, 132, 227);
+    width: 100%;
 }
 
-.main-menu > ul > li:hover a, .main-menu > ul > li:hover span
-{
-    padding: 15px 30px 20px 30px;
-}
-
-.main-menu li
-{
-    list-style: none;
-    position: relative;
-}
-
-.main-menu > li > span
+.main-menu > ul > li
 {
     width: 100px;
-    height: 100%;
+    height: 80px;
+    background: rgba(17, 59, 151, 0.938);;
+    position: relative;
 }
 
 .main-menu > ul > li:hover
 {
-    border-top: 5px solid white;
-    background-color: rgba(228, 77, 38, 0.15);
+    width: 100px;
+    height: 80px;
+    background: rgba(34, 86, 201, 0.938);
 }
-
-.main-menu a
+.main-menu li {list-style: none;}
+.main-menu a 
 {
-    display: inline-block;
+    position: absolute;
+    top: 40px;
+    left: 50px;
     text-decoration: none;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+.main-menu > ul > li::before
+{
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100px;
+    background: black;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+    z-index: 99999;
 }
 
-.submenu, .submenu1
+.main-menu > ul > li:hover::before
 {
-    display: none;
+    transform: scale(1, 1);
+}
+/* SubMenu */
+
+.main-menu > ul > li > ul
+{
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 0;
-    z-index: 1000;
 }
 
-.submenu li, .submenu1 li
-{
-    border-bottom: 1px solid #CCC;
-    background-color: #0984e3;
-}
-
-.submenu li:hover, .submenu1 li:hover
-{
-    background-color: #273c75;
-}
-
-.submenu li a, .submenu1 li a
-{
-    padding: 15px 30px;
-    font-size: 13px;
-    color: #222538;
-    width: 270px;
-}
-
-.main-menu .logo
-{
-    font-family: 'PiqueMyInterest';
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    left: calc(50vw - 50px);
-    top: 0;
-}
-
-.main-menu .main-ul
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.main-menu ul li
-{
-    list-style: none;
-}
-
-.icon, .span-registration .icon
-{
-    cursor: pointer;
-    font-size: 25px;
-    z-index: 9999;
-}
-
-.language a, .registration a
-{
-    padding: 15px 30px;
-}
-
-.registration
-{
-    width: 140px;
-    text-align: center;
-}
-
-.menu-language .language li
-{
-    margin-bottom: 5px;
-}
-
-.main-menu .btn-home
-{
-    position: relative;
-    left: -200px;
-}
 
 /* HOME PAGE */
 

@@ -11,8 +11,6 @@
     <body>
 
         <nav class="main-menu">
-            <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
-
             <ul class="main-ul">
                 {% if is_granted('ROLE_USER')%}
                     <li class="menu-language">
@@ -32,6 +30,9 @@
                     </li>
                     
                 {% else %}
+                
+                    <li style="visibility: hidden">
+                    </li>
 
                     <li class="item-main-menu">
                         <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
@@ -47,12 +48,18 @@
                     <a href="{{ path('accueil') }}">Accueil</a>
                 </li>
 
+                <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
+
                 <li>
                     <a href="{{ path('articles_list') }}">Articles</a>
                 </li>
 
                 <li>
                     <a href="{{ path('posts_list') }}">Forum</a>
+                </li>
+
+                <li>
+                    <a href="{{ path('posts_list') }}">Contact</a>
                 </li>
 
             </ul>
