@@ -292,27 +292,36 @@ main
 .article-box .title-article
 {
     font-size: 30px;
+    font-weight: 600;
 }
 
 .article-box .date-article
 {
     font-style: italic;
+    font-size: 14px;
+    font-weight: 100;
 }
 
 .article-box .text-article
 {
     font-size: 18px;
+    font-weight: 100;
 }
 
 .article-box .article a, .article-box .article a:visited
 {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 20px;
     text-decoration: none;
     color: white;
     background-color: #0984e3;
     padding: 7px;
 
+}
+
+.article-box .article a:hover
+{
+    background-color: #273c75;
 }
 
 /* LOGIN PAGE */
@@ -338,6 +347,149 @@ main
 {
     margin-top: 100px;
 }
+
+/* ARTICLES PAGE */
+/* Show */
+
+.main-article
+{
+    font-family: 'Segoe UI';
+    flex-direction: column;
+    margin-top: 100px;
+    background-color: #FBFBFB;
+}
+
+.article-page
+{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.container-article
+{
+    margin-top: 20px;   
+}
+
+.article-show
+{
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.article-show .title-article
+{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.article-show .date-article
+{
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.article-show .text-article
+{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.article-show .like-article
+{
+    /* background-color: #e74c3c; */
+}
+
+.btn-delete-article
+{
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    font-style: none;
+    border: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-delete-article:hover
+{
+    background-color: #273c75;
+}
+
+.btn-admin-article
+{
+    width: 25%;
+    margin-left: 688px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-admin-article a
+{
+    font-size: 14px;
+    font-style: none;
+    text-decoration: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-admin-article a:hover
+{
+    background-color: #273c75;
+}
+
+.article-page .form-comment-article
+{
+    font-family: 'Segoe UI';
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.article-page .form-comment-article a
+{
+    font-style: none;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.article-page .form-comment-article a:hover, .form-comment-article input[type=submit]:hover
+{
+    background-color: #273c75;
+}
+
+.article-page .form-comment-article input[type=submit]
+{
+    font-style: none;
+    font-size: 14px;
+    border: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
 
 
 /* COMMENT ARTICLE PAGE */

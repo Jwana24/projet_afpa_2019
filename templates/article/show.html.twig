@@ -3,95 +3,107 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
+    <main class="main-article">
 
-    <table class="array-article">
-        <tr>
-            <td class="title-article">{{article.TitleArticle}}</td>
-            <td class="date-article">{{article.DateArticle|date('d-m-y')}}</td>
-            <td class="text-article">{{article.TextArticle|slice(0, 150)}}</td>
-            <td class="like-article">{{likes}}</td>
-        </tr>
-    </table>
+        <div class="article-page">
 
-    {% if is_granted('ROLE_ADMIN') %}
-        {{ include('Admin/article/delete.html.twig') }}
-        <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer</a>
-    {% endif %}
-
-    {% if user %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
-        {{ form_end(form) }}
-    {% else %}
-        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
-    {% endif %}
-
-    {% if user %}
-        {{ form_start(formLike) }}
-        {{ form_widget(formLike) }}
-        <input type="submit" value="{% trans %}Liker{% endtrans %}">
-        {{ form_end(formLike) }}
-    {% else %}
-        <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
-    {% endif %}
-    
-    {% for comment in comments %}
-        <section>
-            <p>{{ comment.DateComment|date('d-m-Y') }}</p>
-            <p>{{ comment.IdMemberFK.username }}</p>
-            <p>{{ comment.TextComment }}</p>
-
-            {% if is_granted('MODIF', comment) %}
-                <a href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-            {% endif %}
-
-            {% if is_granted('MODIF', comment) %}
-                {{ include('article/comments/delete.html.twig') }}
-            {% endif %}
-
-            <a class="response_btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
-
-            {% for response in comment.getResponses %}
-
-                <article>
-                    <p>{{ response.DateResponse|date('d-m-Y') }}</p>
-                    <p>{{ response.IdMemberFK.username }}</p>
-                    <p>{{ response.TextResponse }}</p>
-
-                    {% if is_granted('MODIFRESPONSE', response) %}
-                        <a href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-                    {% endif %}
-
-                    {% if is_granted('MODIFRESPONSE', response) %}
-                        {{ include('article/responses/delete.html.twig') }}
-                    {% endif %}
+            <section class="container-article">
+                <article class="article-show">
+                    <h2 class="title-article">{{article.TitleArticle}}</h2>
+                    <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
+                    <p class="text-article">{{article.TextArticle}}</p>
+                    <p class="like-article">{{likes}}</p>
                 </article>
+            </section>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="btn-admin-article">
+                    {{ include('Admin/article/delete.html.twig') }}
+                    <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
+                </div>
+            {% endif %}
+
+            <div class="form-comment-article">
+                {% if user %}
+                    <a href="#">Commenter</a>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'cols': '107'}}) }}
+                    <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
+                    {{ form_end(form) }}
+                {% else %}
+                    <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+                {% endif %}
+
+                {% if user %}
+                    {{ form_start(formLike) }}
+                    {{ form_widget(formLike) }}
+                    <input type="submit" value="{% trans %}Liker{% endtrans %}">
+                    {{ form_end(formLike) }}
+                {% else %}
+                    <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
+                {% endif %}
+            </div>
+            
+            {% for comment in comments %}
+                <section>
+                    <p>{{ comment.DateComment|date('d-m-Y') }}</p>
+                    <p>{{ comment.IdMemberFK.username }}</p>
+                    <p>{{ comment.TextComment }}</p>
+
+                    {% if is_granted('MODIF', comment) %}
+                        <a href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                    {% endif %}
+
+                    {% if is_granted('MODIF', comment) %}
+                        {{ include('article/comments/delete.html.twig') }}
+                    {% endif %}
+
+                    <a class="response_btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+
+                    {% for response in comment.getResponses %}
+
+                        <article>
+                            <p>{{ response.DateResponse|date('d-m-Y') }}</p>
+                            <p>{{ response.IdMemberFK.username }}</p>
+                            <p>{{ response.TextResponse }}</p>
+
+                            {% if is_granted('MODIFRESPONSE', response) %}
+                                <a href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                            {% endif %}
+
+                            {% if is_granted('MODIFRESPONSE', response) %}
+                                {{ include('article/responses/delete.html.twig') }}
+                            {% endif %}
+                        </article>
+
+                    {% endfor %}
+                    
+                </section>
 
             {% endfor %}
-            
-        </section>
 
-    {% endfor %}
+            <section class="modal_response">
+                <article class="center_modal_response">
+                <span class="close_modal_response">&times;</span>
+                    {{ form_start(formResponse) }}
+                    {{ form_widget(formResponse.text_response) }}
+                    <input type="hidden" value="" name="id_comment">
+                    <input type="submit" value="Répondre">
+                    {{ form_end(formResponse) }}
+                </article>
+            </section>
 
-    <section class="modal_response">
-        <article class="center_modal_response">
-        <span class="close_modal_response">&times;</span>
-            {{ form_start(formResponse) }}
-            {{ form_widget(formResponse.text_response) }}
-            <input type="hidden" value="" name="id_comment">
-            <input type="submit" value="Répondre">
-            {{ form_end(formResponse) }}
-        </article>
-    </section>
+            <a href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
 
-    <a href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
+            {% for message in app.flashes('success') %}
+                <div id="flash-notice" class="text-center mx-auto">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
         </div>
-    {% endfor %}
+
+    </main>
 
 {% endblock %}
 
