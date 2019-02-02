@@ -9,59 +9,47 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-
         <nav class="main-menu">
             <ul class="main-ul">
                 {% if is_granted('ROLE_USER')%}
-                    <li class="menu-language">
+                    <li class="btn-submenu">
                         <a><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
                         <ul class="submenu">
                             <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
                             <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
                         </ul>
                     </li>
-
-                    <li class="container-registration">
-                        <a class="span-registration"><ion-icon name="person"></ion-icon></a>
+                    <li class="btn-submenu">
+                        <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
                         <ul class="submenu1">
                             <li><a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
                             <li><a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a></li>
                         </ul>
                     </li>
-                    
                 {% else %}
-                
                     <li style="visibility: hidden">
                     </li>
-
-                    <li class="item-main-menu">
+                    <li class="btn-submenu">
                         <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
                         <ul class="submenu1">
                             <li><a href="{{ path('login') }}">Connexion</a></li>
                             <li><a href="{{ path('inscription') }}">Inscription</a></li>
                         </ul>
                     </li>
-
                 {% endif %}
-
                 <li class="btn-home">
                     <a href="{{ path('accueil') }}">Accueil</a>
                 </li>
-
                 <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
-
                 <li>
                     <a href="{{ path('articles_list') }}">Articles</a>
                 </li>
-
                 <li>
                     <a href="{{ path('posts_list') }}">Forum</a>
                 </li>
-
                 <li>
                     <a href="{{ path('posts_list') }}">Contact</a>
                 </li>
-
             </ul>
         </nav>
 

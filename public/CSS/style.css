@@ -46,8 +46,16 @@
 {
     width: 100px;
     height: 80px;
-    background: rgba(17, 59, 151, 0.938);;
+    background: rgba(17, 59, 151, 0.938);
     position: relative;
+}
+
+/* logos */
+
+.icon
+{
+    width: 45px;
+    height: 45px;
 }
 
 .main-menu > ul > li:hover
@@ -57,13 +65,18 @@
     background: rgba(34, 86, 201, 0.938);
 }
 .main-menu li {list-style: none;}
-.main-menu a 
+.main-menu a
+{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.main-menu > ul > li > a
 {
     position: absolute;
     top: 40px;
     left: 50px;
-    text-decoration: none;
-    color: white;
     transform: translate(-50%, -50%);
 }
 .main-menu > ul > li::before
@@ -71,7 +84,7 @@
     content: '';
     display: block;
     height: 5px;
-    width: 100px;
+    width: 100%;
     background: black;
     position: absolute;
     top: -2px;
@@ -90,11 +103,30 @@
 
 .main-menu > ul > li > ul
 {
+    display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     left: 0;
 }
 
+.main-menu > ul > li > ul > li
+{
+    width: 100%;
+    height: 80px;
+    background: rgba(17, 59, 151, 0.938);
+}
+
+.main-menu > ul > li > ul > li > a
+{
+    display: inline-block;
+    padding: 20px 80px 20px 80px; 
+}
+
+.main-menu > ul > li > ul > li:hover
+{
+    border-bottom: 2px black solid;
+    background: rgba(34, 86, 201, 0.938);
+}
 
 /* HOME PAGE */
 
