@@ -3,10 +3,11 @@
 {% block title %}Ajouter un article{% endblock %}
 
 {% block body %}
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Ajouter">
-    {{ form_end(form) }}
+    <div class="form-add-article">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Ajouter">
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

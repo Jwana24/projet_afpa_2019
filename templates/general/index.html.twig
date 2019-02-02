@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="wrap">
+    <header class="wrap">
 
         <div id="arrow-left" class="arrow"></div>
 
@@ -30,19 +30,38 @@
 
         <div id="arrow-right" class="arrow"></div>
 
-    </div>
+    </header>
 
-    <section class="article-box">
-        {% for article in articles %}
-            <article class="article">
-                <h2 class="title-article">{{article.TitleArticle}}</h2>
-                <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
-                <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
-                <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a>
-            </article>
-            <hr>
-        {% endfor %}
-    </section>
+    <main class="homepage">
+        <section class="article-box">
+            {% for article in articles %}
+                <article class="article">
+                    <h2 class="title-article">{{article.TitleArticle}}</h2>
+                    <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
+                    <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
+                    <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
+                </article>
+            {% endfor %}
+        </section>
+
+        <aside class="sidebox">
+            <h4>Contacts</h4>
+            {{ form_start(form) }}
+                {{ form_label(form.lastname, 'Nom') }}
+                {{ form_widget(form.lastname) }}
+
+                {{ form_label(form.firstname, 'Prénom') }}
+                {{ form_widget(form.firstname) }}
+
+                {{ form_label(form.mail, 'Adresse e-mail') }}
+                {{ form_widget(form.mail) }}
+
+                {{ form_label(form.message, 'Message') }}
+                {{ form_widget(form.message, {'attr': {'rows': '10', 'cols': '33'}}) }}
+                <input type="submit" value="Envoyer">
+            {{ form_end(form) }}
+        </aside>
+    </main>
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">
