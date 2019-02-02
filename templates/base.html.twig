@@ -12,16 +12,18 @@
         <nav class="main-menu">
             <ul class="main-ul">
                 {% if is_granted('ROLE_USER')%}
-                    <li class="btn-submenu">
+                    <li>
                         <a><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
+                        <input type="checkbox" class="btn-submenu">
                         <ul class="submenu">
                             <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
                             <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
                         </ul>
                     </li>
-                    <li class="btn-submenu">
+                    <li>
                         <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
-                        <ul class="submenu1">
+                        <input type="checkbox" class="btn-submenu">
+                        <ul class="submenu">
                             <li><a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
                             <li><a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a></li>
                         </ul>
@@ -29,10 +31,18 @@
                 {% else %}
                     <li style="visibility: hidden">
                     </li>
-                    <li class="btn-submenu">
+                    <li>
                         <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
-                        <ul class="submenu1">
-                            <li><a href="{{ path('login') }}">Connexion</a></li>
+                        <input type="checkbox" class="btn-submenu">
+                        <ul class="submenu">
+                            <li>
+                                <form action="{{ path('login') }}" method="POST" class="login-form">
+                                    <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
+                                    <input type="text" name="_username" placeholder="pseudo ...">
+                                    <input type="password" name="_password">
+                                    <input type="submit" value="Se connecter">
+                                </form>
+                            </li>
                             <li><a href="{{ path('inscription') }}">Inscription</a></li>
                         </ul>
                     </li>

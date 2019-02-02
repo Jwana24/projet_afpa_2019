@@ -40,25 +40,45 @@
 //     });
 // }
 
-if(document.querySelectorAll('.btn-submenu'))
-{
-    let btns = document.querySelectorAll('.btn-submenu');
-    let show = false;
+// if(document.querySelectorAll('.btn-submenu'))
+// {
+//     let btns = document.querySelectorAll('.btn-submenu');
+//     let show = false;
 
-    btns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-        console.log(e);
-        if(show)
-        {
-            e.target.parentElement.parentElement.children[1].style.display = "none";
-            show = false;
-        }
-        else
-        {
-            e.target.parentElement.parentElement.children[1].style.display = "initial";
-            show = true;
-        }
-            
-        });
-    });
-}
+//     btns.forEach((btn) => {
+//         btn.addEventListener('click', (e) => {
+
+//         console.log(e);
+//         let submenu;
+
+//         if(e.target.localName == "ion-icon")
+//         {
+//             submenu = e.target.parentElement.parentElement.children[1];
+//         }
+//         else if (e.target.localName == "a") 
+//         {
+//             submenu = e.target.parentElement.children[1];
+//         }
+//         else if (e.target.classList == "btn-submenu") 
+//         {
+//             submenu = e.target.children[1];
+//         }
+//         else
+//         {
+//             submenu = false;
+//         }
+
+//         if(submenu != false)
+//         {
+//             if(submenu.style.display == "none")
+//             {
+//                 submenu.style.display = "initial";
+//             }
+//             else
+//             {
+//                 submenu.style.display = "none";
+//             }
+//         }
+//         });
+//     });
+// }
