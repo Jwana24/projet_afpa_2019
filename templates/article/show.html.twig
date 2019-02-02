@@ -9,10 +9,21 @@
 
             <section class="container-article">
                 <article class="article-show">
+                
                     <h2 class="title-article">{{article.TitleArticle}}</h2>
                     <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
                     <p class="text-article">{{article.TextArticle}}</p>
                     <p class="like-article">{{likes}}</p>
+
+                    {% if user %}
+                        {{ form_start(formLike) }}
+                        {{ form_widget(formLike) }}
+                        <input class="btn-like-article" type="submit" value="{% trans %}Liker{% endtrans %}">
+                        {{ form_end(formLike) }}
+                    {% else %}
+                        <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
+                    {% endif %}
+
                 </article>
             </section>
 
@@ -27,20 +38,11 @@
                 {% if user %}
                     <a href="#">Commenter</a>
                     {{ form_start(form) }}
-                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'cols': '107'}}) }}
-                    <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
+                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'cols': '107', 'class': 'message-comment-article'}}) }}
+                    <input class="btn-send-comment-article" type="submit" value="{% trans %}Envoyer{% endtrans %}">
                     {{ form_end(form) }}
                 {% else %}
                     <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
-                {% endif %}
-
-                {% if user %}
-                    {{ form_start(formLike) }}
-                    {{ form_widget(formLike) }}
-                    <input type="submit" value="{% trans %}Liker{% endtrans %}">
-                    {{ form_end(formLike) }}
-                {% else %}
-                    <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
                 {% endif %}
             </div>
             

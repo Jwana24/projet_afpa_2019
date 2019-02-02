@@ -399,12 +399,18 @@ main
     font-weight: 100;
 }
 
+.article-show .btn-like-article
+{
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
 .article-show .like-article
 {
     /* background-color: #e74c3c; */
 }
 
-.btn-delete-article
+.btn-delete-article, .btn-like-article
 {
     font-family: 'Segoe UI';
     font-size: 14px;
@@ -417,7 +423,11 @@ main
     margin-top: 20px;
 }
 
-.btn-delete-article:hover
+.btn-delete-article:hover,
+.btn-admin-article a:hover,
+.article-page .form-comment-article a:hover,
+.article-page .form-comment-article input[type=submit]:hover,
+.article-page .article-show .btn-like-article:hover
 {
     background-color: #273c75;
 }
@@ -429,6 +439,7 @@ main
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .btn-admin-article a
@@ -443,20 +454,11 @@ main
     margin-top: 20px;
 }
 
-.btn-admin-article a:hover
-{
-    background-color: #273c75;
-}
-
 .article-page .form-comment-article
 {
     font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
-    align-items: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .article-page .form-comment-article a
@@ -469,13 +471,26 @@ main
     padding: 7px;
     display: inline-block;
     margin-top: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    bottom: 64px;
 }
 
-.article-page .form-comment-article a:hover, .form-comment-article input[type=submit]:hover
+.article-page .form-comment-article a,
+.article-page .form-comment-article .btn-send-comment-article,
+.article-page .form-comment-article .message-comment-article
 {
-    background-color: #273c75;
+    position: relative;
+}
+
+.article-page .form-comment-article .message-comment-article
+{
+    bottom: 40px;
+    border-radius: 10px;
+}
+
+.article-page .form-comment-article .btn-send-comment-article
+{
+    font-family: 'Segoe UI';
+    bottom: 40px;
 }
 
 .article-page .form-comment-article input[type=submit]
