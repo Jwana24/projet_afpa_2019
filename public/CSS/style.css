@@ -340,7 +340,7 @@ main
     height: 100px;
 }
 
-/* ARTICLES PAGE */
+/* ARTICLE PAGE (COMMENTS & RESPONSES) */
 /* Admin */
 
 .form-add-article
@@ -348,7 +348,7 @@ main
     margin-top: 100px;
 }
 
-/* ARTICLES PAGE */
+/* ARTICLES PAGE (COMMENTS & RESPONSES) */
 /* Show */
 
 .main-article
@@ -427,7 +427,11 @@ main
 .btn-admin-article a:hover,
 .article-page .form-comment-article a:hover,
 .article-page .form-comment-article input[type=submit]:hover,
-.article-page .article-show .btn-like-article:hover
+.article-page .article-show .btn-like-article:hover,
+.article-page .article-comment a:hover,
+.article-page .article-comment .response-article a:hover,
+.article-page .article-comment .btn-delete-comment:hover,
+.article-page .article-comment .btn-delete-response:hover
 {
     background-color: #273c75;
 }
@@ -439,7 +443,7 @@ main
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: -5px;
 }
 
 .btn-admin-article a
@@ -505,9 +509,74 @@ main
     margin-top: 10px;
 }
 
+.article-page .article-comment
+{
+    font-family: 'Segoe UI';
+    width: 80%;
+    margin: 0 auto;
+}
 
+.article-page .article-comment .date-article-comment,
+.article-page .article-comment .date-article-response
+{
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
 
-/* COMMENT ARTICLE PAGE */
+.article-page .article-comment .username-article-comment,
+.article-page .article-comment .username-article-response
+{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.article-page .article-comment .text-article-comment
+{
+    width: 80%;
+}
+
+.article-page .article-comment .text-article-comment,
+.article-page .article-comment .text-article-response
+{
+    border: #dfe6e9 solid 0.3px;
+    background-color: #dfe6e9;
+    border-radius: 10px;
+    padding: 7px;
+}
+
+.article-page .article-comment .username-article-response,
+.article-page .article-comment .date-article-response,
+.article-page .article-comment .response-article a,
+.article-page .article-comment .btn-delete-response
+{
+    margin-left: 50px;
+}
+
+.article-page .article-comment .text-article-response
+{
+    width: 75%;
+    margin-left: 50px;
+}
+
+.article-page .article-comment a,
+.article-page .article-comment .response-article a,
+.article-page .article-comment .btn-delete-comment,
+.article-page .article-comment .btn-delete-response
+{
+    font-family: 'Segoe UI';
+    font-style: none;
+    font-size: 14px;
+    border: none;
+    text-decoration: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
 /* Modal window */
 
 .modal_response
