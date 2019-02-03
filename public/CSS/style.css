@@ -431,7 +431,8 @@ main
 .article-page .article-comment a:hover,
 .article-page .article-comment .response-article a:hover,
 .article-page .article-comment .btn-delete-comment:hover,
-.article-page .article-comment .btn-delete-response:hover
+.article-page .article-comment .btn-delete-response:hover,
+.article-page .a-article-list:hover
 {
     background-color: #273c75;
 }
@@ -544,12 +545,15 @@ main
     background-color: #dfe6e9;
     border-radius: 10px;
     padding: 7px;
+    font-size: 14px;
+    font-weight: 100;
 }
 
 .article-page .article-comment .username-article-response,
 .article-page .article-comment .date-article-response,
 .article-page .article-comment .response-article a,
-.article-page .article-comment .btn-delete-response
+.article-page .article-comment .btn-delete-response,
+.article-page .a-article-list
 {
     margin-left: 50px;
 }
@@ -563,7 +567,8 @@ main
 .article-page .article-comment a,
 .article-page .article-comment .response-article a,
 .article-page .article-comment .btn-delete-comment,
-.article-page .article-comment .btn-delete-response
+.article-page .article-comment .btn-delete-response,
+.article-page .a-article-list
 {
     font-family: 'Segoe UI';
     font-style: none;

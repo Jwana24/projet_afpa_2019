@@ -97,7 +97,7 @@
                 </article>
             </section>
 
-            <a href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
+            <a class="a-article-list" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
 
             {% for message in app.flashes('success') %}
                 <div id="flash-notice" class="text-center mx-auto">
