@@ -13,9 +13,9 @@
                     <h2 class="title-article">{{article.TitleArticle}}</h2>
                     <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
                     <p class="text-article">{{article.TextArticle}}</p>
-                    <p class="like-article">{{likes}}</p>
+                    <p class="nb-like-article">{{likes}}</p>
 
-                    <div>
+                    <div class="container-btn-article">
                         <div class="like-article">
                         {% if user %}
                             {{ form_start(formLike) }}
@@ -54,19 +54,24 @@
             <div class="article-comment">
                 {% for comment in comments %}
                     <section class="comment-response-article">
-                        <p class="date-article-comment">{{ comment.DateComment|date('d-m-Y') }}</p>
-                        <p class="username-article-comment">{{ comment.IdMemberFK.username }}</p>
-                        <p class="text-article-comment">{{ comment.TextComment }}</p>
+                        <article class="comment-article">
+                            <p class="date-article-comment">{{ comment.DateComment|date('d-m-Y') }}</p>
+                            <p class="username-article-comment">{{ comment.IdMemberFK.username }}</p>
+                            <p class="text-article-comment">{{ comment.TextComment }}</p>
 
-                        {% if is_granted('MODIF', comment) %}
-                            <a href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-                        {% endif %}
+                            <div class="btn-comment">
+                                {% if is_granted('MODIF', comment) %}
+                                    <a href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                {% endif %}
 
-                        {% if is_granted('MODIF', comment) %}
-                            {{ include('article/comments/delete.html.twig') }}
-                        {% endif %}
-
-                        <a class="response_btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+                                {% if is_granted('MODIF', comment) %}
+                                    {{ include('article/comments/delete.html.twig') }}
+                                {% endif %}
+                            </div>
+                            {% if user %}
+                                <a class="response_btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+                            {% endif %}
+                        </article>
 
                         {% for response in comment.getResponses %}
 

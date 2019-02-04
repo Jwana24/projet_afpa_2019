@@ -399,28 +399,21 @@ main
     font-weight: 100;
 }
 
-.article-show .btn-like-article
+.btn-delete-article,
+.btn-like-article,
+.like-article a,
+.btn-admin-article a
 {
-    margin-bottom: 20px;
-    margin-top: 5px;
-}
-
-.article-show .like-article
-{
-    /* background-color: #e74c3c; */
-}
-
-.btn-delete-article, .btn-like-article
-{
+    font-style: none;
     font-family: 'Segoe UI';
     font-size: 14px;
-    font-style: none;
     border: none;
     background-color: #0984e3;
     color: white;
     padding: 7px;
     display: inline-block;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    text-decoration: none;
 }
 
 .btn-delete-article:hover,
@@ -437,26 +430,56 @@ main
     background-color: #273c75;
 }
 
-.btn-admin-article
+.article-page .container-btn-article
 {
-    width: 25%;
-    margin-left: 688px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: -5px;
+    width: 100%;
+    position: relative;
+    margin-top: 30px;
 }
 
-.btn-admin-article a
+.article-page .like-article,
+.btn-admin-article
 {
-    font-size: 14px;
-    font-style: none;
-    text-decoration: none;
-    background-color: #0984e3;
-    color: white;
-    padding: 7px;
+    display: flex;
+    position: absolute;
+}
+
+.article-page .like-article
+{
+    left: 0;
+    top: 0;
+
+}
+
+.article-page .like-article .btn-like-article
+{
+    margin-right: 20px;
+}
+
+.article-page .like-article form,
+.article-page .like-article input[type=submit],
+.article-page .like-article a,
+.article-page .btn-admin-article a,
+.article-page .btn-admin-article input[type=submit]
+{
+    height: 36.4px;
+}
+
+.article-page .like-article a
+{
     display: inline-block;
-    margin-top: 20px;
+}
+
+.article-page .btn-admin-article
+{
+    right: 0;
+    top: 0;
+    height: 45px;
+}
+
+.article-page .btn-admin-article a
+{
+    margin-left: 20px;
 }
 
 .article-page .form-comment-article
@@ -464,26 +487,7 @@ main
     font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
-}
-
-.article-page .form-comment-article a
-{
-    font-style: none;
-    font-size: 14px;
-    text-decoration: none;
-    background-color: #0984e3;
-    color: white;
-    padding: 7px;
-    display: inline-block;
-    margin-top: 10px;
-    bottom: 64px;
-}
-
-.article-page .form-comment-article a,
-.article-page .form-comment-article .btn-send-comment-article,
-.article-page .form-comment-article .message-comment-article
-{
-    position: relative;
+    margin-top: 80px;
 }
 
 .article-page .form-comment-article .message-comment-article
@@ -524,6 +528,7 @@ main
     font-style: italic;
     font-weight: 300;
     margin-bottom: 5px;
+    margin-top: 30px;
 }
 
 .article-page .article-comment .username-article-comment,
@@ -562,6 +567,16 @@ main
 {
     width: 75%;
     margin-left: 50px;
+}
+
+.article-page .article-comment .btn-comment
+{
+    display: flex;
+}
+
+.article-page .article-comment .btn-comment a
+{
+    margin-right: 30px;
 }
 
 .article-page .article-comment a,
