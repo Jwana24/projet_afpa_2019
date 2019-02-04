@@ -15,28 +15,33 @@
                     <p class="text-article">{{article.TextArticle}}</p>
                     <p class="like-article">{{likes}}</p>
 
-                    {% if user %}
-                        {{ form_start(formLike) }}
-                        {{ form_widget(formLike) }}
-                        <input class="btn-like-article" type="submit" value="{% trans %}Liker{% endtrans %}">
-                        {{ form_end(formLike) }}
-                    {% else %}
-                        <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
-                    {% endif %}
+                    <div>
+                        <div class="like-article">
+                        {% if user %}
+                            {{ form_start(formLike) }}
+                            {{ form_widget(formLike) }}
+                            <input class="btn-like-article" type="submit" value="{% trans %}Liker{% endtrans %}">
+                            {{ form_end(formLike) }}
+
+                            <a href="#">Commenter</a>
+                        {% else %}
+                            <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
+                        {% endif %}
+                        </div>
+
+                        <div class="btn-admin-article">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {{ include('Admin/article/delete.html.twig') }}
+                            <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
+                        {% endif %}
+                        </div>
+                    </div>
 
                 </article>
             </section>
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <div class="btn-admin-article">
-                    {{ include('Admin/article/delete.html.twig') }}
-                    <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
-                </div>
-            {% endif %}
-
             <div class="form-comment-article">
                 {% if user %}
-                    <a href="#">Commenter</a>
                     {{ form_start(form) }}
                     {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'cols': '107', 'class': 'message-comment-article'}}) }}
                     <input class="btn-send-comment-article" type="submit" value="{% trans %}Envoyer{% endtrans %}">
