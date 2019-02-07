@@ -40,14 +40,19 @@ class Articles
     private $id_member_FK;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="id_article_FK", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="id_article_FK", orphanRemoval=true, cascade={"remove"})
      */
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="id_article_FK", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="id_article_FK", orphanRemoval=true, cascade={"remove"})
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -166,6 +171,18 @@ class Articles
                 $comment->setIdArticleFK(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

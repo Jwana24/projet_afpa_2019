@@ -19,13 +19,14 @@ class LikesRepository extends ServiceEntityRepository
         parent::__construct($registry, Likes::class);
     }
 
-    public function findByMember($member)
+    public function findByMember($member, $article)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.id_member_FK = :val')
+            ->andWhere('a.id_member_FK = :val2')
             ->setParameter('val', $member)
+            ->setParameter('val2', $article)
             ->getQuery()
-            // ->getSingleResult();
             ->getResult();
     }
 

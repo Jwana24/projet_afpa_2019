@@ -25,6 +25,9 @@ security:
                 path:   /logout
                 target: /accueil
 
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }

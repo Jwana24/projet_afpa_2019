@@ -36,10 +36,18 @@
         <section class="article-box">
             {% for article in articles %}
                 <article class="article">
-                    <h2 class="title-article">{{article.TitleArticle}}</h2>
-                    <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
-                    <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
-                    <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
+
+                    <div class="div-img">
+                        <img src="{{ asset(article.image) }}">
+                    </div>
+
+                    <div class="containt-article">
+                        <h2 class="title-article">{{article.TitleArticle}}</h2>
+                        <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
+                        <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
+                        <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
+                    </div>
+                    
                 </article>
             {% endfor %}
         </section>
@@ -57,7 +65,7 @@
                 {{ form_widget(form.mail) }}
 
                 {{ form_label(form.message, 'Message') }}
-                {{ form_widget(form.message, {'attr': {'rows': '10', 'cols': '33'}}) }}
+                {{ form_widget(form.message, {'attr': {'class': 'area-message'} }) }}
                 <input type="submit" value="Envoyer">
             {{ form_end(form) }}
         </aside>

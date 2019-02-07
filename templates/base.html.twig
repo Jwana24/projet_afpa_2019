@@ -11,7 +11,7 @@
     <body>
 
         <nav class="main-menu">
-            <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
+            <img class="logo" src="{{ asset('images/logo-site-lesnac.svg') }}" alt="Logo du site LesNac">
 
             <ul class="main-ul">
                 {% if is_granted('ROLE_USER')%}
@@ -66,4 +66,11 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> #}
         {% block javascripts %}{% endblock %}
     </body>
+
+    <footer>
+            <a href="#">Contacts</a>
+            <a href="#">Mentions légales</a>
+            <a href="#">Arborescence du site</a>
+            <p>© Site créé par Johanna DETRIEUX</p>
+    </footer>
 </html>

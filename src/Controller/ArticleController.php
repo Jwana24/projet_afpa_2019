@@ -58,7 +58,7 @@ class ArticleController extends AbstractController
         $like = new Likes();
         $formLike = $this->createForm(LikeType::class, $like);
         $formLike->handleRequest($request);
-        $countLike = $likeRepository->findByMember($this->getUser());
+        $countLike = $likeRepository->findByMember($this->getUser(), $article);
 
         if(count($countLike) == 0 || $countLike == NULL)
         {

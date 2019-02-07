@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/add")
+     * @Route("/add", name="add-article")
      */
     public function add(Request $request): Response
     {
@@ -31,6 +31,15 @@ class ArticleController extends AbstractController
             $articleManager = $this->getDoctrine()->getManager();
             $article->setDateArticle(new \DateTime('NOW'));
             $article->setIdMemberFK($this->getUser());
+
+            $image = $form['image']->getData();
+            $folder = 'images/';
+            $newName = strtr($image->getClientOriginalName(),
+            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+            $image->move($folder, $newName);
+            $article->setImage($folder.$newName);
+            
             $articleManager->persist($article);
             $articleManager->flush();
 
@@ -39,7 +48,9 @@ class ArticleController extends AbstractController
 
         return $this->render('Admin/article/add.html.twig', [
             'article' => $article,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'last_path' => 'add-article'
         ]);
     }
 
@@ -69,6 +80,17 @@ class ArticleController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $image = $form['image']->getData();
+            if(!is_string($image))
+            {
+                $folder = 'images/';
+                $newName = strtr($image->getClientOriginalName(),
+                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                $image->move($folder, $newName);
+                $article->setImage($folder.$newName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'L\'article a été modifié avec succès');
 
@@ -79,7 +101,9 @@ class ArticleController extends AbstractController
 
         return $this->render('Admin/article/edit.html.twig', [
             'article' => $article,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'last_path' => 'article_edit:id='.$article->getId()
         ]);
     }
 }

@@ -31,7 +31,9 @@ class CommentController extends AbstractController
 
         return $this->render('article/comments/edit.html.twig', [
             'comment' => $comment,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'last_path' => 'edit_comment:id='.$comment->getId()
         ]);
     }
 

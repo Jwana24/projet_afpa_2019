@@ -31,7 +31,9 @@ class ResponseController extends AbstractController
 
         return $this->render('article/responses/edit.html.twig', [
             'response' => $response,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'last_path' => 'edit_response:id='.$response->getId()
         ]);
     }
 

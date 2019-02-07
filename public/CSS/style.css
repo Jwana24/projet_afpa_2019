@@ -11,6 +11,36 @@
     box-sizing: border-box;
     line-height: 1.6;
     font-weight: 500;
+    cursor: default;
+}
+
+body
+{
+    margin-top: 72px !important;
+}
+
+footer
+{
+    width: 100%;
+    font-family: 'Segoe UI';
+    background-color: #0984e3;
+    color: white;
+}
+
+footer a,
+footer a:visited
+{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    align-content: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+footer a:hover
+{
+    color: #273c75;;
 }
 
 /* MAIN MENU (base.html.twig) */
@@ -94,9 +124,9 @@
 {
     font-family: 'PiqueMyInterest';
     position: fixed;
-    width: 100px;
-    height: 100px;
-    left: calc(50vw - 50px);
+    width: 80px;
+    height: 80px;
+    left: calc(50vw - 40px);
     top: 0;
 }
 
@@ -232,19 +262,23 @@ body, #slider, .wrap, .slide-content
     margin-right: 30px;
 }
 
-main
+.homepage
 {
     display: flex;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     position: relative;
 }
 
 .sidebox
 {
-    position: relative;
+    right: 0;
     width: 375px;
+    height: 100%;
     padding: 40px;
     background: #FBFBFB;
+    position: absolute;
 }
 
 .sidebox h4
@@ -258,7 +292,8 @@ main
     font-size: 17px;
 }
 
-.sidebox form input
+.sidebox form input,
+.sidebox .area-message
 {
     width: 100%;
 }
@@ -271,17 +306,38 @@ main
     border: none;
     padding: 7px;
     width: 50%;
-    margin-left: calc(50% - 5px);
+    margin-left: calc(50% - 1px);
+}
+
+.sidebox form input[type=submit]:hover
+{
+    background-color: #273c75;
 }
 
 .article-box
 {
+    display: flex;
+    flex-direction: column;
     margin-left: 20px;
+    width: 70%;
+    height: 100%;
 }
 
 .article-box .article
 {
     margin-bottom: 50px;
+    display: flex;
+}
+
+.article-box .article .div-img img
+{
+    width: 200px;
+    height: auto;
+}
+
+.article-box .article .containt-article
+{
+    margin-left: 20px;
 }
 
 .article:first-child
@@ -293,6 +349,7 @@ main
 {
     font-size: 30px;
     font-weight: 600;
+    word-wrap: break-word;
 }
 
 .article-box .date-article
@@ -306,9 +363,11 @@ main
 {
     font-size: 18px;
     font-weight: 100;
+    word-wrap: break-word;
 }
 
-.article-box .article a, .article-box .article a:visited
+.article-box .article a,
+.article-box .article a:visited
 {
     display: inline-block;
     margin-top: 20px;
@@ -316,7 +375,6 @@ main
     color: white;
     background-color: #0984e3;
     padding: 7px;
-
 }
 
 .article-box .article a:hover
@@ -355,8 +413,12 @@ main
 {
     font-family: 'Segoe UI';
     flex-direction: column;
-    margin-top: 100px;
     background-color: #FBFBFB;
+}
+
+.main-article a
+{
+    font-size: 14px;
 }
 
 .article-page
@@ -367,15 +429,18 @@ main
     background-color: white;
 }
 
-.container-article
-{
-    margin-top: 20px;   
-}
-
 .article-show
 {
     width: 80%;
     height: 100%;
+    margin: 0 auto;
+}
+
+.article-show img
+{
+    position: relative;
+    left: -12.5%;
+    width: 125%;
     margin: 0 auto;
 }
 
@@ -404,15 +469,12 @@ main
 .like-article a,
 .btn-admin-article a
 {
-    font-style: none;
     font-family: 'Segoe UI';
-    font-size: 14px;
     border: none;
     background-color: #0984e3;
     color: white;
     padding: 7px;
     display: inline-block;
-    /* margin-top: 20px; */
     text-decoration: none;
 }
 
@@ -425,7 +487,8 @@ main
 .article-page .article-comment .response-article a:hover,
 .article-page .article-comment .btn-delete-comment:hover,
 .article-page .article-comment .btn-delete-response:hover,
-.article-page .a-article-list:hover
+.article-page .a-article-list:hover,
+.article-page .like-article a:hover
 {
     background-color: #273c75;
 }
@@ -470,6 +533,16 @@ main
     display: inline-block;
 }
 
+.article-page #toggle-comment:checked ~ .form-comment-article
+{
+    display: inherit;
+}
+
+.article-page input[type=checkbox]
+{
+    display: none;
+}
+
 .article-page .btn-admin-article
 {
     right: 0;
@@ -484,6 +557,7 @@ main
 
 .article-page .form-comment-article
 {
+    display: none;
     font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
@@ -492,6 +566,7 @@ main
 
 .article-page .form-comment-article .message-comment-article
 {
+    width: 100%;
     bottom: 40px;
     border-radius: 10px;
 }
@@ -505,7 +580,6 @@ main
 .article-page .form-comment-article input[type=submit]
 {
     font-style: none;
-    font-size: 14px;
     border: none;
     background-color: #0984e3;
     color: white;
@@ -519,12 +593,13 @@ main
     font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .article-page .article-comment .date-article-comment,
 .article-page .article-comment .date-article-response
 {
-    font-size: 14px;
     font-style: italic;
     font-weight: 300;
     margin-bottom: 5px;
@@ -557,8 +632,7 @@ main
 .article-page .article-comment .username-article-response,
 .article-page .article-comment .date-article-response,
 .article-page .article-comment .response-article a,
-.article-page .article-comment .btn-delete-response,
-.article-page .a-article-list
+.article-page .article-comment .btn-delete-response
 {
     margin-left: 50px;
 }
@@ -579,6 +653,17 @@ main
     margin-right: 30px;
 }
 
+.response-article .btn-response
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.response-article .btn-response .btn-delete-response
+{
+    margin-left: 20px;
+}
+
 .article-page .article-comment a,
 .article-page .article-comment .response-article a,
 .article-page .article-comment .btn-delete-comment,
@@ -587,7 +672,6 @@ main
 {
     font-family: 'Segoe UI';
     font-style: none;
-    font-size: 14px;
     border: none;
     text-decoration: none;
     background-color: #0984e3;
@@ -595,6 +679,17 @@ main
     padding: 7px;
     display: inline-block;
     margin-top: 10px;
+}
+
+.article-page .article-comment .a-article-list
+{
+    display: inline-block;
+    margin-top: 40px;
+}
+
+.article-page .article-comment .a-accueil
+{
+    margin-left: 20px;
 }
 
 /* Modal window */
@@ -644,15 +739,33 @@ main
 
 @media all and (max-width: 415px)
 {
-    #slider, .slide
+    /* HOMEPAGE */
+
+    #slider,
+    .slide
     {
         width: 100%;
         height: 50vh;
     }
 
+    /* .slide
+    {
+        background-size: contain; 
+    } */
+
     .arrow
     {
-        top: 25%;
+        top: 28%;
+    }
+
+    #arrow-left
+    {
+        border-width: 10px 15px 10px 0;
+    }
+
+    #arrow-right
+    {
+        border-width: 10px 0px 10px 15px;
     }
 
     .slide-content span
@@ -665,5 +778,143 @@ main
     .homepage
     {
         flex-direction: column;
+    }
+
+    .sidebox
+    {
+        position: initial;
+        width: 100vw;
+    }
+
+    .article-box .text-article,
+    .article-box .title-article
+    {
+        word-wrap: break-word;
+    }
+
+    .article-box .title-article
+    {
+        font-size: 18px;
+    }
+
+    .article-box .text-article
+    {
+        font-size: 15px !important;
+    }
+
+    .article-box .article .containt-article
+    {
+        width: 150px;
+    }
+
+    .article-box .article a,
+    .article-box .article a:visited,
+    .sidebox form input[type=submit]
+    {
+        font-size: 12px;
+    }
+
+    .sidebox form input[type=submit]
+    {
+        width: 30%;
+        margin-left: calc(70% - 1px);
+    }
+
+    .sidebox h4
+    {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .sidebox form
+    {
+        font-size: 14px;
+    }
+
+    /* SHOW ARTICLE PAGE */
+
+    .article-show .text-article,
+    .article-show .title-article
+    {
+        word-wrap: break-word;
+    }
+
+    .article-show .title-article
+    {
+        font-size: 18px;
+    }
+
+    .article-show .text-article
+    {
+        font-size: 15px !important;
+    }
+
+    .container-btn-article
+    {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 80px;
+    }
+
+    .like-article .btn-like-article,
+    .like-article a,
+    .btn-admin-article input[type=submit],
+    .btn-admin-article a
+    {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .form-comment-article .btn-send-comment-article,
+    .article-show .date-article,
+    .article-comment .response-article .date-article-response,
+    .article-comment .comment-article .date-article-comment,
+    .article-comment .btn-comment a,
+    .article-comment .btn-comment input[type=submit],
+    .article-comment .response-btn,
+    .response-article .btn-response a,
+    .response-article .btn-response input[type=submit],
+    .article-comment .a-article-list,
+    .article-comment .a-accueil
+    {
+        font-size: 12px !important;
+    }
+
+    .btn-admin-article,
+    .like-article
+    {
+        position: initial !important;
+    }
+
+    .article-page .form-comment-article
+    {
+        margin-top: 0;
+    }
+
+    .article-page .article-comment .username-article-response,
+    .article-page .article-comment .username-article-comment
+    {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .article-page .article-comment .text-article-comment
+    {
+        width: 95%;
+    }
+
+    .response-article
+    {
+        margin-left: -10px;
+    }
+
+    .article-comment .a-article-list
+    {
+        margin-top: 0 !important;
+    }
+
+    .article-comment .link-article-page .a-accueil
+    {
+        margin-left: 0;
     }
 }
