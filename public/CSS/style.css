@@ -58,7 +58,22 @@
     height: 70px;
 }
 
-.main-menu > ul > li
+.main-menu > ul > div
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-menu > ul > div:first-child,
+.main-menu > ul > div:last-child
+{
+    width: 25%;
+}
+
+
+
+
+.main-menu > ul > div > li
 {
     width: 100px;
     height: 65px;
@@ -69,11 +84,11 @@
 
 .icon
 {
-    width: 45px;
-    height: 45px;
+    width: 25px;
+    height: 25px;
 }
 
-.main-menu > ul > li:hover
+.main-menu > ul > div > li:hover
 {
     background: rgba(228, 77, 38, 0.15);
 }
@@ -85,14 +100,14 @@
     text-align: center;
     width: 100%;
 }
-.main-menu > ul > li > a
+.main-menu > ul > div > li > a
 {
     position: absolute;
     top: 33px;
     left: 49px;
     transform: translate(-50%, -50%);
 }
-.main-menu > ul > li::before
+.main-menu > ul > div > li::before
 {
     content: '';
     display: block;
@@ -108,13 +123,13 @@
     z-index: 99999;
 }
 
-.main-menu > ul > li:hover::before
+.main-menu > ul > div > li:hover::before
 {
     transform: scale(1, 1);
 }
 /* SubMenu */
 
-.main-menu > ul > li > ul
+.main-menu > ul > div > li > ul
 {
     display: none;
     position: absolute;
@@ -122,23 +137,24 @@
     left: 0;
 }
 
-.main-menu > ul > li > ul > li
+.main-menu > ul > div > li > ul > li
 {
     width: 100%;
-    height: 80px;
+    height: 45px;
     background: rgb(9, 132, 227);
+    border-bottom: 1px white;
 }
 
-.main-menu > ul > li > ul > li > a
+.main-menu > ul > div > li > ul > li > a
 {
     display: inline-block;
     padding: 20px 80px 20px 80px; 
+    width: 260px;
 }
 
-.main-menu > ul > li > ul > li:hover
+.main-menu > ul > div > li > ul > li:hover
 {
-    border-bottom: 2px black solid;
-    background: #273c75
+    background: #273c75;
 }
 
 /* HOME PAGE */

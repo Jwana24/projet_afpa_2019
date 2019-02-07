@@ -11,55 +11,59 @@
     <body>
         <nav class="main-menu">
             <ul class="main-ul">
-                {% if is_granted('ROLE_USER')%}
-                    <li>
-                        <a><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
-                        <input type="checkbox" class="btn-submenu">
-                        <ul class="submenu">
-                            <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
-                            <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
-                        </ul>
+                <div>
+                    {% if is_granted('ROLE_USER')%}
+                        <li>
+                            <a><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
+                            <input type="checkbox" class="btn-submenu">
+                            <ul class="submenu">
+                                <li><a href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a></li>
+                                <li><a href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">English</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
+                            <input type="checkbox" class="btn-submenu">
+                            <ul class="submenu">
+                                <li><a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
+                                <li><a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Mon profil{% endtrans %}</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
+                            <input type="checkbox" class="btn-submenu">
+                            <ul class="submenu">
+                                <li>
+                                    <form action="{{ path('login') }}" method="POST" class="login-form">
+                                        <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
+                                        <input type="text" name="_username" placeholder="pseudo ...">
+                                        <input type="password" name="_password">
+                                        <input type="submit" value="Se connecter">
+                                    </form>
+                                </li>
+                                <li><a href="{{ path('inscription') }}">Inscription</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li class="btn-home">
+                        <a href="{{ path('accueil') }}">Accueil</a>
                     </li>
-                    <li>
-                        <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
-                        <input type="checkbox" class="btn-submenu">
-                        <ul class="submenu">
-                            <li><a href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a></li>
-                            <li><a href="{{ path('member_show', {'id':user.id}) }}">{% trans %}Voir mon profil{% endtrans %}</a></li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li style="visibility: hidden">
-                    </li>
-                    <li>
-                        <a class="span-registration"><ion-icon class="icon" name="person"></ion-icon></a>
-                        <input type="checkbox" class="btn-submenu">
-                        <ul class="submenu">
-                            <li>
-                                <form action="{{ path('login') }}" method="POST" class="login-form">
-                                    <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
-                                    <input type="text" name="_username" placeholder="pseudo ...">
-                                    <input type="password" name="_password">
-                                    <input type="submit" value="Se connecter">
-                                </form>
-                            </li>
-                            <li><a href="{{ path('inscription') }}">Inscription</a></li>
-                        </ul>
-                    </li>
-                {% endif %}
-                <li class="btn-home">
-                    <a href="{{ path('accueil') }}">Accueil</a>
-                </li>
+                </div>
+
                 <img class="logo" src="{{ asset('images/logo3.svg') }}" alt="Logo du site LesNac">
-                <li>
-                    <a href="{{ path('articles_list') }}">Articles</a>
-                </li>
-                <li>
-                    <a href="{{ path('posts_list') }}">Forum</a>
-                </li>
-                <li>
-                    <a href="{{ path('posts_list') }}">Contact</a>
-                </li>
+
+                <div>
+                    <li>
+                        <a href="{{ path('articles_list') }}">Articles</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('posts_list') }}">Forum</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('posts_list') }}">Contact</a>
+                    </li>
+                </div>
             </ul>
         </nav>
 
