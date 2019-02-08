@@ -511,7 +511,6 @@ body, #slider, .wrap, .slide-content
 {
     left: 0;
     top: 0;
-
 }
 
 .article-page .like-article .btn-like-article
@@ -622,13 +621,15 @@ body, #slider, .wrap, .slide-content
     margin-bottom: 10px;
 }
 
-.article-page .article-comment .text-article-comment
+.article-page .article-comment .text-article-comment,
+.contain-form-response textarea
 {
     width: 80%;
 }
 
 .article-page .article-comment .text-article-comment,
-.article-page .article-comment .text-article-response
+.article-page .article-comment .text-article-response,
+.contain-form-response textarea
 {
     border: #dfe6e9 solid 0.3px;
     background-color: #dfe6e9;
@@ -641,7 +642,8 @@ body, #slider, .wrap, .slide-content
 .article-page .article-comment .username-article-response,
 .article-page .article-comment .date-article-response,
 .article-page .article-comment .response-article a,
-.article-page .article-comment .btn-delete-response
+.article-page .article-comment .btn-delete-response,
+.article-page .contain-form-response
 {
     margin-left: 50px;
 }
@@ -677,7 +679,8 @@ body, #slider, .wrap, .slide-content
 .article-page .article-comment .response-article a,
 .article-page .article-comment .btn-delete-comment,
 .article-page .article-comment .btn-delete-response,
-.article-page .a-article-list
+.article-page .a-article-list,
+.contain-form-response input[type=submit]
 {
     font-family: 'Segoe UI';
     font-style: none;
@@ -699,6 +702,20 @@ body, #slider, .wrap, .slide-content
 .article-page .article-comment .a-accueil
 {
     margin-left: 20px;
+}
+
+
+/* Responses comments article */
+
+.contain-form-response form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.contain-form-response input[type=submit]
+{
+    width: 10%;
 }
 
 /* Modal window */

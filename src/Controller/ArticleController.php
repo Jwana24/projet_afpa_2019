@@ -86,6 +86,8 @@ class ArticleController extends AbstractController
             $response->setIdMemberFK($this->getUser());
             $responseManager->persist($response);
             $responseManager->flush();
+
+            return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
         }
 
         return $this->render('article/show.html.twig', [
