@@ -531,6 +531,15 @@ body, #slider, .wrap, .slide-content
 .article-page .like-article a
 {
     display: inline-block;
+    padding: 0;
+}
+
+.article-page .like-article a label
+{
+    padding: 7px;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .article-page #toggle-comment:checked ~ .form-comment-article
@@ -694,7 +703,7 @@ body, #slider, .wrap, .slide-content
 
 /* Modal window */
 
-.modal_response
+/* .modal_response
 {
     z-index: 1000000;
     display: none;
@@ -733,7 +742,7 @@ body, #slider, .wrap, .slide-content
 .close_modal_response
 {
     cursor: pointer;
-}
+} */
 
 /* MEDIA QUERY */
 

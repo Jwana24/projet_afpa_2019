@@ -53,6 +53,8 @@ class ArticleController extends AbstractController
             $comment->setIdMemberFK($this->getUser());
             $commentManager->persist($comment);
             $commentManager->flush();
+            
+            return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
         }
 
         $like = new Likes();

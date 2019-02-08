@@ -46,7 +46,7 @@
             <div class="form-comment-article">
                 {% if user %}
                     {{ form_start(form) }}
-                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'class': 'message-comment-article'}}) }}
+                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'class': 'message-comment-article'} }) }}
                     <input class="btn-send-comment-article" type="submit" value="{% trans %}Envoyer{% endtrans %}">
                     {{ form_end(form) }}
                 {% else %}
@@ -96,9 +96,20 @@
 
                         {% endfor %}
                         
+                        <div class="contain-response{{ comment.Id }}">
+
+                        </div>
                     </section>
 
                 {% endfor %}
+
+                <div class="contain-form-response">
+                    {{ form_start(formResponse) }}
+                    {{ form_widget(formResponse.text_response) }}
+                    <input type="hidden" value="" name="id_comment">
+                    <input type="submit" value="Répondre">
+                    {{ form_end(formResponse) }}
+                </div>
 
                 <div class="link-article-page">
                     <a class="a-article-list" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
@@ -113,16 +124,16 @@
                 {% endfor %}
             </div>
 
-            <section class="modal_response">
+            {# <section class="modal_response">
                 <article class="center_modal_response">
-                <span class="close_modal_response">&times;</span>
+                <span class="close_modal_response">&times</span>
                     {{ form_start(formResponse) }}
                     {{ form_widget(formResponse.text_response) }}
                     <input type="hidden" value="" name="id_comment">
                     <input type="submit" value="Répondre">
                     {{ form_end(formResponse) }}
                 </article>
-            </section>
+            </section> #}
 
         </div>
 
@@ -131,5 +142,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
+    {# <script src="{{ asset('js/modal.js') }}"></script> #}
+    <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}
