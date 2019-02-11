@@ -97,7 +97,7 @@ class MembersController extends Controller implements EventSubscriberInterface
             $memberManager->flush();
             $this->addFlash('success', 'Bienvenue ! :)');
 
-            return $this->redirectToRoute('accueil');
+            // return $this->redirectToRoute('accueil');
         }
 
         return $this->render('Members/inscription.html.twig', [

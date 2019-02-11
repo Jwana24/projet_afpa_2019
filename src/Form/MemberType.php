@@ -76,6 +76,7 @@ class MemberType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Members::class,
+            'csrf_protection' => false
         ]);
     }
 }

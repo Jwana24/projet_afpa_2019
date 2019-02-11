@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}NOM DU SITE{% endblock %}</title>
-        {# <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> #}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
@@ -58,19 +58,79 @@
             </ul>
         </nav>
 
-        {% block body %}{% endblock %}
-            <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
-            <script src="{{ asset('js/menu.js') }}"></script>
-            {# <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> #}
-        {% block javascripts %}{% endblock %}
-    </body>
+        <section class="modal_inscription">
+        <span class="close_modal_inscription">&times</span>
+            <article class="center_modal_inscription">
+                <form name="member" method="post" enctype="multipart/form-data">
+                    <div id="member">
 
-    <footer>
+                        <div>
+                            <label for="member_last_name" class="required">Nom</label>
+                            <input type="text" id="member_last_name" name="member[last_name]" required="required" maxlength="50" />
+                        </div>
+
+                        <div>
+                            <label for="member_first_name" class="required">Prénom</label>
+                            <input type="text" id="member_first_name" name="member[first_name]" required="required" maxlength="50" />
+                        </div>
+
+                        <div>
+                            <label for="member_username" class="required">Username</label>
+                            <input type="text" id="member_username" name="member[username]" required="required" maxlength="50" pattern=".{2,}" />
+                        </div>
+
+                        <div>
+                            <label for="member_password_first">Mot de passe</label>
+                            <input type="password" id="member_password_first" name="member[password][first]" class="password-field" />
+                        </div>
+
+                        <div>
+                            <label for="member_password_second">Confirmation du mot de passe</label>
+                            <input type="password" id="member_password_second" name="member[password][second]" class="password-field" />
+                        </div>
+
+                        <div>
+                            <label for="member_mail" class="required">Email</label>
+                            <input type="email" id="member_mail" name="member[mail]" required="required" maxlength="200" />
+                        </div>
+
+                        <div>
+                            <label for="member_description">Description</label>
+                            <input type="text" id="member_description" name="member[description]" maxlength="500" />
+                        </div>
+
+                        <div>
+                            <label for="member_avatar">Avatar</label>
+                            <input type="file" id="member_avatar" name="member[avatar]" />
+                        </div>
+
+                    </div>
+
+                    <input type="submit" value="M'inscrire">
+                </form>
+            </article>
+        </section>
+
+        <div class="alert alert-success" role="alert">
+            Vous avez été inscrit avec succès !
+        </div>
+
+        {% block body %}{% endblock %}
+
+        <footer>
             <a href="#">Contacts</a>
             <a href="#">Mentions légales</a>
             <a href="#">Arborescence du site</a>
             <p>© Site créé par Johanna DETRIEUX</p>
-    </footer>
+        </footer>
+
+            <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+            <script src="{{ asset('js/menu.js') }}"></script>
+            <script src="{{ asset('js/inscription.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+
 </html>

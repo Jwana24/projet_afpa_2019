@@ -1,12 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Inscription{% endblock %}
-
-{% block body %}
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{% trans %}M'inscrire{% endtrans %}">
-    {{ form_end(form) }}
-
-{% endblock %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<input type="submit" value="{% trans %}M'inscrire{% endtrans %}">
+{{ form_end(form) }}
