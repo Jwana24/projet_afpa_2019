@@ -170,6 +170,132 @@ footer a:hover
     left: -200px;
 }
 
+/* MODAL INSCRIPTION (SUR TOUTES LES PAGES) */
+
+.modal_inscription,
+.modal_connection
+{
+    display: flex;
+    z-index: 999999999999;
+    position: fixed;
+    width: 30vw;
+    height: 85vh;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: rgba(178, 190, 195, .70);
+    border-radius: 10px;
+}
+
+.modal_connection
+{
+    height: 45vh;
+}
+
+.center_modal_inscription,
+.center_modal_connection
+{
+    position: relative;
+    background-color: white;
+    margin: auto;
+    width: 80%;
+    height: 95%;
+    border-radius: 10px;
+}
+
+.center_modal_connection
+{
+    height: 85%;
+}
+
+.center_modal_inscription h4,
+.center_modal_connection h4
+{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.center_modal_inscription form[name=member],
+.center_modal_connection form[name=member-co]
+{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.center_modal_inscription form[name=member] div,
+.center_modal_connection form[name=member-co] div
+{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#member div,
+#member-co div
+{
+    margin-bottom: 5px;
+}
+
+.center_modal_inscription form[name=member] input,
+.center_modal_connection form[name=member-co] input
+{
+    width: 100%;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.center_modal_inscription form[name=member] input[type=file]
+{
+    padding-left: 0;
+}
+
+.center_modal_inscription form[name=member] label[for=member_avatar]
+{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.center_modal_inscription form[name=member] input[type=submit],
+.center_modal_connection form[name=member-co] input[type=submit]
+{
+    align-self: center;
+    margin-top: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #0984e3;
+    color: white;
+}
+
+.center_modal_inscription form[name=member] input[type=submit]:hover,
+.center_modal_connection form[name=member-co] input[type=submit]:hover
+{
+    background-color: #273c75;
+}
+
+.cross-close,
+.cross-close-co
+{
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.cross-close:hover,
+.cross-close-co:hover
+{
+    font-size: 30px;
+}
+
+.alert
+{
+    display: none;
+}
+
 /* HOME PAGE */
 
 body, #slider, .wrap, .slide-content
@@ -445,6 +571,7 @@ body, #slider, .wrap, .slide-content
 
 .article-show .title-article
 {
+    margin-top: 20px;
     font-size: 30px;
     font-weight: 600;
 }

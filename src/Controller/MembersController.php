@@ -95,7 +95,6 @@ class MembersController extends Controller implements EventSubscriberInterface
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);
             $memberManager->flush();
-            $this->addFlash('success', 'Bienvenue ! :)');
 
             // return $this->redirectToRoute('accueil');
         }
