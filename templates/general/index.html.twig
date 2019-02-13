@@ -52,7 +52,7 @@
             {% endfor %}
         </section>
 
-        <aside class="sidebox">
+        <aside id="contacts" class="sidebox">
             <h4>Contacts</h4>
             {{ form_start(form) }}
                 {{ form_label(form.lastname, 'Nom') }}
@@ -69,13 +69,14 @@
                 <input type="submit" value="Envoyer">
             {{ form_end(form) }}
         </aside>
-    </main>
 
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div id="flash-notice" class="text-center mx-auto">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    </main>
 
 {% endblock %}
 

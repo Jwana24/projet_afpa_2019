@@ -3,37 +3,39 @@
 {% block title %}{{post.TitlePost}}{% endblock %}
 
 {% block body %}
-    <table>
-        <tr>
-            <th>{% trans %}Titre{% endtrans %}</th>
+    <main class="main-forum">
+        <div class="forum-page">
+            <section class="container-forum">
+                <article class="forum-show">
+    
+            {# <th>{% trans %}Titre{% endtrans %}</th>
             <th>{% trans %}Date{% endtrans %}</th>
             <th>{% trans %}Membre{% endtrans %}</th>
             <th>{% trans %}Catégorie{% endtrans %}</th>
-            <th>{% trans %}Contenu du post{% endtrans %}</th>
-        <tr>
+            <th>{% trans %}Contenu du post{% endtrans %}</th> #}
 
-        <tr>
-            <td>{{post.TitlePost}}</td>
-            <td>{{post.DatePost|date('d-m-Y')}}</td>
-            <td>{{post.IdMemberFK.username}}</td>
-            <td>{{post.categorie}}</td>
-            <td>{{post.TextPost}}</td>
-        </tr>
-    </table>
+                    <h2 class="title-post">{{post.TitlePost}}</h2>
+                    <p>{{post.DatePost|date('d-m-Y')}}</p>
+                    <p>{{post.IdMemberFK.username}}</p>
+                    <p>{{post.categorie}}</p>
+                    <p>{{post.TextPost}}</p>
 
-    {% if is_granted('MODIFPOST', post) %}
-        {{ include('forum/delete.html.twig') }}
-        <a href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-    {% endif %}
+                    {% if is_granted('MODIFPOST', post) %}
+                        {{ include('forum/delete.html.twig') }}
+                        <a href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                    {% endif %}
 
-    {% if user %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
-        {{ form_end(form) }}
-    {% else %}
-        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
-    {% endif %}
+                    {% if user %}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="{% trans %}Envoyer{% endtrans %}">
+                        {{ form_end(form) }}
+                    {% else %}
+                        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+                    {% endif %}
+
+                </article>
+            </section>
 
     {% for comment in comments %}
         <section>
@@ -89,6 +91,9 @@
             {{ message }}
         </div>
     {% endfor %}
+
+        </div>
+    </main>
 
 {% endblock %}
 

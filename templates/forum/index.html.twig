@@ -3,38 +3,51 @@
 {% block title %}{% trans %}Bienvenue sur le forum{% endtrans %}{% endblock %}
 
 {% block body %}
-    <table>
-        <tr>
-            <th>{% trans %}Titre{% endtrans %}</th>
-            <th>{% trans %}Date{% endtrans %}</th>
-            <th>{% trans %}Catégorie{% endtrans %}</th>
-        <tr>
+    <main class="container">
 
-        {% for post in posts %}
-            <tr>
-                <td>{{post.TitlePost}}</td>
-                <td>{{post.DatePost|date('d-m-y')}}</td>
-                <td>{{post.categorie}}</td>
-                <td><a href="{{ path('show_post', {'id' : post.Id}) }}">{% trans %}Voir{% endtrans %}</a></td>
-            </tr>
-        {% endfor %}
-    </table>
+        <div class="row justify-content-md-center">
+            {% for post in posts %}
+                <div class="card border-light col-3" style="max-width: 18rem;">
+                    <div class="card-header">
+                        <p> Catégorie : {{post.categorie}}</p>
+                    </div>
 
-    <select name="Catégories">
-        <option value="mammifères">{% trans %}mammifères{% endtrans %}</option>
-        <option value="reptiles">reptiles</option>
-        <option value="amphibiens">{% trans %}amphibiens{% endtrans %}</option>
-        <option value="oiseaux">{% trans %}oiseaux{% endtrans %}</option>
-        <option value="poissons">{% trans %}poissons{% endtrans %}</option>
-    </select>
-
-    <a href="{{ path('add_post') }}">{% trans %}Ajouter un post{% endtrans %}</a>
-    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
-
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
+                    <div class="card-body">
+                        <h2 class="card-title">{{post.TitlePost}}</h2>
+                        <p>{{post.DatePost|date('d-m-y')}}</p>
+                        <a class="btn btn-primary" href="{{ path('show_post', {'id' : post.Id}) }}">{% trans %}Voir{% endtrans %}</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+
+        <div class="row navigation">
+        
+            <div class="col-12">
+                <select name="Catégories">
+                    <option value="mammifères">{% trans %}mammifères{% endtrans %}</option>
+                    <option value="reptiles">reptiles</option>
+                    <option value="amphibiens">{% trans %}amphibiens{% endtrans %}</option>
+                    <option value="oiseaux">{% trans %}oiseaux{% endtrans %}</option>
+                    <option value="poissons">{% trans %}poissons{% endtrans %}</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <div class="btn-link-forum">
+                    <a href="{{ path('add_post') }}">{% trans %}Ajouter un post{% endtrans %}</a>
+                    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+                </div>
+            </div>
+
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div id="flash-notice" class="text-center mx-auto">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    </main>
 
 {% endblock %}

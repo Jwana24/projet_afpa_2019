@@ -14,9 +14,9 @@
     cursor: default;
 }
 
-body
+main
 {
-    margin-top: 72px !important;
+    min-height: 100vh;
 }
 
 footer
@@ -42,140 +42,18 @@ footer a:hover
     color: #273c75;;
 }
 
-/* MAIN MENU (base.html.twig) */
-
-.main-menu
+footer p
 {
-    z-index: 1001;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    background-color: rgba(9, 132, 227, 1);
+    margin-bottom: 0;
 }
 
-.main-menu > ul > li > a, .main-menu > ul > li > span
-{
-    color: white;
-    padding: 20px 30px;
-    text-decoration: none;
-}
-
-.main-menu > ul > li:hover a, .main-menu > ul > li:hover span
-{
-    padding: 15px 30px 20px 30px;
-}
-
-.main-menu li
-{
-    list-style: none;
-    position: relative;
-}
-
-.main-menu > li > span
-{
-    width: 100px;
-    height: 100%;
-}
-
-.main-menu > ul > li:hover
-{
-    border-top: 5px solid white;
-    background-color: rgba(228, 77, 38, 0.15);
-}
-
-.main-menu a
-{
-    display: inline-block;
-    text-decoration: none;
-}
-
-.submenu, .submenu1
-{
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 0;
-    z-index: 1000;
-}
-
-.submenu li, .submenu1 li
-{
-    border-bottom: 1px solid #CCC;
-    background-color: #0984e3;
-}
-
-.submenu li:hover, .submenu1 li:hover
-{
-    background-color: #273c75;
-}
-
-.submenu li a, .submenu1 li a
-{
-    padding: 15px 30px;
-    font-size: 13px;
-    color: #222538;
-    width: 270px;
-}
-
-.main-menu .logo
-{
-    font-family: 'PiqueMyInterest';
-    position: fixed;
-    width: 80px;
-    height: 80px;
-    left: calc(50vw - 40px);
-    top: 0;
-}
-
-.main-menu .main-ul
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.main-menu ul li
-{
-    list-style: none;
-}
-
-.icon, .span-registration .icon
-{
-    cursor: pointer;
-    font-size: 25px;
-    z-index: 9999;
-}
-
-.language a, .registration a
-{
-    padding: 15px 30px;
-}
-
-.registration
-{
-    width: 140px;
-    text-align: center;
-}
-
-.menu-language .language li
-{
-    margin-bottom: 5px;
-}
-
-.main-menu .btn-home
-{
-    position: relative;
-    left: -200px;
-}
 
 /* MODAL INSCRIPTION (SUR TOUTES LES PAGES) */
 
 .modal_inscription,
 .modal_connection
 {
-    display: flex;
+    display: none;
     z-index: 999999999999;
     position: fixed;
     width: 30vw;
@@ -531,10 +409,11 @@ body, #slider, .wrap, .slide-content
     margin-top: 100px;
 }
 
-/* ARTICLES PAGE (COMMENTS & RESPONSES) */
+/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM PAGE (POSTS) */
 /* Show */
 
-.main-article
+.main-article,
+.main-forum
 {
     font-family: 'Segoe UI';
     flex-direction: column;
@@ -542,12 +421,15 @@ body, #slider, .wrap, .slide-content
 }
 
 .main-article a,
-.main-article input
+.main-article input,
+.main-forum a,
+.main-forum input
 {
     font-size: 14px;
 }
 
-.article-page
+.article-page,
+.forum-page
 {
     width: 70%;
     height: 100%;
@@ -555,7 +437,8 @@ body, #slider, .wrap, .slide-content
     background-color: white;
 }
 
-.article-show
+.article-show,
+.forum-show
 {
     width: 80%;
     height: 100%;
@@ -570,7 +453,8 @@ body, #slider, .wrap, .slide-content
     margin: 0 auto;
 }
 
-.article-show .title-article
+.article-show .title-article,
+.forum-show .title-post
 {
     margin-top: 20px;
     font-size: 30px;
@@ -592,7 +476,8 @@ body, #slider, .wrap, .slide-content
 
 .btn-delete-article,
 .like-article a,
-.btn-admin-article a
+.btn-admin-article a,
+.container .btn-link-forum a
 {
     border: none;
     background-color: #0984e3;
@@ -611,7 +496,8 @@ body, #slider, .wrap, .slide-content
 .article-page .article-comment .btn-delete-comment:hover,
 .article-page .article-comment .btn-delete-response:hover,
 .article-page .a-article-list:hover,
-.article-page .like-article a:hover
+.article-page .like-article a:hover,
+.container .btn-link-forum a:hover
 {
     background-color: #273c75;
 }
@@ -849,48 +735,16 @@ ion-icon[name=heart-empty]
     width: 10%;
 }
 
-/* Modal window */
 
-/* .modal_response
+/* FORUM (POSTS LISTS) */
+
+.navigation > div
 {
-    z-index: 1000000;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.65;
-    background-color: black;
+    margin-left: 11%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.center_modal_response
-{
-    background-color: #dfe6e9;
-    width: 500px;
-    height: 400px;
-    margin: auto;
-}
-
-.center_modal_response form
-{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-.center_modal_response textarea
-{
-    margin: auto;
-    width: 400px;
-    height: 300px;
-}
-
-.close_modal_response
-{
-    cursor: pointer;
-} */
 
 /* MEDIA QUERY */
 

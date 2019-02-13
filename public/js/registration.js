@@ -7,7 +7,15 @@ let modalInsc = document.querySelector('.modal_inscription');
 
 let btnInsc = document.querySelector('.btn-inscription');
 
-modalInsc.style.display = 'none';
+// CONNECTION
+let closeModalCo = document.querySelector('.cross-close-co');
+let modalCo = document.querySelector('.modal_connection');
+
+let btnCo = document.querySelector('.btn-connection');
+
+
+
+// INSCRIPTION
 
 formContainerInsc.addEventListener('submit',(e) =>
 {
@@ -42,7 +50,7 @@ btnInsc.addEventListener('click', (e) =>
     e.preventDefault();
     modalCo.style.display = 'none';
 
-    if(modalInsc.style.display == 'none')
+    if(modalInsc.style.display == 'none' || modalInsc.style.display == '')
     {
         modalInsc.style.display = 'flex';
     }
@@ -63,12 +71,6 @@ btnInsc.addEventListener('click', (e) =>
 
 
 // CONNECTION
-let closeModalCo = document.querySelector('.cross-close-co');
-let modalCo = document.querySelector('.modal_connection');
-
-let btnCo = document.querySelector('.btn-connection');
-console.log(modalCo);
-modalCo.style.display = 'none';
 
 closeModalCo.addEventListener('click', () =>
 {
@@ -80,7 +82,7 @@ btnCo.addEventListener('click', (e) =>
     e.preventDefault();
     modalInsc.style.display = 'none';
 
-    if(modalCo.style.display == 'none')
+    if(modalCo.style.display == 'none' || modalCo.style.display == '')
     {
         modalCo.style.display = 'flex';
     }
