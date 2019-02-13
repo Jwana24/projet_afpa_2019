@@ -541,7 +541,8 @@ body, #slider, .wrap, .slide-content
     background-color: #FBFBFB;
 }
 
-.main-article a
+.main-article a,
+.main-article input
 {
     font-size: 14px;
 }
@@ -578,7 +579,6 @@ body, #slider, .wrap, .slide-content
 
 .article-show .date-article
 {
-    font-size: 14px;
     font-style: italic;
     font-weight: 100;
     margin-bottom: 20px;
@@ -591,11 +591,9 @@ body, #slider, .wrap, .slide-content
 }
 
 .btn-delete-article,
-.btn-like-article,
 .like-article a,
 .btn-admin-article a
 {
-    font-family: 'Segoe UI';
     border: none;
     background-color: #0984e3;
     color: white;
@@ -608,7 +606,6 @@ body, #slider, .wrap, .slide-content
 .btn-admin-article a:hover,
 .article-page .form-comment-article a:hover,
 .article-page .form-comment-article input[type=submit]:hover,
-.article-page .article-show .btn-like-article:hover,
 .article-page .article-comment a:hover,
 .article-page .article-comment .response-article a:hover,
 .article-page .article-comment .btn-delete-comment:hover,
@@ -626,6 +623,23 @@ body, #slider, .wrap, .slide-content
     margin-top: 30px;
 }
 
+ion-icon[name=heart]
+{
+    color: #e74c3c;
+}
+
+ion-icon[name=heart],
+ion-icon[name=heart-empty]
+{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.like
+{
+    display: flex;
+}
+
 .article-page .like-article,
 .btn-admin-article
 {
@@ -639,13 +653,7 @@ body, #slider, .wrap, .slide-content
     top: 0;
 }
 
-.article-page .like-article .btn-like-article
-{
-    margin-right: 20px;
-}
-
 .article-page .like-article form,
-.article-page .like-article input[type=submit],
 .article-page .like-article a,
 .article-page .btn-admin-article a,
 .article-page .btn-admin-article input[type=submit]
@@ -692,7 +700,6 @@ body, #slider, .wrap, .slide-content
 .article-page .form-comment-article
 {
     display: none;
-    font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
     margin-top: 80px;
@@ -707,7 +714,6 @@ body, #slider, .wrap, .slide-content
 
 .article-page .form-comment-article .btn-send-comment-article
 {
-    font-family: 'Segoe UI';
     bottom: 40px;
 }
 
@@ -808,7 +814,6 @@ body, #slider, .wrap, .slide-content
 .article-page .a-article-list,
 .contain-form-response input[type=submit]
 {
-    font-family: 'Segoe UI';
     font-style: none;
     border: none;
     text-decoration: none;

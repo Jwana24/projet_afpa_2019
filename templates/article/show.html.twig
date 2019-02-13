@@ -13,21 +13,34 @@
                     <h2 class="title-article">{{article.TitleArticle}}</h2>
                     <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
                     <p class="text-article">{{article.TextArticle}}</p>
+                    
+                    <div class="like">
+                        {% if is_granted('ROLE_USER') %}
+                            {% if member_like %}
+                            <ion-icon name="heart"></ion-icon>
+                            {% else %}
+                            <ion-icon name="heart-empty"></ion-icon>
+                            {% endif %}
+                        {% endif %}
                     <p class="nb-like-article">{{likes}}</p>
+                    </div>
 
                     <div class="container-btn-article">
                         <div class="like-article">
-                        {% if user %}
+                        {% if is_granted('ROLE_USER') %}
+
                             {{ form_start(formLike) }}
                             {{ form_widget(formLike) }}
-                            <input class="btn-like-article" type="submit" value="{% trans %}Liker{% endtrans %}">
                             {{ form_end(formLike) }}
 
                             <a href="#">
                             <label for="toggle-comment">Commenter</label>
                             </a>
+
                         {% else %}
+
                             <p>Vous devez être connecté pour pouvoir liker un commentaire</p>
+
                         {% endif %}
                         </div>
 
@@ -44,13 +57,17 @@
 
             <input id="toggle-comment" type="checkbox">
             <div class="form-comment-article">
-                {% if user %}
+                {% if is_granted('ROLE_USER') %}
+
                     {{ form_start(form) }}
                     {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'class': 'message-comment-article'} }) }}
                     <input class="btn-send-comment-article" type="submit" value="{% trans %}Envoyer{% endtrans %}">
                     {{ form_end(form) }}
+
                 {% else %}
+
                     <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
+
                 {% endif %}
             </div>
             
@@ -64,7 +81,7 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIF', comment) %}
@@ -131,6 +148,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    {# <script src="{{ asset('js/modal.js') }}"></script> #}
+    <script src="{{ asset('js/editComment.js') }}"></script>
+    <script src="{{ asset('js/likeArticle.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}

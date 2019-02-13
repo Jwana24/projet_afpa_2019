@@ -23,7 +23,7 @@ class LikesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.id_member_FK = :val')
-            ->andWhere('a.id_member_FK = :val2')
+            ->andWhere('a.id_article_FK = :val2')
             ->setParameter('val', $member)
             ->setParameter('val2', $article)
             ->getQuery()
