@@ -33,7 +33,7 @@
                             {{ form_widget(formLike) }}
                             {{ form_end(formLike) }}
 
-                            <a href="#">
+                            <a class="btn-site" href="#">
                             <label for="toggle-comment">Commenter</label>
                             </a>
 
@@ -47,7 +47,7 @@
                         <div class="btn-admin-article">
                         {% if is_granted('ROLE_ADMIN') %}
                             {{ include('Admin/article/delete.html.twig') }}
-                            <a href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
+                            <a class="btn-site" href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
                         {% endif %}
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 
                     {{ form_start(form) }}
                     {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'class': 'message-comment-article'} }) }}
-                    <input class="btn-send-comment-article" type="submit" value="{% trans %}Envoyer{% endtrans %}">
+                    <input class="btn-site" type="submit" value="{% trans %}Envoyer{% endtrans %}">
                     {{ form_end(form) }}
 
                 {% else %}
@@ -81,7 +81,7 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a class="btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIF', comment) %}
@@ -89,7 +89,7 @@
                                 {% endif %}
                             </div>
                             {% if user %}
-                                <a class="response-btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+                                <a class="btn-site response-btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
                             {% endif %}
                         </article>
 
@@ -102,7 +102,7 @@
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -124,14 +124,14 @@
                     {{ form_start(formResponse) }}
                     {{ form_widget(formResponse.text_response) }}
                     <input type="hidden" value="" name="id_comment">
-                    <input type="submit" value="Envoyer">
+                    <input class="btn-site" type="submit" value="Envoyer">
                     {{ form_end(formResponse) }}
                 </div>
 
                 <div class="link-article-page">
-                    <a class="a-article-list" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
+                    <a class="btn-site link-return-articles" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
                     
-                    <a class="a-accueil" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+                    <a class="btn-site" href="{{ path('accueil') }}">Revenir à l'accueil</a>
                 </div>
 
                 {% for message in app.flashes('success') %}

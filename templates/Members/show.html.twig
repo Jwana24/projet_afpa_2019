@@ -3,23 +3,24 @@
 {% block title %}{% trans %}Profil de{% endtrans %} {{ member.username }}{% endblock %}
 
 {% block body %}
-    
-    <ul>
-        <li>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</li>
-        <li>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</li>
-        <li>{% trans %}Email{% endtrans %} : {{ member.Mail }}</li>
-        <li>Description : {{ member.Description }}</li>
-        <img class="avatar" src="{{ asset(member.Avatar) }}"/>
-    </ul>
+    <main>
+        <ul>
+            <li>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</li>
+            <li>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</li>
+            <li>{% trans %}Email{% endtrans %} : {{ member.Mail }}</li>
+            <li>Description : {{ member.Description }}</li>
+            <img class="avatar" src="{{ asset(member.Avatar) }}"/>
+        </ul>
 
-    <a href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
+        <a class="btn-site" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
 
-    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+        <a class="btn-site" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
 
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div id="flash-notice" class="text-center mx-auto">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </main>
 
 {% endblock %}

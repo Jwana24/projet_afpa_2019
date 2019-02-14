@@ -4,10 +4,12 @@
 
 {% block body %}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <main>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
 
-    <a href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+        <a class="btn-site" href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+    </main>
 
 {% endblock %}

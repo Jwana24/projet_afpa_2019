@@ -46,7 +46,7 @@
         </table>
     {% endfor %}
 
-    <a href="{{ path('articles_list') }}">Revenir à la liste des articles</a>
+    <a class="btn-site" href="{{ path('articles_list') }}">Revenir à la liste des articles</a>
 
     {% for message in app.flashes('success') %}
         <div id="flash-notice" class="text-center mx-auto">

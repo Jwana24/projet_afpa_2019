@@ -45,7 +45,7 @@
                         <h2 class="title-article">{{article.TitleArticle}}</h2>
                         <p class="date-article">{{article.DateArticle|date('d-m-y')}}</p>
                         <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
-                        <a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
+                        <a class="btn-site" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
                     </div>
                     
                 </article>
@@ -66,7 +66,7 @@
 
                 {{ form_label(form.message, 'Message') }}
                 {{ form_widget(form.message, {'attr': {'class': 'area-message'} }) }}
-                <input type="submit" value="Envoyer">
+                <input class="btn-site btn-submit-contact" type="submit" value="Envoyer">
             {{ form_end(form) }}
         </aside>
 

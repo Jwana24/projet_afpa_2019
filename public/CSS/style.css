@@ -17,10 +17,12 @@
 main
 {
     min-height: 100vh;
+    padding-top: 58px;
 }
 
 footer
 {
+    position: relative;
     width: 100%;
     font-family: 'Segoe UI';
     background-color: #0984e3;
@@ -45,6 +47,28 @@ footer a:hover
 footer p
 {
     margin-bottom: 0;
+}
+
+/* Button style for all the site */
+.btn-site,
+.btn-site:visited,
+.btn-site:active
+{
+    border: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    text-decoration: none;
+    font-style: none;
+    font-size: 14px;
+}
+
+.btn-site:hover
+{
+    background-color: #273c75;
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -301,22 +325,6 @@ body, #slider, .wrap, .slide-content
     width: 100%;
 }
 
-.sidebox form input[type=submit]
-{
-    margin-top: 20px;
-    background-color: #0984e3;
-    color: white;
-    border: none;
-    padding: 7px;
-    width: 50%;
-    margin-left: calc(50% - 1px);
-}
-
-.sidebox form input[type=submit]:hover
-{
-    background-color: #273c75;
-}
-
 .article-box
 {
     display: flex;
@@ -369,21 +377,11 @@ body, #slider, .wrap, .slide-content
     word-wrap: break-word;
 }
 
-.article-box .article a,
-.article-box .article a:visited
+.btn-submit-contact
 {
-    display: inline-block;
     margin-top: 20px;
-    text-decoration: none;
-    color: white;
-    background-color: #0984e3;
-    padding: 7px;
 }
 
-.article-box .article a:hover
-{
-    background-color: #273c75;
-}
 
 /* LOGIN PAGE */
 
@@ -409,6 +407,29 @@ body, #slider, .wrap, .slide-content
     margin-top: 100px;
 }
 
+
+/* LIST ARTICLES PAGE */
+/* Index */
+
+.article-header .article-card-date
+{
+    font-size: 13px;
+    font-style: italic;
+}
+
+.article-header .article-card-title
+{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.list-articles .link-homepage
+{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
 /* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM PAGE (POSTS) */
 /* Show */
 
@@ -418,14 +439,6 @@ body, #slider, .wrap, .slide-content
     font-family: 'Segoe UI';
     flex-direction: column;
     background-color: #FBFBFB;
-}
-
-.main-article a,
-.main-article input,
-.main-forum a,
-.main-forum input
-{
-    font-size: 14px;
 }
 
 .article-page,
@@ -472,34 +485,6 @@ body, #slider, .wrap, .slide-content
 {
     font-size: 18px;
     font-weight: 100;
-}
-
-.btn-delete-article,
-.like-article a,
-.btn-admin-article a,
-.container .btn-link-forum a
-{
-    border: none;
-    background-color: #0984e3;
-    color: white;
-    padding: 7px;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-delete-article:hover,
-.btn-admin-article a:hover,
-.article-page .form-comment-article a:hover,
-.article-page .form-comment-article input[type=submit]:hover,
-.article-page .article-comment a:hover,
-.article-page .article-comment .response-article a:hover,
-.article-page .article-comment .btn-delete-comment:hover,
-.article-page .article-comment .btn-delete-response:hover,
-.article-page .a-article-list:hover,
-.article-page .like-article a:hover,
-.container .btn-link-forum a:hover
-{
-    background-color: #273c75;
 }
 
 .article-page .container-btn-article
@@ -603,17 +588,6 @@ ion-icon[name=heart-empty]
     bottom: 40px;
 }
 
-.article-page .form-comment-article input[type=submit]
-{
-    font-style: none;
-    border: none;
-    background-color: #0984e3;
-    color: white;
-    padding: 7px;
-    display: inline-block;
-    margin-top: 10px;
-}
-
 .article-page .article-comment
 {
     font-family: 'Segoe UI';
@@ -657,6 +631,12 @@ ion-icon[name=heart-empty]
     font-weight: 100;
 }
 
+.btn-edit-comment,
+.response-btn
+{
+    margin-bottom: 10px;
+}
+
 .article-page .article-comment .username-article-response,
 .article-page .article-comment .date-article-response,
 .article-page .article-comment .response-article a,
@@ -677,15 +657,16 @@ ion-icon[name=heart-empty]
     display: flex;
 }
 
-.article-page .article-comment .btn-comment a
-{
-    margin-right: 30px;
-}
-
 .response-article .btn-response
 {
     display: flex;
     margin-bottom: 20px;
+}
+
+.btn-response .btn-edit-response,
+.btn-comment .btn-edit-comment
+{
+    margin-right: 10px;
 }
 
 .response-article .btn-response .btn-delete-response
@@ -693,32 +674,10 @@ ion-icon[name=heart-empty]
     margin-left: 20px;
 }
 
-.article-page .article-comment a,
-.article-page .article-comment .response-article a,
-.article-page .article-comment .btn-delete-comment,
-.article-page .article-comment .btn-delete-response,
-.article-page .a-article-list,
-.contain-form-response input[type=submit]
+.link-return-articles
 {
-    font-style: none;
-    border: none;
-    text-decoration: none;
-    background-color: #0984e3;
-    color: white;
-    padding: 7px;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.article-page .article-comment .a-article-list
-{
-    display: inline-block;
-    margin-top: 40px;
-}
-
-.article-page .article-comment .a-accueil
-{
-    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
 }
 
 

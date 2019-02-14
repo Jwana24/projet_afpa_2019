@@ -4,23 +4,39 @@
 
 {% block body %}
 
-    <table>
-        {% for article in articles %}
-            <tr>
-                <td>{{article.TitleArticle}}</td>
-                <td>{{article.DateArticle|date('d-m-y')}}</td>
-                <td>{{article.TextArticle|slice(0, 150)}}</td>
-                <td><a href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En savoir plus{% endtrans %}</a></td>
-            </tr>
-        {% endfor %}
-    </table>
+    <main class="list-articles">
+        <div class="accordion" id="accordionExample">
+            {% for article in articles %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ article.Id }}">
+                        <h2 class="mb-0 article-header">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="true" aria-controls="collapse{{ article.Id }}">
+                                <span class="article-card-title">{{article.TitleArticle}}</span>
+                            </button>
+                            <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span>
+                        </h2>
+                    </div>
 
-    <a href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+                    <div id="collapse{{ article.Id }}" class="collapse show" aria-labelledby="heading{{ article.Id }}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            
+                            <p>{{article.TextArticle|slice(0, 150)}}</p>
+                            <a class="btn btn-primary" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}Voir{% endtrans %}</a>
+                        </div>
+                    </div>
 
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
+                </div>
+            {% endfor %}
+        
         </div>
-    {% endfor %}
+
+        <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+
+        {% for message in app.flashes('success') %}
+            <div id="flash-notice" class="text-center mx-auto">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </main>
 
 {% endblock %}

@@ -3,14 +3,15 @@
 {% block title %}{% trans %}Editer mon profil{% endtrans %}{% endblock %}
 
 {% block body %}
+    <main>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="{% trans %}Editer{% endtrans %}">
+        {{ form_end(form) }}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{% trans %}Editer{% endtrans %}">
-    {{ form_end(form) }}
+        {{ include('Members/desinscription.html.twig') }}
 
-    {{ include('Members/desinscription.html.twig') }}
-
-    <a href="{{ path('member_show', {'id':member.id}) }}">{% trans %}Revenir à ma page de profil{% endtrans %}</a>
+        <a class="btn-site" href="{{ path('member_show', {'id':member.id}) }}">{% trans %}Revenir à ma page de profil{% endtrans %}</a>
+    </main>
 
 {% endblock %}
