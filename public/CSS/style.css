@@ -49,7 +49,8 @@ footer p
     margin-bottom: 0;
 }
 
-/* Button style for all the site */
+/* BUTTON STYLE FOR ALL THE SITE */
+
 .btn-site,
 .btn-site:visited,
 .btn-site:active
@@ -69,6 +70,35 @@ footer p
     background-color: #273c75;
     text-decoration: none;
     color: white;
+}
+
+
+/* TITLES, DATES AND TEXTS (POST + ARTICLE) */
+
+.title
+{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.date
+{
+    font-style: italic;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.text
+{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.username
+{
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 
@@ -430,7 +460,7 @@ body, #slider, .wrap, .slide-content
 }
 
 
-/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM PAGE (POSTS) */
+/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM POSTS PAGE (COMMENTS & RESPONSES) */
 /* Show */
 
 .main-article,
@@ -466,28 +496,8 @@ body, #slider, .wrap, .slide-content
     margin: 0 auto;
 }
 
-.article-show .title-article,
-.forum-show .title-post
-{
-    margin-top: 20px;
-    font-size: 30px;
-    font-weight: 600;
-}
-
-.article-show .date-article
-{
-    font-style: italic;
-    font-weight: 100;
-    margin-bottom: 20px;
-}
-
-.article-show .text-article
-{
-    font-size: 18px;
-    font-weight: 100;
-}
-
-.article-page .container-btn-article
+.article-page .container-btn-article,
+.forum-page .container-btn-post
 {
     width: 100%;
     position: relative;
@@ -512,7 +522,8 @@ ion-icon[name=heart-empty]
 }
 
 .article-page .like-article,
-.btn-admin-article
+.btn-admin-article,
+.btn-admin-post
 {
     display: flex;
     position: absolute;
@@ -527,7 +538,10 @@ ion-icon[name=heart-empty]
 .article-page .like-article form,
 .article-page .like-article a,
 .article-page .btn-admin-article a,
-.article-page .btn-admin-article input[type=submit]
+.article-page .btn-admin-article input[type=submit],
+.forum-page .btn-comment-post a,
+.forum-page .btn-admin-post a,
+.forum-page .btn-admin-post input[type=submit]
 {
     height: 36.4px;
 }
@@ -546,29 +560,34 @@ ion-icon[name=heart-empty]
     height: 100%;
 }
 
-.article-page #toggle-comment:checked ~ .form-comment-article
+.article-page #toggle-comment:checked ~ .form-comment-article,
+.forum-page #toggle-comment:checked ~ .form-comment-post
 {
     display: inherit;
 }
 
-.article-page input[type=checkbox]
+.article-page input[type=checkbox],
+.forum-page input[type=checkbox]
 {
     display: none;
 }
 
-.article-page .btn-admin-article
+.article-page .btn-admin-article,
+.forum-page .btn-admin-post
 {
     right: 0;
     top: 0;
     height: 45px;
 }
 
-.article-page .btn-admin-article a
+.article-page .btn-admin-article a,
+.forum-page .btn-admin-post a
 {
     margin-left: 20px;
 }
 
-.article-page .form-comment-article
+.article-page .form-comment-article,
+.forum-page .form-comment-post
 {
     display: none;
     width: 80%;
@@ -576,29 +595,30 @@ ion-icon[name=heart-empty]
     margin-top: 80px;
 }
 
-.article-page .form-comment-article .message-comment-article
+.forum-page .form-comment-post
+{
+    margin-top: 20px;
+}
+
+.article-page .form-comment-article .message-comment-article,
+.forum-page .form-comment-post .message-comment-post
 {
     width: 100%;
     bottom: 40px;
     border-radius: 10px;
 }
 
-.article-page .form-comment-article .btn-send-comment-article
+.article-page .article-comment,
+.forum-page .post-comment
 {
-    bottom: 40px;
-}
-
-.article-page .article-comment
-{
-    font-family: 'Segoe UI';
     width: 80%;
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.article-page .article-comment .date-article-comment,
-.article-page .article-comment .date-article-response
+.article-page .article-comment .date,
+.forum-page .post-comment .date
 {
     font-style: italic;
     font-weight: 300;
@@ -606,22 +626,18 @@ ion-icon[name=heart-empty]
     margin-top: 30px;
 }
 
-.article-page .article-comment .username-article-comment,
-.article-page .article-comment .username-article-response
-{
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
 .article-page .article-comment .text-article-comment,
-.contain-form-response textarea
+.contain-form-response textarea,
+.forum-page .post-comment .text-post-comment
 {
     width: 80%;
 }
 
 .article-page .article-comment .text-article-comment,
 .article-page .article-comment .text-article-response,
-.contain-form-response textarea
+.contain-form-response textarea,
+.forum-page .post-comment .text-post-comment,
+.forum-page .post-comment .text-post-response
 {
     border: #dfe6e9 solid 0.3px;
     background-color: #dfe6e9;
@@ -637,27 +653,38 @@ ion-icon[name=heart-empty]
     margin-bottom: 10px;
 }
 
-.article-page .article-comment .username-article-response,
-.article-page .article-comment .date-article-response,
+.article-page .article-comment .username,
+.article-page .article-comment .date-response,
 .article-page .article-comment .response-article a,
-.article-page .article-comment .btn-delete-response,
-.article-page .contain-form-response
+.contain-form-response,
+.forum-page .post-comment .username,
+.forum-page .post-comment .date-response,
+.forum-page .post-comment .response-post a
 {
     margin-left: 50px;
 }
 
-.article-page .article-comment .text-article-response
+.article-page .article-comment .username-comment,
+.forum-page .post-comment .username-comment
+{
+    margin-left: 0;
+}
+
+.article-page .article-comment .text-article-response,
+.forum-page .post-comment .text-post-response
 {
     width: 75%;
     margin-left: 50px;
 }
 
-.article-page .article-comment .btn-comment
+.article-page .article-comment .btn-comment,
+.forum-page .post-comment .btn-comment
 {
     display: flex;
 }
 
-.response-article .btn-response
+.response-article .btn-response,
+.response-post .btn-response
 {
     display: flex;
     margin-bottom: 20px;
@@ -669,12 +696,8 @@ ion-icon[name=heart-empty]
     margin-right: 10px;
 }
 
-.response-article .btn-response .btn-delete-response
-{
-    margin-left: 20px;
-}
-
-.link-return-articles
+.link-return-articles,
+.link-return-posts
 {
     margin-top: 20px;
     margin-right: 10px;
@@ -803,13 +826,16 @@ ion-icon[name=heart-empty]
 
     /* SHOW ARTICLE PAGE */
 
-    .article-show .text-article,
-    .article-show .title-article
+    .article-show .text,
+    .article-show .title,
+    .forum-show .text,
+    .forum-show .title
     {
         word-wrap: break-word;
     }
 
-    .article-show .title-article
+    .article-show .title,
+    .forum-show .title
     {
         font-size: 18px;
     }
@@ -819,7 +845,8 @@ ion-icon[name=heart-empty]
         font-size: 15px !important;
     }
 
-    .container-btn-article
+    .container-btn-article,
+    .container-btn-post
     {
         display: flex;
         flex-direction: column-reverse;
@@ -836,16 +863,18 @@ ion-icon[name=heart-empty]
     }
 
     .form-comment-article .btn-send-comment-article,
-    .article-show .date-article,
-    .article-comment .response-article .date-article-response,
-    .article-comment .comment-article .date-article-comment,
+    .article-show .date,
+    .article-comment .response-article .date,
+    .article-comment .comment-article .date,
     .article-comment .btn-comment a,
     .article-comment .btn-comment input[type=submit],
     .article-comment .response-btn,
     .response-article .btn-response a,
     .response-article .btn-response input[type=submit],
     .article-comment .a-article-list,
-    .article-comment .a-accueil
+    .article-comment .a-accueil,
+    .response-post .btn-reponse a,
+    .reponse-post .btn-response input[type=submit]
     {
         font-size: 12px !important;
     }
@@ -861,8 +890,8 @@ ion-icon[name=heart-empty]
         margin-top: 0;
     }
 
-    .article-page .article-comment .username-article-response,
-    .article-page .article-comment .username-article-comment
+    .article-page .article-comment .username,
+    .article-page .article-comment .username
     {
         font-weight: 600;
         font-size: 14px;
@@ -873,17 +902,20 @@ ion-icon[name=heart-empty]
         width: 95%;
     }
 
-    .response-article
+    .response-article,
+    .response-post
     {
         margin-left: -10px;
     }
 
-    .article-comment .a-article-list
+    .article-comment .link-return-articles,
+    .forum-comment .link-return-posts
     {
         margin-top: 0 !important;
     }
 
-    .article-comment .link-article-page .a-accueil
+    .article-comment .link-article-page a,
+    .forum-comment .link-post-page a
     {
         margin-left: 0;
     }

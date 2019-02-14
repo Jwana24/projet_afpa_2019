@@ -4,99 +4,133 @@
 
 {% block body %}
     <main class="main-forum">
+
         <div class="forum-page">
+
             <section class="container-forum">
                 <article class="forum-show">
-    
-            {# <th>{% trans %}Titre{% endtrans %}</th>
-            <th>{% trans %}Date{% endtrans %}</th>
-            <th>{% trans %}Membre{% endtrans %}</th>
-            <th>{% trans %}Catégorie{% endtrans %}</th>
-            <th>{% trans %}Contenu du post{% endtrans %}</th> #}
 
-                    <h2 class="title-post">{{post.TitlePost}}</h2>
-                    <p>{{post.DatePost|date('d-m-Y')}}</p>
-                    <p>{{post.IdMemberFK.username}}</p>
-                    <p>{{post.categorie}}</p>
-                    <p>{{post.TextPost}}</p>
+                    <h2 class="title">{{post.TitlePost}}</h2>
+                    <p class="date">{{post.DatePost|date('d-m-Y')}}</p>
+                    <p class="username">{{post.IdMemberFK.username}}</p>
+                    <p>Catégorie : {{post.categorie}}</p>
+                    <p class="text">{{post.TextPost}}</p>
 
-                    {% if is_granted('MODIFPOST', post) %}
-                        {{ include('forum/delete.html.twig') }}
-                        <a class="btn-site" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-                    {% endif %}
+                    <div class="container-btn-post">
 
-                    {% if user %}
-                        {{ form_start(form) }}
-                        {{ form_widget(form) }}
-                        <input class="btn-site" type="submit" value="{% trans %}Envoyer{% endtrans %}">
-                        {{ form_end(form) }}
-                    {% else %}
-                        <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
-                    {% endif %}
+                        <div class="btn-comment-post">
+                            <a class="btn-site" href="#">
+                                <label for="toggle-comment">Commenter</label>
+                            </a>
+                        </div>
+
+                        <div class="btn-admin-post">
+                            {% if is_granted('MODIFPOST', post) %}
+
+                                {{ include('forum/delete.html.twig') }}
+                                <a class="btn-site" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+
+                            {% endif %}
+                        </div>
+
+                    </div>
 
                 </article>
             </section>
 
-    {% for comment in comments %}
-        <section>
-            <p>{{ comment.DateCommentPost|date('d-m-Y') }}</p>
-            <p>{{ comment.IdMemberFK.username }}</p>
-            <p>{{ comment.TextCommentPost }}</p>
+            <input id="toggle-comment" type="checkbox">
+            <div class="form-comment-post">
+                {% if is_granted('ROLE_USER') %}
 
-            {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                <a class="btn-site" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-            {% endif %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form.text_comment_post, {'attr': {'rows': '2', 'class': 'message-comment-post'} }) }}
+                    <input class="btn-site" type="submit" value="{% trans %}Envoyer{% endtrans %}">
+                    {{ form_end(form) }}
 
-            {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                {{ include('forum/commentsPost/delete.html.twig') }}
-            {% endif %}
+                {% else %}
+                
+                    <p>Vous devez être connecté pour pouvoir poster un commentaire</p>
 
-            <a class="btn-site" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+                {% endif %}
+            </div>
 
-            {% for response in comment.getResponses %}
+            <div class="post-comment">
+                {% for comment in comments %}
+                    <section class="comment-response-forum">
+                        <article class="comment-post">
+                            <p class="date">{{ comment.DateCommentPost|date('d-m-Y') }}</p>
+                            <p class="username username-comment">{{ comment.IdMemberFK.username }}</p>
+                            <p class="text-post-comment">{{ comment.TextCommentPost }}</p>
 
-                <article>
-                    <p>{{ response.DateResponse|date('d-m-Y') }}</p>
-                    <p>{{ response.IdMemberFK.username }}</p>
-                    <p>{{ response.TextResponse }}</p>
+                            <div class="btn-comment">
+                                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                {% endif %}
 
-                    {% if is_granted('MODIFRESPONSE', response) %}
-                        <a class="btn-site" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
-                    {% endif %}
+                                {% if is_granted('MODIFPOSTCOMMENT', comment) %}
+                                    {{ include('forum/commentsPost/delete.html.twig') }}
+                                {% endif %}
+                            </div>
+                            
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="btn-site response-btn" href="#" data-id="{{ comment.Id }}">{% trans %}Répondre{% endtrans %}</a>
+                            {% endif %}
+                        </article>
 
-                    {% if is_granted('MODIFRESPONSE', response) %}
-                        {{ include('forum/responsesPost/delete.html.twig') }}
-                    {% endif %}
-                </article>
+                        {% for response in comment.getResponses %}
 
-            {% endfor %}
-        </section>
-    {% endfor %}
+                            <article class="response-post">
+                                <p class="date date-response">{{ response.DateResponse|date('d-m-Y') }}</p>
+                                <p class="username">{{ response.IdMemberFK.username }}</p>
+                                <p class="text-post-response">{{ response.TextResponse }}</p>
 
-    <section class="modal_response">
-        <article class="center_modal_response">
-        <span class="close_modal_response">&times;</span>
-            {{ form_start(formResponse) }}
-            {{ form_widget(formResponse.text_response) }}
-            <input type="hidden" value="" name="id_comment">
-            <input class="btn-site" type="submit" value="Répondre">
-            {{ form_end(formResponse) }}
-        </article>
-    </section>
+                                <div class="btn-response">
+                                    {% if is_granted('MODIFRESPONSE', response) %}
+                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    {% endif %}
 
-    <a class="btn-site" href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+                                    {% if is_granted('MODIFRESPONSE', response) %}
+                                        {{ include('forum/responsesPost/delete.html.twig') }}
+                                    {% endif %}
+                                </div>
+                            </article>
 
-    {% for message in app.flashes('success') %}
-        <div id="flash-notice" class="text-center mx-auto">
-            {{ message }}
+                        {% endfor %}
+
+                        <div class="contain-response{{ comment.Id }}">
+
+                        </div>
+
+                    </section>
+                {% endfor %}
+
+                <div class="contain-form-response">
+                    {{ form_start(formResponse) }}
+                    {{ form_widget(formResponse.text_response) }}
+                    <input type="hidden" value="" name="id_comment">
+                    <input class="btn-site" type="submit" value="Envoyer">
+                    {{ form_end(formResponse) }}
+                </div>
+
+                <div class="link-post-page">
+                    <a class="btn-site link-return-posts" href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+                    <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+                </div>
+
+                {% for message in app.flashes('success') %}
+                    <div id="flash-notice" class="text-center mx-auto">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+
         </div>
-    {% endfor %}
 
-        </div>
     </main>
 
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/editComment.js') }}"></script>
+    <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}
