@@ -3,18 +3,26 @@
 {% block title %}{% trans %}Profil de{% endtrans %} {{ member.username }}{% endblock %}
 
 {% block body %}
-    <main>
-        <ul>
-            <li>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</li>
-            <li>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</li>
-            <li>{% trans %}Email{% endtrans %} : {{ member.Mail }}</li>
-            <li>Description : {{ member.Description }}</li>
-            <img class="avatar" src="{{ asset(member.Avatar) }}"/>
-        </ul>
+    <main class="main-profile">
 
-        <a class="btn-site" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
+        <section class="container-profile">
+            <article class="profile-show">
 
-        <a class="btn-site" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+            <img class="rounded avatar" alt="Votre avatar" src="{{ asset(member.Avatar) }}"/>
+            <h3 class="username-profile">{{ member.username }}</h3>
+            <p>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</p>
+            <p>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</p>
+            <p>{% trans %}Email{% endtrans %} : {{ member.Mail }}</p>
+            <p>Description : {{ member.Description }}</p>
+            
+            </article>
+        </section>
+
+        <div class="link-article-page">
+            <a class="btn-site" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
+
+            <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+        </div>
 
         {% for message in app.flashes('success') %}
             <div id="flash-notice" class="text-center mx-auto">

@@ -420,14 +420,27 @@ body, #slider, .wrap, .slide-content
     margin-top: 100px;
 }
 
+
 /* PROFILE PAGE */
+
+.main-profile
+{
+    margin-left: 20px;
+}
 
 .avatar
 {
     object-fit: contain;
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
 }
+
+.username-profile
+{
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
 
 /* ARTICLE PAGE (COMMENTS & RESPONSES) */
 /* Admin */

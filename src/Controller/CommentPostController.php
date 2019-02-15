@@ -35,7 +35,8 @@ class CommentPostController extends AbstractController
 
         return $this->render('forum/commentsPost/edit.html.twig', [
             'comment' => $comment,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'last_path' => 'edit_comment_post:id='.$comment->getId()
         ]);
     }
 
