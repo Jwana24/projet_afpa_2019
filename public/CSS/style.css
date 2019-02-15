@@ -742,6 +742,21 @@ ion-icon[name=heart-empty]
 }
 
 
+/* ADD POST PAGE */
+
+.btn-send-new-post
+{
+    margin-top: 20px;
+}
+
+.add-post-page
+{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
 /* MEDIA QUERY */
 
 @media all and (max-width: 415px)
