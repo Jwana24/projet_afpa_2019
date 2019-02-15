@@ -8,7 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+/**
+ * @Security("is_granted('ROLE_USER')")
+ */
 class CommentController extends AbstractController
 {
     /**
@@ -32,7 +36,6 @@ class CommentController extends AbstractController
         return $this->render('article/comments/edit.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
-            'user' => $this->getUser(),
             'last_path' => 'edit_comment:id='.$comment->getId()
         ]);
     }

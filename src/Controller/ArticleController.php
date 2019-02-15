@@ -31,7 +31,6 @@ class ArticleController extends AbstractController
 
         return $this->render('article/index.html.twig', [
             'articles' => $articlesRepository->findAll(),
-            'user' => $this->getUser(),
             'last_path' => 'articles_list'
         ]);
     }
@@ -109,7 +108,6 @@ class ArticleController extends AbstractController
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
-            'user' => $this->getUser(),
             'comments' => $article->getComments(),
             'likes' => count($article->getLikes()),
             'member_like' => $memberLike,

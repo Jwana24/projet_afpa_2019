@@ -6,11 +6,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function login(Request $request, AuthenticationUtils $utils)
     {

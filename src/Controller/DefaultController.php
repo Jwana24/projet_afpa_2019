@@ -47,7 +47,6 @@ class DefaultController extends AbstractController
 
         return $this->render('general/index.html.twig', [
             'articles' => $articlesRepository->last_articles(),
-            'user' => $this->getUser(),
             'last_path' => 'accueil',
             'form' => $form->createView()
         ]);

@@ -37,7 +37,9 @@
 
             <div class="col-12">
                 <div class="btn-link-forum">
-                    <a class="btn-site" href="{{ path('add_post') }}">{% trans %}Ajouter un post{% endtrans %}</a>
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="btn-site" href="{{ path('add_post') }}">{% trans %}Ajouter un post{% endtrans %}</a>
+                    {% endif %}
                     <a class="btn-site" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
                 </div>
             </div>

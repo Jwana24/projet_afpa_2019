@@ -8,7 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+/**
+ * @Security("is_granted('ROLE_USER')")
+ */
 class ResponseController extends AbstractController
 {
     /**
@@ -32,7 +36,6 @@ class ResponseController extends AbstractController
         return $this->render('article/responses/edit.html.twig', [
             'response' => $response,
             'form' => $form->createView(),
-            'user' => $this->getUser(),
             'last_path' => 'edit_response:id='.$response->getId()
         ]);
     }
@@ -75,7 +78,8 @@ class ResponseController extends AbstractController
 
         return $this->render('forum/responsesPost/edit.html.twig', [
             'response' => $responsePost,
-            'formPost' => $formPost->createView()
+            'formPost' => $formPost->createView(),
+            'last_path' => 'edit_response_post:id='.$responsePost->getId()
         ]);
     }
 
