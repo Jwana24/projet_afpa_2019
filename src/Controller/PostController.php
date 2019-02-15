@@ -22,12 +22,26 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/", name="posts_list", methods={"GET"})
+     * @Route("/", name="posts_list", methods={"GET", "POST"})
      */
     public function list(Request $request, PostsRepository $postsRepository): Response
     {
+        if($request->get('Catégories'))
+        {
+            $post = $postsRepository->findBy(['categorie'=>$request->get('Catégories')]);
+
+            if(!$post)
+            {
+                $post = $postsRepository->findAll();
+            }
+        }
+        else
+        {
+            $post = $postsRepository->findAll();
+        }
+
         return $this->render('forum/index.html.twig', [
-            'posts' => $postsRepository->findAll(),
+            'posts' => $post,
             'user' => $this->getUser(),
             'last_path' => 'posts_list'
         ]);

@@ -460,6 +460,15 @@ body, #slider, .wrap, .slide-content
 }
 
 
+/* LIST POSTS PAGE */
+/* Index */
+
+.list-posts
+{
+    margin-top: 20px;
+}
+
+
 /* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM POSTS PAGE (COMMENTS & RESPONSES) */
 /* Show */
 
@@ -494,6 +503,11 @@ body, #slider, .wrap, .slide-content
     left: -12.5%;
     width: 125%;
     margin: 0 auto;
+}
+
+.forum-show .title
+{
+    padding-top: 40px;
 }
 
 .article-page .container-btn-article,
