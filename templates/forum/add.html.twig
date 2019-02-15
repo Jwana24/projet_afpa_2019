@@ -5,12 +5,15 @@
 {% block body %}
 
     <main class="add-post-page">
+    
         {{ form_start(form) }}
             <div class="form-group">
             
                 {{ form_row(form.title_post, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Titre du post'} }) }}
 
-                {{ form_row(form.categorie, { 'attr': {'class': 'form-control form-control-sm'} }) }}
+                {{ form_label(form.categorie, ' ') }}
+
+                {{ form_widget(form.categorie, { 'attr': {'class': 'form-control form-control-sm'} }) }}
             
                 {{ form_row(form.text_post, { 'attr': {'class': 'form-control', 'placeholder': 'Contenu du post', 'rows': '3'} }) }}
 

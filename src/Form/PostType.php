@@ -27,8 +27,6 @@ class PostType extends AbstractType
                     'oiseaux' => 'oiseaux',
                     'poissons' => 'poissons'
                     ]
-                ], [
-                    'label' => ' '
                 ])
 
             ->add('text_post', TextareaType::class, [

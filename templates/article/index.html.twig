@@ -32,6 +32,10 @@
 
         <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
 
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn-site" href="{{ path('add-article') }}">Ajouter un article</a>
+        {% endif %}
+
         {% for message in app.flashes('success') %}
             <div id="flash-notice" class="text-center mx-auto">
                 {{ message }}

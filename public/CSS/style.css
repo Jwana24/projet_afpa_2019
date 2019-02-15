@@ -744,12 +744,14 @@ ion-icon[name=heart-empty]
 
 /* ADD POST PAGE */
 
-.btn-send-new-post
+.btn-send-new-post,
+.btn-send-new-article
 {
     margin-top: 20px;
 }
 
-.add-post-page
+.add-post-page,
+.add-article-page
 {
     margin-left: 20px;
     margin-right: 20px;

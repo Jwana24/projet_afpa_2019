@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
@@ -20,13 +21,15 @@ class ArticleType extends AbstractType
         $this->article = $options['data'];
         $builder
             ->add('title_article', TextType::class, [
-                'label'=> 'Titre de l\'article'
+                'label'=> ' '
             ])
             ->add('text_article', TextareaType::class, [
-                'label'=> 'Contenu de l\'article'
+                'label'=> ' '
             ])
             ->add('image', FileType::class, ['label' => 'Image',
-            'data_class' => null, 'required' => true]);
+            'data_class' => null, 'required' => true
+            ])
+            ->add('Envoyer', SubmitType::class);
 
         $builder
         ->get('image')
