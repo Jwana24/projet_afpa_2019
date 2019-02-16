@@ -84,6 +84,11 @@ class Members implements UserInterface, EquatableInterface
      */
     private $locale;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $status;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -287,6 +292,18 @@ class Members implements UserInterface, EquatableInterface
     public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

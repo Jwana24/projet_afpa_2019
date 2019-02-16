@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Repository\PostsRepository;
+use App\Repository\MembersRepository;
 use App\Repository\ArticlesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +28,17 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="accueil", methods="GET|POST")
      */
-    public function list(SessionInterface $session, ArticlesRepository $articlesRepository, Request $request): Response
+    public function list(SessionInterface $session, MembersRepository $MembersRepository, PostsRepository $postRepository, ArticlesRepository $articlesRepository, Request $request): Response
     {
+        foreach($MembersRepository->findBy(['status' => 'delete']) as $member)
+        {
+            $postRepository->setNullById($member->getId());
+            $articlesRepository->setNullById($member->getId());
+            $memberManager = $this->getDoctrine()->getManager();
+            $memberManager->remove($member);
+            $memberManager->flush();
+        }
+
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 

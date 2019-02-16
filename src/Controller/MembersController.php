@@ -159,16 +159,12 @@ class MembersController extends Controller implements EventSubscriberInterface
      * @Route("/{id}", name="member_delete", methods="DELETE")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function delete(Request $request, Members $member, PostsRepository $postRepository, ArticlesRepository $articlesRepository): Response
+    public function delete(Request $request, Members $member): Response
     {
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token')))
         {
-
-            $this->session->invalidate();
-            $postRepository->setNullById($member->getId());
-            $articlesRepository->setNullById($member->getId());
             $memberManager = $this->getDoctrine()->getManager();
-            $memberManager->remove($member);
+            $member->setStatus('delete');
             $memberManager->flush();
         }
 
