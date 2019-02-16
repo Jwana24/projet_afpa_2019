@@ -49,6 +49,11 @@ footer p
     margin-bottom: 0;
 }
 
+.alert
+{
+    margin-top: 20px;
+}
+
 /* BUTTON STYLE FOR ALL THE SITE */
 
 .btn-site,
@@ -223,7 +228,7 @@ footer p
     font-size: 30px;
 }
 
-.alert
+.inscription-success
 {
     display: none;
 }
@@ -486,6 +491,7 @@ body, #slider, .wrap, .slide-content
 {
     margin-left: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 

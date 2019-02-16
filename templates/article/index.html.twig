@@ -30,14 +30,16 @@
         
         </div>
 
-        <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+        <div class="link-article-page">
+            <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn-site" href="{{ path('add-article') }}">Ajouter un article</a>
-        {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn-site" href="{{ path('add-article') }}">Ajouter un article</a>
+            {% endif %}
+        </div>
 
         {% for message in app.flashes('success') %}
-            <div id="flash-notice" class="text-center mx-auto">
+            <div class="alert alert-success" role="alert">
                 {{ message }}
             </div>
         {% endfor %}
