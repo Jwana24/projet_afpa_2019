@@ -14,123 +14,6 @@
     cursor: default;
 }
 
-<<<<<<< HEAD
-/* Logo */
-
-.logo
-{
-    font-family: 'PiqueMyInterest';
-    width: 100px;
-    height: 100px;
-    /* margin: 0 auto;
-    left: calc(50vw - 50px);
-    top: 0; */
-}
-
-/* MAIN MENU (base.html.twig) */
-.btn-submenu
-{
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.btn-submenu:checked ~ .submenu
-{
-    display: initial;
-}
-
-.main-menu
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999999;
-    width: 100vw;
-}
-
-.main-menu > ul
-{
-    display: flex; 
-    justify-content: space-evenly;
-    align-items: center;
-    background: rgb(9, 132, 227);
-    width: 100%;
-    height: 70px;
-}
-
-.main-menu > ul > div
-{
-    display: flex;
-    justify-content: space-between;
-}
-
-.main-menu > ul > div:first-child,
-.main-menu > ul > div:last-child
-{
-    width: 25%;
-}
-
-
-
-
-.main-menu > ul > div > li
-{
-    width: 100px;
-    height: 65px;
-    position: relative;
-}
-
-/* logos */
-
-.icon
-{
-    width: 25px;
-    height: 25px;
-}
-
-.main-menu > ul > div > li:hover
-{
-    background: rgba(228, 77, 38, 0.15);
-}
-.main-menu li {list-style: none;}
-.main-menu a
-{
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    width: 100%;
-}
-.main-menu > ul > div > li > a
-{
-    position: absolute;
-    top: 33px;
-    left: 49px;
-    transform: translate(-50%, -50%);
-}
-.main-menu > ul > div > li::before
-{
-    content: '';
-    display: block;
-    height: 5px;
-    width: 100%;
-    background: white;
-    position: absolute;
-    top: -2px;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
-    z-index: 99999;
-}
-
-.main-menu > ul > div > li:hover::before
-{
-    transform: scale(1, 1);
-=======
 main
 {
     min-height: 100vh;
@@ -255,29 +138,9 @@ footer p
     width: 80%;
     height: 95%;
     border-radius: 10px;
->>>>>>> master
 }
 /* SubMenu */
 
-<<<<<<< HEAD
-.main-menu > ul > div > li > ul
-{
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-}
-
-.main-menu > ul > div > li > ul > li
-{
-    width: 100%;
-    height: 45px;
-    background: rgb(9, 132, 227);
-    border-bottom: 1px white;
-}
-
-.main-menu > ul > div > li > ul > li > a
-=======
 .center_modal_connection
 {
     height: 85%;
@@ -311,18 +174,12 @@ footer p
 
 #member div,
 #member-co div
->>>>>>> master
 {
     display: inline-block;
     padding: 20px 80px 20px 80px; 
     width: 260px;
 }
 
-<<<<<<< HEAD
-.main-menu > ul > div > li > ul > li:hover
-{
-    background: #273c75;
-=======
 .center_modal_inscription form[name=member] input,
 .center_modal_connection form[name=member-co] input
 {
@@ -377,7 +234,6 @@ footer p
 .inscription-success
 {
     display: none;
->>>>>>> master
 }
 
 /* HOME PAGE */
