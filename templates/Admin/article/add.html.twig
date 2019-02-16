@@ -24,6 +24,12 @@
             <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
         </div>
 
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success add-article-success" role="alert">
+                Votre article a bien été ajouté
+            </div>
+        {% endfor %}
+
     </main>
 
 {% endblock %}

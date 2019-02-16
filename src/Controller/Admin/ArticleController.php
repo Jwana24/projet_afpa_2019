@@ -42,6 +42,7 @@ class ArticleController extends AbstractController
             
             $articleManager->persist($article);
             $articleManager->flush();
+            $this->addFlash('success', 'Votre article a bien été ajouté');
 
             return $this->redirectToRoute('articles_list');
         }

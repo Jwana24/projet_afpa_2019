@@ -102,7 +102,7 @@ footer p
 }
 
 
-/* MODAL INSCRIPTION (SUR TOUTES LES PAGES) */
+/* MODAL INSCRIPTION (ON ALL THE PAGES) */
 
 .modal_inscription,
 .modal_connection
@@ -428,6 +428,11 @@ body, #slider, .wrap, .slide-content
     margin-left: 20px;
 }
 
+.profile-show
+{
+    display: flex;
+}
+
 .avatar
 {
     object-fit: contain;
@@ -435,10 +440,21 @@ body, #slider, .wrap, .slide-content
     height: 300px;
 }
 
+.info-profile
+{
+    margin-left: 50px;
+    margin-top: 60px;
+}
+
 .username-profile
 {
     font-weight: 800;
     margin-bottom: 40px;
+}
+
+.main-profile .link-article-page
+{
+    margin-top: 30px;
 }
 
 

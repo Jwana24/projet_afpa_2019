@@ -8,12 +8,14 @@
         <section class="container-profile">
             <article class="profile-show">
 
-            <img class="rounded avatar" alt="Votre avatar" src="{{ asset(member.Avatar) }}"/>
-            <h3 class="username-profile">{{ member.username }}</h3>
-            <p>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</p>
-            <p>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</p>
-            <p>{% trans %}Email{% endtrans %} : {{ member.Mail }}</p>
-            <p>Description : {{ member.Description }}</p>
+                <img class="rounded avatar" alt="Votre avatar" src="{{ asset(member.Avatar) }}"/>
+                <div class="info-profile">
+                    <h3 class="username-profile">{{ member.username }}</h3>
+                    <p>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</p>
+                    <p>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</p>
+                    <p>{% trans %}Email{% endtrans %} : {{ member.Mail }}</p>
+                    <p>Description : {{ member.Description }}</p>
+                </div>
             
             </article>
         </section>
