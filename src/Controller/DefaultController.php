@@ -51,4 +51,14 @@ class DefaultController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/mentionslegales", name="mentionslegales")
+     */
+    public function mentionsLegales(): Response
+    {
+        return $this->render('general/mentionslegales.html.twig', [
+            'last_path' => 'mentionslegales'
+        ]);
+    }
 }

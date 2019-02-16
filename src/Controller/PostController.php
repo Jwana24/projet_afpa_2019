@@ -106,6 +106,7 @@ class PostController extends AbstractController
             $post->setIdMemberFK($this->getUser());
             $postManager->persist($post);
             $postManager->flush();
+            $this->addFlash('success', 'Le post a été bien été ajouté');
 
             return $this->redirectToRoute('posts_list');
         }
@@ -129,7 +130,7 @@ class PostController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'Le post a été modifié avec succès');
+            $this->addFlash('success', 'Le post a bien été modifié');
 
             return $this->redirectToRoute('show_post',[
                 'id' => $post->getId()

@@ -153,10 +153,21 @@
         {% block body %}{% endblock %}
 
         <footer>
-            <a href="{{ path('accueil') }}#contacts">Contacts</a>
-            <a href="#">Mentions légales</a>
-            <a href="#">Arborescence du site</a>
-            <p>© Site créé par Johanna DETRIEUX</p>
+            <div class="footer-elements">
+                <div class="elements-center">
+                    <a href="{{ path('accueil') }}#contacts">Contacts</a>
+                    <a href="{{ path('mentionslegales') }}">Mentions légales</a>
+                    <a href="#">Plan du site</a>
+                    <p class="recommand-sites">
+                        Les sites que l'on vous recommande :
+                        <div class="logos">
+                            <a href="https://www.30millionsdamis.fr/"><img class="logo-30MAmis" src="{{ asset('images/logo-30MAmis.png') }}" alt="Logo de la Fondation 30 Millions d'Amis"></a>
+                            <a href="https://www.la-spa.fr/"><img class="logo-spa" src="{{ asset('images/logo-LaSPA.png') }}" alt="Logo de la SPA (Société Protectrice des Animaux)"></a>
+                        </div>
+                    </p>
+                </div>
+                <p>© Site LesNac créé par Johanna DETRIEUX</p>
+            </div>
         </footer>
 
             <script src="{{ asset('js/menu.js') }}"></script>

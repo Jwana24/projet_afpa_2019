@@ -93,7 +93,7 @@ class ArticleController extends AbstractController
             }
 
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'L\'article a été modifié avec succès');
+            $this->addFlash('success', 'L\'article a bien été modifié');
 
             return $this->redirectToRoute('articles_list',[
                 'id' => $article->getId()
