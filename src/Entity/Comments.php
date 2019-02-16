@@ -41,7 +41,7 @@ class Comments
     private $id_article_FK;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Responses", mappedBy="id_comment_FK")
+     * @ORM\OneToMany(targetEntity="App\Entity\Responses", mappedBy="id_comment_FK", cascade={"remove"})
      */
     private $responses;
 

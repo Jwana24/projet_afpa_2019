@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/forum")
@@ -22,13 +23,26 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/", name="posts_list", methods={"GET"})
+     * @Route("/", name="posts_list", methods={"GET", "POST"})
      */
     public function list(Request $request, PostsRepository $postsRepository): Response
     {
+        if($request->get('Catégories'))
+        {
+            $post = $postsRepository->findBy(['categorie'=>$request->get('Catégories')]);
+
+            if(!$post)
+            {
+                $post = $postsRepository->findAll();
+            }
+        }
+        else
+        {
+            $post = $postsRepository->findAll();
+        }
+
         return $this->render('forum/index.html.twig', [
-            'posts' => $postsRepository->findAll(),
-            'user' => $this->getUser(),
+            'posts' => $post,
             'last_path' => 'posts_list'
         ]);
     }
@@ -69,16 +83,15 @@ class PostController extends AbstractController
         return $this->render('forum/show.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-            'user' => $this->getUser(),
             'comments' => $post->getCommentsPosts(),
             'formResponse' => $formResponse->createView(),
-            'user' => $this->getUser(),
             'last_path' => 'show_post:id='.$post->getId()
         ]);
     }
 
     /**
      * @Route("/new", name="add_post", methods={"POST", "GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function addPost(Request $request): Response
     {
@@ -106,6 +119,7 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}/editpost", name="post_edit", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function edit(Request $request, Posts $post): Response
     {
@@ -124,12 +138,14 @@ class PostController extends AbstractController
 
         return $this->render('forum/edit.html.twig', [
             'post' => $post,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'last_path' => 'post_edit:id='.$post->getId()
         ]);
     }
 
     /**
      * @Route("/{id}", name="post_delete", methods={"DELETE"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function delete(Request $request, Posts $post): Response
     {

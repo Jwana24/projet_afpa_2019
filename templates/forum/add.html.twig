@@ -4,10 +4,29 @@
 
 {% block body %}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <main class="add-post-page">
+    
+        {{ form_start(form) }}
+            <div class="form-group">
+            
+                {{ form_row(form.title_post, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Titre du post'} }) }}
 
-    <a href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+                {{ form_label(form.categorie, ' ') }}
+
+                {{ form_widget(form.categorie, { 'attr': {'class': 'form-control form-control-sm'} }) }}
+            
+                {{ form_row(form.text_post, { 'attr': {'class': 'form-control', 'placeholder': 'Contenu du post', 'rows': '3'} }) }}
+
+                {{ form_row(form.Envoyer, { 'attr': {'class': 'btn btn-primary btn-send-new-post'} }) }}
+
+            </div>
+        {{ form_end(form) }}
+
+        <div class="link-post-page">
+            <a class="btn-site link-return-posts" href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
+            <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+        </div>
+
+    </main>
 
 {% endblock %}

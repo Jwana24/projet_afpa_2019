@@ -53,6 +53,7 @@ class MembersController extends Controller implements EventSubscriberInterface
 
     /**
      * @Route("/{id}", requirements={"id"="[0-9]{1,}"}, name="member_show", methods="GET")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function show(Request $request, Members $member): Response
     {
@@ -95,9 +96,8 @@ class MembersController extends Controller implements EventSubscriberInterface
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);
             $memberManager->flush();
-            $this->addFlash('success', 'Bienvenue ! :)');
 
-            return $this->redirectToRoute('accueil');
+            // return $this->redirectToRoute('accueil');
         }
 
         return $this->render('Members/inscription.html.twig', [
@@ -118,6 +118,7 @@ class MembersController extends Controller implements EventSubscriberInterface
 
     /**
      * @Route("/{id}/edit", name="member_edit", methods="GET|POST")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function edit(Request $request, Members $member, UserPasswordEncoderInterface $encoder): Response
     {
@@ -156,6 +157,7 @@ class MembersController extends Controller implements EventSubscriberInterface
 
     /**
      * @Route("/{id}", name="member_delete", methods="DELETE")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function delete(Request $request, Members $member, PostsRepository $postRepository, ArticlesRepository $articlesRepository): Response
     {
@@ -175,6 +177,7 @@ class MembersController extends Controller implements EventSubscriberInterface
 
     /**
      * @Route("/motdepasseoublie", name="lostpassword", methods={"POST", "GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function lostPassword(Request $request, MembersRepository $membersRepository): Response
     {

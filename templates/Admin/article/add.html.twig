@@ -3,10 +3,27 @@
 {% block title %}Ajouter un article{% endblock %}
 
 {% block body %}
+    <main class="add-article-page">
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Ajouter">
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+            <div class="form-group">
+            
+                {{ form_row(form.title_article, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Titre de l\'article'} }) }}
+            
+                {{ form_row(form.text_article, { 'attr': {'class': 'form-control', 'placeholder': 'Contenu de l\'article', 'rows': '3'} }) }}
+
+                {{ form_row(form.image, { 'attr': {'class': 'form-control-file'} }) }}
+
+                {{ form_row(form.Envoyer, { 'attr': {'class': 'btn btn-primary btn-send-new-article'} }) }}
+
+            </div>
+        {{ form_end(form) }}
+
+        <div class="link-article-page">
+            <a class="btn-site link-return-articles" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
+            <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+        </div>
+
+    </main>
 
 {% endblock %}

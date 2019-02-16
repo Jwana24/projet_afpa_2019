@@ -39,7 +39,7 @@ class Posts
     private $id_member_FK;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommentsPost", mappedBy="id_post_FK", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentsPost", mappedBy="id_post_FK", orphanRemoval=true, cascade={"remove"})
      */
     private $commentsPosts;
 

@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class TranslationController extends AbstractController
 {
@@ -18,6 +19,7 @@ class TranslationController extends AbstractController
 
     /**
      * @Route("/translate/{_language}/{last_path}", name="translation", methods={"GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function edit($_language, $last_path) : Response
     {

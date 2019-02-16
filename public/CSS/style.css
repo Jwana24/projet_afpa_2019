@@ -1,7 +1,7 @@
 @font-face
 {
-    font-family: 'PiqueMyInterest', Arial, Helvetica, sans-serif;
-    src: url('fonts/PiqueMyInterest.ttf') format ('ttf');
+    font-family: 'PiqueMyInterest';
+    src: url('fonts/PiqueMyInterest.ttf') format('truetype');
 }
 
 *
@@ -9,8 +9,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1.6;
+    font-weight: 500;
+    cursor: default;
 }
 
+<<<<<<< HEAD
 /* Logo */
 
 .logo
@@ -126,9 +130,136 @@
 .main-menu > ul > div > li:hover::before
 {
     transform: scale(1, 1);
+=======
+main
+{
+    min-height: 100vh;
+    padding-top: 58px;
+}
+
+footer
+{
+    position: relative;
+    width: 100%;
+    font-family: 'Segoe UI';
+    background-color: #0984e3;
+    color: white;
+}
+
+footer a,
+footer a:visited
+{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    align-content: center;
+    margin-right: 20px;
+}
+
+footer a:hover
+{
+    color: #273c75;;
+}
+
+footer p
+{
+    margin-bottom: 0;
+}
+
+.alert
+{
+    margin-top: 20px;
+}
+
+/* BUTTON STYLE FOR ALL THE SITE */
+
+.btn-site,
+.btn-site:visited,
+.btn-site:active
+{
+    border: none;
+    background-color: #0984e3;
+    color: white;
+    padding: 7px;
+    display: inline-block;
+    text-decoration: none;
+    font-style: none;
+    font-size: 14px;
+}
+
+.btn-site:hover
+{
+    background-color: #273c75;
+    text-decoration: none;
+    color: white;
+}
+
+
+/* TITLES, DATES AND TEXTS (POST + ARTICLE) */
+
+.title
+{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.date
+{
+    font-style: italic;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.text
+{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.username
+{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+
+/* MODAL INSCRIPTION (ON ALL THE PAGES) */
+
+.modal_inscription,
+.modal_connection
+{
+    display: none;
+    z-index: 999999999999;
+    position: fixed;
+    width: 30vw;
+    height: 85vh;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: rgba(178, 190, 195, .70);
+    border-radius: 10px;
+}
+
+.modal_connection
+{
+    height: 45vh;
+}
+
+.center_modal_inscription,
+.center_modal_connection
+{
+    position: relative;
+    background-color: white;
+    margin: auto;
+    width: 80%;
+    height: 95%;
+    border-radius: 10px;
+>>>>>>> master
 }
 /* SubMenu */
 
+<<<<<<< HEAD
 .main-menu > ul > div > li > ul
 {
     display: none;
@@ -146,15 +277,107 @@
 }
 
 .main-menu > ul > div > li > ul > li > a
+=======
+.center_modal_connection
+{
+    height: 85%;
+}
+
+.center_modal_inscription h4,
+.center_modal_connection h4
+{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.center_modal_inscription form[name=member],
+.center_modal_connection form[name=member-co]
+{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.center_modal_inscription form[name=member] div,
+.center_modal_connection form[name=member-co] div
+{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#member div,
+#member-co div
+>>>>>>> master
 {
     display: inline-block;
     padding: 20px 80px 20px 80px; 
     width: 260px;
 }
 
+<<<<<<< HEAD
 .main-menu > ul > div > li > ul > li:hover
 {
     background: #273c75;
+=======
+.center_modal_inscription form[name=member] input,
+.center_modal_connection form[name=member-co] input
+{
+    width: 100%;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.center_modal_inscription form[name=member] input[type=file]
+{
+    padding-left: 0;
+}
+
+.center_modal_inscription form[name=member] label[for=member_avatar]
+{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.center_modal_inscription form[name=member] input[type=submit],
+.center_modal_connection form[name=member-co] input[type=submit]
+{
+    align-self: center;
+    margin-top: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #0984e3;
+    color: white;
+}
+
+.center_modal_inscription form[name=member] input[type=submit]:hover,
+.center_modal_connection form[name=member-co] input[type=submit]:hover
+{
+    background-color: #273c75;
+}
+
+.cross-close,
+.cross-close-co
+{
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.cross-close:hover,
+.cross-close-co:hover
+{
+    font-size: 30px;
+}
+
+.inscription-success
+{
+    display: none;
+>>>>>>> master
 }
 
 /* HOME PAGE */
@@ -248,19 +471,66 @@ body, #slider, .wrap, .slide-content
     margin-right: 30px;
 }
 
-.article-box
+.homepage
 {
-    margin-left: 20px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
-.article-box hr
+.sidebox
 {
-    width: 1250px;
+    right: 0;
+    width: 375px;
+    height: 100%;
+    padding: 40px;
+    background: #FBFBFB;
+    position: absolute;
+}
+
+.sidebox h4
+{
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+.sidebox form
+{
+    font-size: 17px;
+}
+
+.sidebox form input,
+.sidebox .area-message
+{
+    width: 100%;
+}
+
+.article-box
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 70%;
+    height: 100%;
 }
 
 .article-box .article
 {
     margin-bottom: 50px;
+    display: flex;
+}
+
+.article-box .article .div-img img
+{
+    width: 200px;
+    height: auto;
+}
+
+.article-box .article .containt-article
+{
+    margin-left: 20px;
 }
 
 .article:first-child
@@ -271,28 +541,29 @@ body, #slider, .wrap, .slide-content
 .article-box .title-article
 {
     font-size: 30px;
+    font-weight: 600;
+    word-wrap: break-word;
 }
 
 .article-box .date-article
 {
     font-style: italic;
+    font-size: 14px;
+    font-weight: 100;
 }
 
 .article-box .text-article
 {
     font-size: 18px;
+    font-weight: 100;
+    word-wrap: break-word;
 }
 
-.article-box .article a, .article-box .article a:visited
+.btn-submit-contact
 {
-    display: inline-block;
-    margin-top: 10px;
-    text-decoration: none;
-    color: white;
-    background-color: #0984e3;
-    padding: 7px;
-
+    margin-top: 20px;
 }
+
 
 /* LOGIN PAGE */
 
@@ -301,57 +572,563 @@ body, #slider, .wrap, .slide-content
     margin-top: 100px;
 }
 
+
 /* PROFILE PAGE */
+
+.main-profile
+{
+    margin-left: 20px;
+}
+
+.profile-show
+{
+    display: flex;
+}
 
 .avatar
 {
     object-fit: contain;
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
 }
 
-/* ARTICLES PAGE */
-
-/* COMMENT ARTICLE PAGE */
-/* Modal window */
-
-.modal_response
+.info-profile
 {
-    z-index: 1000000;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.65;
-    background-color: black;
+    margin-left: 50px;
+    margin-top: 60px;
 }
 
-.center_modal_response
+.username-profile
 {
-    background-color: #dfe6e9;
-    width: 500px;
-    height: 400px;
-    margin: auto;
+    font-weight: 800;
+    margin-bottom: 40px;
 }
 
-.center_modal_response form
+.main-profile .link-article-page
+{
+    margin-top: 30px;
+}
+
+
+/* ARTICLE PAGE (COMMENTS & RESPONSES) */
+/* Admin */
+
+.form-add-article
+{
+    margin-top: 100px;
+}
+
+
+/* LIST ARTICLES PAGE */
+/* Index */
+
+.article-header .article-card-date
+{
+    font-size: 13px;
+    font-style: italic;
+}
+
+.article-header .article-card-title
+{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.list-articles .link-homepage
+{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* LIST POSTS PAGE */
+/* Index */
+
+.list-posts
+{
+    margin-top: 20px;
+}
+
+
+/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM POSTS PAGE (COMMENTS & RESPONSES) */
+/* Show */
+
+.main-article,
+.main-forum
+{
+    font-family: 'Segoe UI';
+    flex-direction: column;
+    background-color: #FBFBFB;
+}
+
+.article-page,
+.forum-page
+{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.article-show,
+.forum-show
+{
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.article-show img
+{
+    position: relative;
+    left: -12.5%;
+    width: 125%;
+    margin: 0 auto;
+}
+
+.forum-show .title
+{
+    padding-top: 40px;
+}
+
+.article-page .container-btn-article,
+.forum-page .container-btn-post
+{
+    width: 100%;
+    position: relative;
+    margin-top: 30px;
+}
+
+ion-icon[name=heart]
+{
+    color: #e74c3c;
+}
+
+ion-icon[name=heart],
+ion-icon[name=heart-empty]
+{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.like
 {
     display: flex;
-    flex-direction: column;
+}
+
+.article-page .like-article,
+.btn-admin-article,
+.btn-admin-post
+{
+    display: flex;
+    position: absolute;
+}
+
+.article-page .like-article
+{
+    left: 0;
+    top: 0;
+}
+
+.article-page .like-article form,
+.article-page .like-article a,
+.article-page .btn-admin-article a,
+.article-page .btn-admin-article input[type=submit],
+.forum-page .btn-comment-post a,
+.forum-page .btn-admin-post a,
+.forum-page .btn-admin-post input[type=submit]
+{
+    height: 36.4px;
+}
+
+.article-page .like-article a
+{
+    display: inline-block;
+    padding: 0;
+}
+
+.article-page .like-article a label
+{
+    padding: 7px;
+    display: inline-block;
     width: 100%;
     height: 100%;
 }
 
-.center_modal_response textarea
+.article-page #toggle-comment:checked ~ .form-comment-article,
+.forum-page #toggle-comment:checked ~ .form-comment-post
 {
-    margin: auto;
-    width: 400px;
-    height: 300px;
+    display: inherit;
 }
 
-.close_modal_response
+.article-page input[type=checkbox],
+.forum-page input[type=checkbox]
 {
-    cursor: pointer;
+    display: none;
+}
+
+.article-page .btn-admin-article,
+.forum-page .btn-admin-post
+{
+    right: 0;
+    top: 0;
+    height: 45px;
+}
+
+.article-page .btn-admin-article a,
+.forum-page .btn-admin-post a
+{
+    margin-left: 20px;
+}
+
+.article-page .form-comment-article,
+.forum-page .form-comment-post
+{
+    display: none;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.forum-page .form-comment-post
+{
+    margin-top: 20px;
+}
+
+.article-page .form-comment-article .message-comment-article,
+.forum-page .form-comment-post .message-comment-post
+{
+    width: 100%;
+    bottom: 40px;
+    border-radius: 10px;
+}
+
+.article-page .article-comment,
+.forum-page .post-comment
+{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.article-page .article-comment .date,
+.forum-page .post-comment .date
+{
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+
+.article-page .article-comment .text-article-comment,
+.contain-form-response textarea,
+.forum-page .post-comment .text-post-comment
+{
+    width: 80%;
+}
+
+.article-page .article-comment .text-article-comment,
+.article-page .article-comment .text-article-response,
+.contain-form-response textarea,
+.forum-page .post-comment .text-post-comment,
+.forum-page .post-comment .text-post-response
+{
+    border: #dfe6e9 solid 0.3px;
+    background-color: #dfe6e9;
+    border-radius: 10px;
+    padding: 7px;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.btn-edit-comment,
+.response-btn
+{
+    margin-bottom: 10px;
+}
+
+.article-page .article-comment .username,
+.article-page .article-comment .date-response,
+.article-page .article-comment .response-article a,
+.contain-form-response,
+.forum-page .post-comment .username,
+.forum-page .post-comment .date-response,
+.forum-page .post-comment .response-post a
+{
+    margin-left: 50px;
+}
+
+.article-page .article-comment .username-comment,
+.forum-page .post-comment .username-comment
+{
+    margin-left: 0;
+}
+
+.article-page .article-comment .text-article-response,
+.forum-page .post-comment .text-post-response
+{
+    width: 75%;
+    margin-left: 50px;
+}
+
+.article-page .article-comment .btn-comment,
+.forum-page .post-comment .btn-comment
+{
+    display: flex;
+}
+
+.response-article .btn-response,
+.response-post .btn-response
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.btn-response .btn-edit-response,
+.btn-comment .btn-edit-comment
+{
+    margin-right: 10px;
+}
+
+.link-return-articles,
+.link-return-posts
+{
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+
+/* Responses comments article */
+
+.contain-form-response form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.contain-form-response input[type=submit]
+{
+    width: 10%;
+}
+
+
+/* FORUM (POSTS LISTS) */
+
+.navigation > div
+{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+/* ADD POST PAGE */
+
+.btn-send-new-post,
+.btn-send-new-article
+{
+    margin-top: 20px;
+}
+
+.add-post-page,
+.add-article-page
+{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
+/* MEDIA QUERY */
+
+@media all and (max-width: 415px)
+{
+    /* HOMEPAGE */
+
+    #slider,
+    .slide
+    {
+        width: 100%;
+        height: 50vh;
+    }
+
+    /* .slide
+    {
+        background-size: contain; 
+    } */
+
+    .arrow
+    {
+        top: 28%;
+    }
+
+    #arrow-left
+    {
+        border-width: 10px 15px 10px 0;
+    }
+
+    #arrow-right
+    {
+        border-width: 10px 0px 10px 15px;
+    }
+
+    .slide-content span
+    {
+        font-size: 1rem;
+        top: 50px;
+        left: 50px;
+    }
+
+    .homepage
+    {
+        flex-direction: column;
+    }
+
+    .sidebox
+    {
+        position: initial;
+        width: 100vw;
+    }
+
+    .article-box .text-article,
+    .article-box .title-article
+    {
+        word-wrap: break-word;
+    }
+
+    .article-box .title-article
+    {
+        font-size: 18px;
+    }
+
+    .article-box .text-article
+    {
+        font-size: 15px !important;
+    }
+
+    .article-box .article .containt-article
+    {
+        width: 150px;
+    }
+
+    .article-box .article a,
+    .article-box .article a:visited,
+    .sidebox form input[type=submit]
+    {
+        font-size: 12px;
+    }
+
+    .sidebox form input[type=submit]
+    {
+        width: 30%;
+        margin-left: calc(70% - 1px);
+    }
+
+    .sidebox h4
+    {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .sidebox form
+    {
+        font-size: 14px;
+    }
+
+    /* SHOW ARTICLE PAGE */
+
+    .article-show .text,
+    .article-show .title,
+    .forum-show .text,
+    .forum-show .title
+    {
+        word-wrap: break-word;
+    }
+
+    .article-show .title,
+    .forum-show .title
+    {
+        font-size: 18px;
+    }
+
+    .article-show .text-article
+    {
+        font-size: 15px !important;
+    }
+
+    .container-btn-article,
+    .container-btn-post
+    {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 80px;
+    }
+
+    .like-article .btn-like-article,
+    .like-article a,
+    .btn-admin-article input[type=submit],
+    .btn-admin-article a
+    {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .form-comment-article .btn-send-comment-article,
+    .article-show .date,
+    .article-comment .response-article .date,
+    .article-comment .comment-article .date,
+    .article-comment .btn-comment a,
+    .article-comment .btn-comment input[type=submit],
+    .article-comment .response-btn,
+    .response-article .btn-response a,
+    .response-article .btn-response input[type=submit],
+    .article-comment .a-article-list,
+    .article-comment .a-accueil,
+    .response-post .btn-reponse a,
+    .reponse-post .btn-response input[type=submit]
+    {
+        font-size: 12px !important;
+    }
+
+    .btn-admin-article,
+    .like-article
+    {
+        position: initial !important;
+    }
+
+    .article-page .form-comment-article
+    {
+        margin-top: 0;
+    }
+
+    .article-page .article-comment .username,
+    .article-page .article-comment .username
+    {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .article-page .article-comment .text-article-comment
+    {
+        width: 95%;
+    }
+
+    .response-article,
+    .response-post
+    {
+        margin-left: -10px;
+    }
+
+    .article-comment .link-return-articles,
+    .forum-comment .link-return-posts
+    {
+        margin-top: 0 !important;
+    }
+
+    .article-comment .link-article-page a,
+    .forum-comment .link-post-page a
+    {
+        margin-left: 0;
+    }
 }
