@@ -84,6 +84,11 @@ class Members implements UserInterface, EquatableInterface
      */
     private $locale;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $statut;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -301,5 +306,17 @@ class Members implements UserInterface, EquatableInterface
             }
         }
         return true;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

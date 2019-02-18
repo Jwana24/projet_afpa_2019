@@ -12,7 +12,11 @@
 
                     <h2 class="title">{{post.TitlePost}}</h2>
                     <p class="date">{{post.DatePost|date('d-m-Y')}}</p>
+                    {% if  not post.IdMemberFK == null %}
                     <p class="username">{{post.IdMemberFK.username}}</p>
+                    {% else %}
+                    <p class="member-not-exist">[Ce membre n'existe plus]</p>
+                    {% endif %}
                     <p>Catégorie : {{post.categorie}}</p>
                     <p class="text">{{post.TextPost}}</p>
 

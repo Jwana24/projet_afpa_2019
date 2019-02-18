@@ -65,9 +65,18 @@ footer .recommand-sites
 
 footer .logos
 {
+    display: flex;
+    height: 70px;
     padding-left: 20px;
     padding-bottom: 40px;
     padding-top: 10px;
+}
+
+footer .logo-30MA,
+footer .logo-spa
+{
+    height: 50px;
+    width: 50px;
 }
 
 footer .logo-spa
@@ -280,51 +289,13 @@ footer .logo-30MAmis:hover
 
 /* HOME PAGE */
 
-body, #slider, .wrap, .slide-content
+.carousel-item
 {
-    margin: 0;
-    padding: 0;
-    width: 100%;
     height: 100vh;
-}
-
-.wrap
-{
     position: relative;
 }
 
-.slide
-{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slide1
-{
-    background-image: url('../images/pug.jpg');
-    background-position: 0 0.2px;
-}
-
-.slide2
-{
-    background-image: url('../images/cat.jpg');
-    background-position: 0 1px;
-}
-
-.slide3
-{
-    background-image: url('../images/foal.jpg');
-}
-
-.slide-content
-{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.slide-content span
+.carousel-item span
 {
     position: absolute;
     width: 400px;
@@ -336,37 +307,14 @@ body, #slider, .wrap, .slide-content
     text-shadow: 3px 3px 2px #7f8c8d;
 }
 
-.slide2 span
+.carousel-item .span-cat
 {
     color: #7f8c8d;
 }
 
-.arrow
+.carousel-item img
 {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    margin-top: -35px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-#arrow-left
-{
-    z-index: 1000;
-    border-width: 20px 30px 20px 0;
-    border-color: transparent #fff transparent transparent;
-    left: 0;
-    margin-left: 30px;
-}
-
-#arrow-right
-{
-    border-width: 20px 0px 20px 30px;
-    border-color: transparent transparent transparent #fff;
-    right: 0;
-    margin-right: 30px;
+    object-fit: contain;
 }
 
 .homepage
@@ -374,6 +322,8 @@ body, #slider, .wrap, .slide-content
     display: flex;
     width: 100%;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding: 0;
 }
 
 .sidebox
@@ -410,6 +360,7 @@ body, #slider, .wrap, .slide-content
     margin-left: 20px;
     width: 70%;
     height: 100%;
+    padding-top: 20px;
 }
 
 .article-box .article
@@ -458,6 +409,14 @@ body, #slider, .wrap, .slide-content
 .btn-submit-contact
 {
     margin-top: 20px;
+}
+
+.message-cookie
+{
+    z-index: 10000;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 
@@ -845,6 +804,15 @@ ion-icon[name=heart-empty]
 {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+
+/* FORUM POSTS PAGE (COMMENTS & RESPONSES) */
+/* Show */
+
+.member-not-exist
+{
+    font-style: italic;
 }
 
 

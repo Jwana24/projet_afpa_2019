@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Repository\PostsRepository;
+use App\Repository\MembersRepository;
 use App\Repository\ArticlesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +21,16 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="accueil", methods="GET|POST")
      */
-    public function list(SessionInterface $session, ArticlesRepository $articlesRepository, Request $request): Response
+    public function list(SessionInterface $session, ArticlesRepository $articlesRepository, PostsRepository $postRepository,MembersRepository $memberRepository, Request $request): Response
     {
+        foreach($memberRepository->findBy(['statut' => 'delete']) as $member)
+        {
+            $postRepository->setNullById($member->getId());
+            $memberManager = $this->getDoctrine()->getManager();
+            $memberManager->remove($member);
+            $memberManager->flush();
+        }
+
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -57,6 +67,8 @@ class DefaultController extends AbstractController
      */
     public function mentionsLegales(): Response
     {
+        setcookie('cookie-bandeauCookie', 'myseconddata', time() + 32140800, "/");
+
         return $this->render('general/mentionslegales.html.twig', [
             'last_path' => 'mentionslegales'
         ]);
