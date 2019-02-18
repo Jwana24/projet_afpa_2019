@@ -506,6 +506,31 @@ body, #slider, .wrap, .slide-content
 }
 
 
+/* LEGAL NOTICES PAGE */
+
+.container-notices,
+.legal-notices-page
+{
+    padding-bottom: 2px;
+}
+
+.notices-show h3
+{
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.notices-show div
+{
+    margin-bottom: 40px;
+}
+
+.notices-show .submenu-notice
+{
+    margin-left: 30px;
+}
+
+
 /* ARTICLE PAGE (COMMENTS & RESPONSES) */
 /* Admin */
 
@@ -547,11 +572,12 @@ body, #slider, .wrap, .slide-content
 }
 
 
-/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM POSTS PAGE (COMMENTS & RESPONSES) */
+/* ARTICLES PAGE (COMMENTS & RESPONSES) + FORUM POSTS PAGE (COMMENTS & RESPONSES) + LEGAL NOTICES PAGE */
 /* Show */
 
 .main-article,
-.main-forum
+.main-forum,
+.container-notices
 {
     font-family: 'Segoe UI';
     flex-direction: column;
@@ -559,7 +585,8 @@ body, #slider, .wrap, .slide-content
 }
 
 .article-page,
-.forum-page
+.forum-page,
+.legal-notices-page
 {
     width: 70%;
     height: 100%;
@@ -568,7 +595,8 @@ body, #slider, .wrap, .slide-content
 }
 
 .article-show,
-.forum-show
+.forum-show,
+.notices-show
 {
     width: 80%;
     height: 100%;
@@ -583,7 +611,8 @@ body, #slider, .wrap, .slide-content
     margin: 0 auto;
 }
 
-.forum-show .title
+.forum-show .title,
+.notices-show h3
 {
     padding-top: 40px;
 }
