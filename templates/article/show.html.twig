@@ -17,9 +17,9 @@
                     <div class="like">
                         {% if is_granted('ROLE_USER') %}
                             {% if member_like %}
-                            <ion-icon name="heart"></ion-icon>
+                                <ion-icon name="heart"></ion-icon>
                             {% else %}
-                            <ion-icon name="heart-empty"></ion-icon>
+                                <ion-icon name="heart-empty"></ion-icon>
                             {% endif %}
                         {% endif %}
                     <p class="nb-like-article">{{likes}} likes</p>
@@ -75,14 +75,16 @@
                         <article class="comment-article">
                             <p class="date">{{ comment.DateComment|date('d-m-Y') }}</p>
                             <p class="username username-comment">{{ comment.IdMemberFK.username }}</p>
-                            <p class="text-article-comment">{{ comment.TextComment }}</p>
-                            <form method="post">
-                                <textarea name="" class="content-comment-edit"></textarea>                            
+                            <p class="text-article-comment content-comment{{ comment.id }}">{{ comment.TextComment }}</p>
+                            <form class="form-edit-comment form-edit-comment{{ comment.id }}" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ comment.id) }}">
+                                <textarea class="content-comment-edit{{comment.id}}" name="text_comment" data-id="{{comment.id}}"></textarea>                        
                             </form>
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" data-id="{{comment.id}}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-site cancel-comment cancel-comment{{comment.id}}" href="#">Annuler</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIF', comment) %}

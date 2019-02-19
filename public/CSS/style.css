@@ -612,6 +612,18 @@ ion-icon[name=heart-empty]
     height: 100%;
 }
 
+/* commentaires  */
+/* form edition dynamique */
+.form-edit-comment
+{
+    display: none;
+}
+
+.cancel-comment
+{
+    display: none;
+}
+
 .article-page #toggle-comment:checked ~ .form-comment-article,
 .forum-page #toggle-comment:checked ~ .form-comment-post
 {
@@ -700,9 +712,12 @@ ion-icon[name=heart-empty]
 }
 
 .btn-edit-comment,
-.response-btn
+.btn-edit-response,
+.response-btn,
+.cancel-comment
 {
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .article-page .article-comment .username,
@@ -740,12 +755,6 @@ ion-icon[name=heart-empty]
 {
     display: flex;
     margin-bottom: 20px;
-}
-
-.btn-response .btn-edit-response,
-.btn-comment .btn-edit-comment
-{
-    margin-right: 10px;
 }
 
 .link-return-articles,
