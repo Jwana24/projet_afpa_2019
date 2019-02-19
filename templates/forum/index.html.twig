@@ -9,7 +9,7 @@
             {% for post in posts %}
                 <div class="card border-light col-3" style="max-width: 18rem;">
                     <div class="card-header">
-                        <p> Catégorie : {{post.categorie}}</p>
+                        <p> {% trans %}Catégorie{% endtrans %} : {{post.categorie | trans}}</p>
                     </div>
 
                     <div class="card-body">
@@ -40,7 +40,7 @@
                     {% if is_granted('ROLE_USER') %}
                         <a class="btn-site" href="{{ path('add_post') }}">{% trans %}Ajouter un post{% endtrans %}</a>
                     {% endif %}
-                    <a class="btn-site" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+                    <a class="btn-site" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
                 </div>
             </div>
 

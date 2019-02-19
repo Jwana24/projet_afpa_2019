@@ -80,6 +80,13 @@ class PostController extends AbstractController
             $responseManager->flush();
         }
 
+        if($request->get('resolve'))
+        {
+            $post->setResolve('resolve');
+            $postManager = $this->getDoctrine()->getManager();
+            $postManager->flush();
+        }
+
         return $this->render('forum/show.html.twig', [
             'post' => $post,
             'form' => $form->createView(),

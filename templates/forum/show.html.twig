@@ -10,21 +10,26 @@
             <section class="container-forum">
                 <article class="forum-show">
 
-                    <h2 class="title">{{post.TitlePost}}</h2>
+                    <h2 class="title">{{post.TitlePost}}
+                        {% if post.Resolve == 'resolve' %}
+                            <span>[{% trans %}Post résolu{% endtrans %}]</span>
+                        {% endif %}
+                    
+                    </h2>
                     <p class="date">{{post.DatePost|date('d-m-Y')}}</p>
                     {% if  not post.IdMemberFK == null %}
                     <p class="username">{{post.IdMemberFK.username}}</p>
                     {% else %}
-                    <p class="member-not-exist">[Ce membre n'existe plus]</p>
+                    <p class="member-not-exist">[{% trans %}Ce membre n'existe plus{% endtrans %}]</p>
                     {% endif %}
-                    <p>Catégorie : {{post.categorie}}</p>
+                    <p>{% trans %}Catégorie{% endtrans %} : {{post.categorie | trans}}</p>
                     <p class="text">{{post.TextPost}}</p>
 
                     <div class="container-btn-post">
 
                         <div class="btn-comment-post">
                             <a class="btn-site" href="#">
-                                <label for="toggle-comment">Commenter</label>
+                                <label for="toggle-comment">{% trans %}Commenter{% endtrans %}</label>
                             </a>
                         </div>
 
@@ -33,6 +38,13 @@
 
                                 {{ include('forum/delete.html.twig') }}
                                 <a class="btn-site" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+
+                                {% if post.Resolve != 'resolve' %}
+                                <form method="post">
+                                    <input type="hidden" name="resolve" value="resolve">
+                                    <input class="btn-site btn-resolve" type="submit" value="Résoudre">
+                                </form>
+                                {% endif %}
 
                             {% endif %}
                         </div>
@@ -68,7 +80,7 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIFPOSTCOMMENT', comment) %}
@@ -90,7 +102,7 @@
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -118,7 +130,7 @@
 
                 <div class="link-post-page">
                     <a class="btn-site link-return-posts" href="{{ path('posts_list') }}">{% trans %}Revenir à la liste des posts{% endtrans %}</a>
-                    <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+                    <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
                 </div>
 
                 {% for message in app.flashes('success') %}

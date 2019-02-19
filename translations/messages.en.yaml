@@ -1,49 +1,69 @@
-# Page d'accueil du site
+# NAVBAR
+Accueil : Homepage
+Déconnexion : Logout
+Voir mon profil : See my profile
+Français : French
+Anglais : English
+Recherche : Search
+
+# SLIDER
 Bienvenue sur le site : Welcome to the site
 Bienvenue sur le site "Les Nouveaux Animaux de Compagnie" : Welcome to the site "Les Nouveaux Animaux de Compagnie"
 Retrouvez tous nos articles animaliers : Find all our animal's articles
 N'hésitez pas à faire un tour sur notre forum : Do not hesitate to visit our forum
-Déconnexion : Logout
-Voir mon profil : See my profile
-En savoir plus : See more
 
-# Page de profil du membre
-Profil de : Profile to
-Editer mon profil : Edit my profile
-Revenir à la page d'accueil : Return to the home page
+# HOMEPAGE SITE (index)
+En voir plus : See more
+Les cookies vous permettent de bénéficier de nombreuses fonctionnalités afin d'améliorer votre navigation sur le site. En utilisant ce site, vous acceptez de recevoir des cookies. Pour en savoir plus et accepter les cookies : Cookies allow you to benefit from many features to improve your navigation on the site. By using this site, you agree to receive cookies. To learn more and accept cookies
+cliquez ici : click here
+
+# ASIDE CONTACTS
 Nom : Last name
 Prénom : First name
+Adresse e-mail : Email address
+Envoyer : Send
+
+# FOOTER
+Mentions légales : Legal notices
+Mon profil : My profile
+Les sites que l'on vous recommande : The sites we recommend
+Site LesNac créé par : Site LesNac create by
+
+# ARTICLE PAGE (show)
+Commenter : Comment
+Supprimer l'article : Delete article
+Editer l'article : Edit article
+Revenir à la liste des articles : Return to the articles list
+Revenir à l'accueil : Return to the homepage
+Editer le commentaire : Edit comment
+Editer la réponse : Edit response
+Supprimer le commentaire : Delete comment
+Répondre : Reply
+Supprimer la réponse : Delete response
+
+# LIST ARTICLES PAGE
+Voir : See
+Les articles : The articles
+Ajouter un article : Add article
+
+# FORUM PAGE (index)
+Bienvenue sur le forum : Welcome to the forum
+Catégorie : Category
+Ajouter un post : Add post
+mammifères : mammals
+amphibiens : amphibia
+oiseaux : birds
+poissons : fishs
+
+# POST PAGE (show forum)
+Post résolu : Post resolved
+Supprimer le post : Delete post
+Editer le post : Edit post
+Revenir à la liste des posts : Return to the posts list
+
+# Page de profil du membre
+profil : profile
+Editer mon profil : Edit my profile
 Email : Mail
 Revenir à ma page de profil : Return to my profile page
 Supprimer mon profil : Delete my profile
-
-# Page d'inscription
-M'inscrire : Register
-
-# Page "en savoir plus" d'un article
-Envoyer : Send
-Liker : Like
-Répondre : Reply
-Editer : Edit
-Supprimer la réponse : Delete the reply
-Supprimer l'article : Delete the article
-Supprimer le commentaire : Delete the comment
-Revenir à la liste des articles : Return to the articles list
-Sauvegarder : Save
-
-# Page d'accueil du forum
-Bienvenue sur le forum : Welcome to the forum
-Titre : Title
-Catégorie : Category
-Voir : See
-Ajouter un post : Add a post
-Mammifères : Mammals
-Amphibiens : Amphibia
-Oiseaux : Birds
-Poissons : Fishs
-
-# Page d'un post
-Membre : Member
-Contenu du post : Post content
-Supprimer le post : Delete post
-Revenir à la liste des posts : Return to the list of posts

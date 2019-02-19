@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}NOM DU SITE{% endblock %}</title>
+        <title>{% block title %}Les NAC{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
         {% block stylesheets %}{% endblock %}
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
+                        <a class="nav-link" href="{{ path('accueil') }}">{% trans %}Accueil{% endtrans %}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('articles_list') }}">Articles</a>
@@ -35,16 +35,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><ion-icon style="color: white" name="person"></ion-icon></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="{{ path('logout') }}">Déconnection</a>
-                                <a class="dropdown-item" href="{{ path('member_show', {'id':app.user.id}) }}">Mon profil</a>
+                                <a class="dropdown-item" href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+                                <a class="dropdown-item" href="{{ path('member_show', {'id':app.user.id}) }}">{% trans %}Mon profil{% endtrans %}</a>
                             </div>
                         </li>
                     
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><ion-icon class="icon" style="color: white" name="globe"></ion-icon></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">Français</a>
-                                <a class="dropdown-item" href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">Anglais</a>
+                                <a class="dropdown-item" href="{{ path('translation', {'_language':'fr_FR', 'last_path':last_path}) }}">{% trans %}Français{% endtrans %}</a>
+                                <a class="dropdown-item" href="{{ path('translation', {'_language':'en', 'last_path':last_path}) }}">{% trans %}Anglais{% endtrans %}</a>
                             </div>
                         </li>
                     {% else %}
@@ -60,7 +60,7 @@
                 </ul>
 
                 <form class="form-inline my-2 my-md-0">
-                    <input class="form-control" type="text" placeholder="Search">
+                    <input class="form-control" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
                 </form>
             </div>
         </nav>
@@ -156,10 +156,14 @@
             <div class="footer-elements">
                 <div class="elements-center">
                     <a href="{{ path('accueil') }}#contacts">Contacts</a>
-                    <a href="{{ path('mentionslegales') }}">Mentions légales</a>
-                    <a href="#">Plan du site</a>
+                    <a href="{{ path('mentionslegales') }}">{% trans %}Mentions légales{% endtrans %}</a>
+                    <a href="{{ path('articles_list') }}">Articles</a>
+                    <a href="{{ path('posts_list') }}">Forum</a>
+                    {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('member_show', {'id': app.user.id}) }}">{% trans %}Mon profil{% endtrans %}</a>
+                    {% endif %}
                     <p class="recommand-sites">
-                        Les sites que l'on vous recommande :
+                        {% trans %}Les sites que l'on vous recommande{% endtrans %} :
                         <div class="logos">
                             <div class="logo-30MA">
                                 <a href="https://www.30millionsdamis.fr/"><img class="logo-30MAmis" src="{{ asset('images/logo-30MAmis.png') }}" alt="Logo de la Fondation 30 Millions d'Amis"></a>
@@ -170,7 +174,7 @@
                         </div>
                     </p>
                 </div>
-                <p>© Site LesNac créé par Johanna DETRIEUX</p>
+                <p>© {% trans %}Site LesNac créé par{% endtrans %} Johanna DETRIEUX</p>
             </div>
         </footer>
 

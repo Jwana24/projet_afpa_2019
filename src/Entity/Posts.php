@@ -48,6 +48,11 @@ class Posts
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $resolve;
+
     public function __construct()
     {
         $this->commentsPosts = new ArrayCollection();
@@ -145,6 +150,18 @@ class Posts
     public function setCategorie(string $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getResolve(): ?string
+    {
+        return $this->resolve;
+    }
+
+    public function setResolve(?string $resolve): self
+    {
+        $this->resolve = $resolve;
 
         return $this;
     }

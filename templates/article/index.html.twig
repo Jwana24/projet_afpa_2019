@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les articles{% endblock %}
+{% block title %}{% trans %}Les articles{% endtrans %}{% endblock %}
 
 {% block body %}
 
@@ -31,10 +31,10 @@
         </div>
 
         <div class="link-article-page">
-            <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+            <a class="btn-site link-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
 
             {% if is_granted('ROLE_ADMIN') %}
-                <a class="btn-site" href="{{ path('add-article') }}">Ajouter un article</a>
+                <a class="btn-site" href="{{ path('add-article') }}">{% trans %}Ajouter un article{% endtrans %}</a>
             {% endif %}
         </div>
 

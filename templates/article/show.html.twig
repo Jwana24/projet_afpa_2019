@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}{{article.TitleArticle}}{% endblock %}
 
 {% block body %}
     <main class="main-article">
@@ -34,7 +34,7 @@
                             {{ form_end(formLike) }}
 
                             <a class="btn-site" href="#">
-                            <label for="toggle-comment">Commenter</label>
+                            <label for="toggle-comment">{% trans %}Commenter{% endtrans %}</label>
                             </a>
 
                         {% else %}
@@ -48,7 +48,7 @@
                         {% if is_granted('ROLE_ADMIN') %}
 
                             {{ include('Admin/article/delete.html.twig') }}
-                            <a class="btn-site" href="{{ path('article_edit', {'id' : article.Id}) }}">Editer l'article</a>
+                            <a class="btn-site" href="{{ path('article_edit', {'id' : article.Id}) }}">{% trans %}Editer l'article{% endtrans %}</a>
 
                         {% endif %}
                         </div>
@@ -79,7 +79,7 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIF', comment) %}
@@ -101,7 +101,7 @@
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -130,7 +130,7 @@
                 <div class="link-article-page">
                     <a class="btn-site link-return-articles" href="{{ path('articles_list') }}">{% trans %}Revenir à la liste des articles{% endtrans %}</a>
                     
-                    <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">Revenir à l'accueil</a>
+                    <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
                 </div>
 
                 {% for message in app.flashes('success') %}

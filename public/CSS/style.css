@@ -25,7 +25,7 @@ footer
     position: relative;
     width: 100%;
     font-family: 'Segoe UI';
-    background-color: #0984e3;
+    background-color: #007BFF;
     color: white;
 }
 
@@ -813,6 +813,11 @@ ion-icon[name=heart-empty]
 .member-not-exist
 {
     font-style: italic;
+}
+
+.btn-resolve
+{
+    margin-left: 20px;
 }
 
 

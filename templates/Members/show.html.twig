@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Profil de{% endtrans %} {{ member.username }}{% endblock %}
+{% block title %}{{ member.username }} {% trans %}profil{% endtrans %}{% endblock %}
 
 {% block body %}
     <main class="main-profile">
@@ -23,7 +23,7 @@
         <div class="link-article-page">
             <a class="btn-site" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
 
-            <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à la page d'accueil{% endtrans %}</a>
+            <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
         </div>
 
         {% for message in app.flashes('success') %}
