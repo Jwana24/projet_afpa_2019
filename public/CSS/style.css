@@ -614,14 +614,22 @@ ion-icon[name=heart-empty]
 
 /* commentaires  */
 /* form edition dynamique */
-.form-edit-comment
+.form-edit-comment,
+.form-edit-response
 {
     display: none;
 }
 
-.cancel-comment
+.cancel-comment,
+.cancel-response
 {
     display: none;
+}
+ 
+.content-comment-edit,
+.content-response-edit
+{
+    margin-bottom: 20px;
 }
 
 .article-page #toggle-comment:checked ~ .form-comment-article,
@@ -692,7 +700,8 @@ ion-icon[name=heart-empty]
 
 .article-page .article-comment .text-article-comment,
 .contain-form-response textarea,
-.forum-page .post-comment .text-post-comment
+.forum-page .post-comment .text-post-comment,
+.content-comment-edit
 {
     width: 80%;
 }
@@ -701,7 +710,9 @@ ion-icon[name=heart-empty]
 .article-page .article-comment .text-article-response,
 .contain-form-response textarea,
 .forum-page .post-comment .text-post-comment,
-.forum-page .post-comment .text-post-response
+.forum-page .post-comment .text-post-response,
+.content-comment-edit,
+.content-response-edit
 {
     border: #dfe6e9 solid 0.3px;
     background-color: #dfe6e9;
@@ -711,34 +722,37 @@ ion-icon[name=heart-empty]
     font-weight: 100;
 }
 
+.article-page .article-comment .username,
+.article-page .article-comment .date-response,
+.article-page .article-comment .btn-edit-response,
+.contain-form-response,
+.forum-page .post-comment .username,
+.forum-page .post-comment .date-response,
+.forum-page .post-comment .btn-edit-response
+{
+    margin-left: 50px;
+}
+
 .btn-edit-comment,
 .btn-edit-response,
 .response-btn,
-.cancel-comment
+.cancel-comment,
+.cancel-response
 {
     margin-bottom: 10px;
     margin-right: 10px;
 }
 
-.article-page .article-comment .username,
-.article-page .article-comment .date-response,
-.article-page .article-comment .response-article a,
-.contain-form-response,
-.forum-page .post-comment .username,
-.forum-page .post-comment .date-response,
-.forum-page .post-comment .response-post a
-{
-    margin-left: 50px;
-}
-
 .article-page .article-comment .username-comment,
-.forum-page .post-comment .username-comment
+.forum-page .post-comment .username-comment,
+.cancel-response
 {
     margin-left: 0;
 }
 
 .article-page .article-comment .text-article-response,
-.forum-page .post-comment .text-post-response
+.forum-page .post-comment .text-post-response,
+.content-response-edit
 {
     width: 75%;
     margin-left: 50px;

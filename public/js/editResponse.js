@@ -1,17 +1,16 @@
-
-if(document.querySelectorAll('.btn-edit-comment'))
+if(document.querySelectorAll('.btn-edit-response'))
 {
-    let editButton = document.querySelectorAll('.btn-edit-comment');
+    let editButton = document.querySelectorAll('.btn-edit-response');
     
     editButton.forEach((button) => {
         button.addEventListener('click', (e)  => 
         {
             e.preventDefault();
             
-            let paragraph = document.querySelector('.content-comment'+e.target.dataset['id']);
-            let cancelBtn = document.querySelector('.cancel-comment'+e.target.dataset['id']);
-            let formEdit = document.querySelector('.form-edit-comment'+e.target.dataset['id']);
-            let editTextarea = document.querySelector('.content-comment-edit'+e.target.dataset['id']);
+            let paragraph = document.querySelector('.content-response'+e.target.dataset['id']);
+            let cancelBtn = document.querySelector('.cancel-response'+e.target.dataset['id']);
+            let formEdit = document.querySelector('.form-edit-response'+e.target.dataset['id']);
+            let editTextarea = document.querySelector('.content-response-edit'+e.target.dataset['id']);
     
             if(e.target.innerText == 'Editer')
             {
@@ -27,7 +26,7 @@ if(document.querySelectorAll('.btn-edit-comment'))
             else if (e.target.innerText == 'Enregistrer')
             {
                 let data = new FormData(formEdit);
-                fetch('/'+e.target.dataset['id']+'/edit', {method: 'POST', body: data}).then(promise => promise.text()).then(promise => 
+                fetch('/'+e.target.dataset['id']+'/editresponse', {method: 'POST', body: data}).then(promise => promise.text()).then(promise => 
                 {
                     paragraph.innerText = JSON.parse(promise).content;
                 });
@@ -50,6 +49,3 @@ if(document.querySelectorAll('.btn-edit-comment'))
     });
 }
  
-
-
-

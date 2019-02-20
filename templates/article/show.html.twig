@@ -78,7 +78,7 @@
                             <p class="text-article-comment content-comment{{ comment.id }}">{{ comment.TextComment }}</p>
                             <form class="form-edit-comment form-edit-comment{{ comment.id }}" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ comment.id) }}">
-                                <textarea class="content-comment-edit{{comment.id}}" name="text_comment" data-id="{{comment.id}}"></textarea>                        
+                                <textarea class="content-comment-edit content-comment-edit{{comment.id}}" name="text_comment"></textarea>                        
                             </form>
 
                             <div class="btn-comment">
@@ -102,11 +102,16 @@
                             <article class="response-article">
                                 <p class="date date-response">{{ response.DateResponse|date('d-m-Y') }}</p>
                                 <p class="username">{{ response.IdMemberFK.username }}</p>
-                                <p class="text-article-response">{{ response.TextResponse }}</p>
+                                <p class="text-article-response content-response{{ response.id }}">{{ response.TextResponse }}</p>
+                                <form class="form-edit-response form-edit-response{{ response.id }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('edit-response' ~ response.id) }}">
+                                    <textarea class="content-response-edit content-response-edit{{response.id}}" name="text_response"></textarea>                        
+                                </form>
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response', {'id':response.Id}) }}" data-id="{{response.id}}">{% trans %}Editer{% endtrans %}</a>
+                                        <a class="btn-site cancel-response cancel-response{{response.id}}" href="#">Annuler</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -153,6 +158,7 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/editComment.js') }}"></script>
+    <script src="{{ asset('js/editResponse.js') }}"></script>
     <script src="{{ asset('js/likeArticle.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}
