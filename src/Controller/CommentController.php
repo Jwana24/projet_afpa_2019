@@ -20,24 +20,33 @@ class CommentController extends AbstractController
     */
     public function edit(Request $request, Comments $comment): Response
     {
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
+        // $form = $this->createForm(CommentType::class, $comment);
+        // $form->handleRequest($request);
         
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'Le commentaire a été modifié avec succès');
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $this->getDoctrine()->getManager()->flush();
+        //     $this->addFlash('success', 'Le commentaire a été modifié avec succès');
             
-            return $this->redirectToRoute('show_article',[
-                'id' => $comment->getIdArticleFK()->getId()
-            ]);
-        }
+        //     return $this->redirectToRoute('show_article',[
+        //         'id' => $comment->getIdArticleFK()->getId()
+        //     ]);
+        // }
 
-        return $this->render('article/comments/edit.html.twig', [
-            'comment' => $comment,
-            'form' => $form->createView(),
-            'last_path' => 'edit_comment:id='.$comment->getId()
-        ]);
+        // return $this->render('article/comments/edit.html.twig', [
+        //     'comment' => $comment,
+        //     'form' => $form->createView(),
+        //     'last_path' => 'edit_comment:id='.$comment->getId()
+        // ]);
+
+        if($this->isCsrfTokenValid('edit-comment'.$comment->getId(), $request->request->get('_token')))
+        {
+            $commentManager = $this->getDoctrine()->getManager();
+            $comment->setTextComment($request->request->get('_token'));
+            $commentManager->flush();
+            return $this->json(['content' => $comment->getTextComment()]);
+        }
+        return $this->redirectToRoute('accueil');
     }
 
 

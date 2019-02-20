@@ -20,24 +20,33 @@ class ResponseController extends AbstractController
     */
     public function edit(Request $request, Responses $response): Response
     {
-        $form = $this->createForm(ResponseType::class, $response);
-        $form->handleRequest($request);
+        // $form = $this->createForm(ResponseType::class, $response);
+        // $form->handleRequest($request);
         
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'La réponse a été modifiée avec succès');
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $this->getDoctrine()->getManager()->flush();
+        //     $this->addFlash('success', 'La réponse a été modifiée avec succès');
             
-            return $this->redirectToRoute('show_article',[
-                'id' => $response->getIdCommentFK()->getIdArticleFK()->getId()
-            ]);
-        }
+        //     return $this->redirectToRoute('show_article',[
+        //         'id' => $response->getIdCommentFK()->getIdArticleFK()->getId()
+        //     ]);
+        // }
 
-        return $this->render('article/responses/edit.html.twig', [
-            'response' => $response,
-            'form' => $form->createView(),
-            'last_path' => 'edit_response:id='.$response->getId()
-        ]);
+        // return $this->render('article/responses/edit.html.twig', [
+        //     'response' => $response,
+        //     'form' => $form->createView(),
+        //     'last_path' => 'edit_response:id='.$response->getId()
+        // ]);
+
+        if($this->isCsrfTokenValid('edit-response'.$response->getId(), $request->request->get('_token')))
+        {
+            $responseManager = $this->getDoctrine()->getManager();
+            $response->getTextResponse();
+            $responseManager->flush();
+            return $this->json(['content' => $response->getTextResponse()]);
+        }
+        return $this->redirectToRoute('accueil');
     }
 
     /**
