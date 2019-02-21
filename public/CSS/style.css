@@ -465,6 +465,16 @@ body, #slider, .wrap, .slide-content
     margin-top: 30px;
 }
 
+.btn-delete-member
+{
+    margin: 20px 0px 0px 0px;
+}
+
+/* form edit dynamic */
+.form-edit-member
+{
+    margin: 15px 0px 0px 20px;
+}
 
 /* ARTICLE PAGE (COMMENTS & RESPONSES) */
 /* Admin */
@@ -615,13 +625,15 @@ ion-icon[name=heart-empty]
 /* commentaires  */
 /* form edition dynamique */
 .form-edit-comment,
-.form-edit-response
+.form-edit-response,
+.form-edit-member
 {
     display: none;
 }
 
 .cancel-comment,
-.cancel-response
+.cancel-response,
+.cancel-edit-member
 {
     display: none;
 }
