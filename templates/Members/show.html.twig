@@ -11,19 +11,61 @@
                 <img class="rounded avatar" alt="Votre avatar" src="{{ asset(member.Avatar) }}"/>
                 <div class="info-profile">
                     <h3 class="username-profile">{{ member.username }}</h3>
-                    <p>{% trans %}Nom{% endtrans %} : {{ member.LastName }}</p>
-                    <p>{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</p>
-                    <p>{% trans %}Email{% endtrans %} : {{ member.Mail }}</p>
-                    <p>Description : {{ member.Description }}</p>
+                    <p class="member-lastName">{% trans %}Nom{% endtrans %} : {{ member.LastName }}</p>
+                    <p class="member-firstName">{% trans %}Prénom{% endtrans %} : {{ member.FirstName }}</p>
+                    <p class="member-mail">{% trans %}Email{% endtrans %} : {{ member.Mail }}</p>
+                    <p class="member-description">Description : {{ member.Description }}</p>
                 </div>
+
+                <form class="form-edit-member" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token('edit-member' ~ member.id) }}">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" value="{{ member.username }}">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="last_name" value="{{ member.LastName }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="first_name" value="{{ member.FirstName }}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" name="password_verify" placeholder="Confirmation mot de passe">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="mail" value="{{ member.Mail }}">
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control content-edit-member" name="description">{{ member.Description }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="avatar">
+                    </div>
+                </form>
             
             </article>
         </section>
 
         <div class="link-article-page">
-            <a class="btn-site" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
+            <a class="btn-site btn-edit-member" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ member.id }}" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
+
+            <a class="btn-site cancel-edit-member" href="#">Annuler</a>
 
             <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
+
+            {{ include('Members/desinscription.html.twig') }}
         </div>
 
         {% for message in app.flashes('success') %}
@@ -33,4 +75,8 @@
         {% endfor %}
     </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/editMember.js') }}"></script>
 {% endblock %}

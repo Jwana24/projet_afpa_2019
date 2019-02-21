@@ -464,6 +464,17 @@ footer .logo-30MAmis:hover
     margin-top: 30px;
 }
 
+.btn-delete-member
+{
+    margin-top: 20px;
+}
+
+/* Dynamics edit member */
+.form-edit-member
+{
+    margin: 15px 0 0 20px;
+}
+
 
 /* LEGAL NOTICES PAGE */
 
@@ -640,11 +651,12 @@ ion-icon[name=heart-empty]
     height: 100%;
 }
 
-/* Dynamics comments, responses article + forum */
+/* Dynamics comments, responses article + forum + edit member profile page */
 .form-edit-comment,
 .form-edit-response,
 .form-edit-comment-post,
-.form-edit-response-post
+.form-edit-response-post,
+.form-edit-member
 {
     display: none;
 }

@@ -120,45 +120,50 @@ class MembersController extends Controller implements EventSubscriberInterface
      */
     public function edit(Request $request, Members $member, UserPasswordEncoderInterface $encoder): Response
     {
-        $form = $this->createForm(MemberType::class, $member);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
+        if($this->isCsrfTokenValid('edit-member'.$member->getId(), $request->request->get('_token')))
         {
-            if($form['password']->getData() === $member->getPassword())
+            if($request->request->get('password') === $request->request->get('password_verify') || $request->request->get('password') == '' && $request->request->get('password_verify') == '')
             {
-                $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
+                $username =($request->request->get('username') == '') ? $member->getUsername() : $request->request->get('username');
+                $lastName =($request->request->get('last_name') == '') ? $member->getLastName() : $request->request->get('last_name');
+                $firstName =($request->request->get('first_name') == '') ? $member->getFirstName() : $request->request->get('first_name');
+                $password =($request->request->get('password') == '') ? $member->getPassword() : $encoder->encodePassword($member, $request->request->get('password'));
+                $mail =($request->request->get('mail') == '') ? $member->getMail() : $request->request->get('mail');
+                $description =($request->request->get('description') == '') ? $member->getDescription() : $request->request->get('description');
+
+                $avatar = $request->files->get('avatar');
+                if($avatar)
+                {
+                    $folder = 'avatars/';
+                    $newName = strtr($avatar->getClientOriginalName(),
+                    'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                    'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                    $avatar->move($folder, $newName);
+                    $member->setAvatar($folder.$newName);
+                }
+                else
+                {
+                    $avatar = $member->getAvatar();
+                }
+
+                $memberManager = $this->getDoctrine()->getManager();
+                $member->setFirstName($firstName);
+                $member->setLastName($lastName);
+                $member->setUsername($username);
+                $member->setPassword($password);
+                $member->setMail($mail);
+                $member->setDescription($description);
+                $memberManager->flush();
+
+                return $this->json(['content' => [
+                    'first_name' => $member->getFirstName(),
+                    'last_name' => $member->getLastName(),
+                    'username' => $member->getUsername(),
+                    'mail' => $member->getMail(),
+                    'description' => $member->getDescription(),
+                    'avatar' => $member->getAvatar()
+                ]]);
             }
-
-            $avatar = $form['avatar']->getData();
-            if(!is_string($avatar))
-            {
-                $folder = 'avatars/';
-                $newName = strtr($avatar->getClientOriginalName(),
-                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
-                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-                $avatar->move($folder, $newName);
-                $member->setAvatar($folder.$newName);
-            }
-
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('member_edit', ['id' => $member->getId()]);
-        }
-
-        // return $this->render('Members/edit.html.twig', [
-        //     'member' => $member,
-        //     'form' => $form->createView(),
-        //     'last_path' => 'member_edit:id='.$member->getId()
-        // ]);
-
-
-        if($this->isCsrfTokenValid('edit-response-post'.$responsePost->getId(), $request->request->get('_token')))
-        {
-            $responsePostManager = $this->getDoctrine()->getManager();
-            $responsePost->setTextResponse($request->request->get('text_response_post'));
-            $responsePostManager->flush();
-            return $this->json(['content' => $responsePost->getTextResponse()]);
         }
         return $this->redirectToRoute('accueil');
     }
