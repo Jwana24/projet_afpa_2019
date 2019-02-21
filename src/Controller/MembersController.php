@@ -96,8 +96,6 @@ class MembersController extends Controller implements EventSubscriberInterface
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);
             $memberManager->flush();
-
-            // return $this->redirectToRoute('accueil');
         }
 
         return $this->render('Members/inscription.html.twig', [
@@ -148,11 +146,21 @@ class MembersController extends Controller implements EventSubscriberInterface
             return $this->redirectToRoute('member_edit', ['id' => $member->getId()]);
         }
 
-        return $this->render('Members/edit.html.twig', [
-            'member' => $member,
-            'form' => $form->createView(),
-            'last_path' => 'member_edit:id='.$member->getId()
-        ]);
+        // return $this->render('Members/edit.html.twig', [
+        //     'member' => $member,
+        //     'form' => $form->createView(),
+        //     'last_path' => 'member_edit:id='.$member->getId()
+        // ]);
+
+
+        if($this->isCsrfTokenValid('edit-response-post'.$responsePost->getId(), $request->request->get('_token')))
+        {
+            $responsePostManager = $this->getDoctrine()->getManager();
+            $responsePost->setTextResponse($request->request->get('text_response_post'));
+            $responsePostManager->flush();
+            return $this->json(['content' => $responsePost->getTextResponse()]);
+        }
+        return $this->redirectToRoute('accueil');
     }
 
     /**

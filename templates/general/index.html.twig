@@ -75,25 +75,6 @@
             {{ form_end(form) }}
         </aside>
 
-        {% if not app.request.cookies.get('cookie-bandeauCookie') %}
-        <div class="container">
-            <div class="toast message-cookie" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img widht="10px" height="20px" src="{{ asset('images/gingerman.png') }}" class="rounded mr-2" alt="...">
-                    <strong class="mr-auto">Cookies</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    <p>
-                        {% trans %}Les cookies vous permettent de bénéficier de nombreuses fonctionnalités afin d'améliorer votre navigation sur le site. En utilisant ce site, vous acceptez de recevoir des cookies. Pour en savoir plus et accepter les cookies{% endtrans %}, <a href="{{ path('mentionslegales') }}#cookies">{% trans %}cliquez ici{% endtrans %}</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-
         {% for message in app.flashes('success') %}
             <div id="flash-notice" class="text-center mx-auto">
                 {{ message }}

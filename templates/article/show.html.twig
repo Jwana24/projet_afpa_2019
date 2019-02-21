@@ -84,8 +84,8 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a class="btn-site btn-edit-comment" data-id="{{ comment.id }}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
-                                    <a class="btn-site cancel-comment cancel-comment{{ comment.id }}" href="#">Annuler</a>
+                                    <a class="btn-site btn-edit-comment" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ comment.id }}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
+                                    <a class="btn-site cancel-comment cancel-comment{{ comment.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIF', comment) %}
@@ -112,8 +112,8 @@
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" data-id="{{ response.id }}" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
-                                        <a class="btn-site cancel-response cancel-response{{ response.id }}" href="#">Annuler</a>
+                                        <a class="btn-site btn-edit-response" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ response.id }}" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
+                                        <a class="btn-site cancel-response cancel-response{{ response.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}

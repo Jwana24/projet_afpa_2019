@@ -414,7 +414,7 @@ footer .logo-30MAmis:hover
 .message-cookie
 {
     z-index: 10000;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
 }
@@ -640,6 +640,31 @@ ion-icon[name=heart-empty]
     height: 100%;
 }
 
+/* Dynamics comments, responses article + forum */
+.form-edit-comment,
+.form-edit-response,
+.form-edit-comment-post,
+.form-edit-response-post
+{
+    display: none;
+}
+
+.cancel-comment,
+.cancel-response,
+.cancel-comment-post,
+.cancel-response-post
+{
+    display: none;
+}
+
+.content-comment-edit,
+.content-response-edit,
+.content-comment-edit-post,
+.content-response-edit-post
+{
+    margin-bottom: 20px;
+}
+
 .article-page #toggle-comment:checked ~ .form-comment-article,
 .forum-page #toggle-comment:checked ~ .form-comment-post
 {
@@ -708,7 +733,9 @@ ion-icon[name=heart-empty]
 
 .article-page .article-comment .text-article-comment,
 .contain-form-response textarea,
-.forum-page .post-comment .text-post-comment
+.forum-page .post-comment .text-post-comment,
+.content-comment-edit,
+.content-comment-edit-post
 {
     width: 80%;
 }
@@ -717,7 +744,11 @@ ion-icon[name=heart-empty]
 .article-page .article-comment .text-article-response,
 .contain-form-response textarea,
 .forum-page .post-comment .text-post-comment,
-.forum-page .post-comment .text-post-response
+.forum-page .post-comment .text-post-response,
+.content-comment-edit,
+.content-response-edit,
+.content-comment-edit-post,
+.content-response-edit-post
 {
     border: #dfe6e9 solid 0.3px;
     background-color: #dfe6e9;
@@ -727,31 +758,41 @@ ion-icon[name=heart-empty]
     font-weight: 100;
 }
 
-.btn-edit-comment,
-.response-btn
-{
-    margin-bottom: 10px;
-}
-
 .article-page .article-comment .username,
 .article-page .article-comment .date-response,
-.article-page .article-comment .response-article a,
+.article-page .article-comment .btn-edit-response,
 .contain-form-response,
 .forum-page .post-comment .username,
 .forum-page .post-comment .date-response,
-.forum-page .post-comment .response-post a
+.forum-page .post-comment .btn-edit-response
 {
     margin-left: 50px;
 }
 
+.response-btn,
+.btn-response .btn-edit-response,
+.btn-comment .btn-edit-comment,
+.cancel-comment,
+.cancel-response,
+.cancel-comment-post,
+.cancel-response-post
+{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 .article-page .article-comment .username-comment,
-.forum-page .post-comment .username-comment
+.forum-page .post-comment .username-comment,
+.cancel-response,
+.cancel-response-post
 {
     margin-left: 0;
 }
 
 .article-page .article-comment .text-article-response,
-.forum-page .post-comment .text-post-response
+.forum-page .post-comment .text-post-response,
+.content-response-edit,
+.content-response-edit-post
 {
     width: 75%;
     margin-left: 50px;
@@ -768,12 +809,6 @@ ion-icon[name=heart-empty]
 {
     display: flex;
     margin-bottom: 20px;
-}
-
-.btn-response .btn-edit-response,
-.btn-comment .btn-edit-comment
-{
-    margin-right: 10px;
 }
 
 .link-return-articles,

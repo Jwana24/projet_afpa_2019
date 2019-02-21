@@ -1,49 +1,152 @@
-if(document.querySelectorAll('.btn-edit-comment'))
+if(document.querySelectorAll('.btn-edit-response'))
 {
-    let editButton = document.querySelectorAll('.btn-edit-comment');
+    let editButton = document.querySelectorAll('.btn-edit-response');
 
     editButton.forEach((button) =>
     {
-        button.addEventListener('click', (e) =>
+        if(button.dataset['post'] == 'false')
         {
-            e.preventDefault();
-
-            let paragraph = document.querySelector('.content-comment'+e.target.dataset['id']);
-            let cancelBtn = document.querySelector('.cancel-comment'+e.target.dataset['id']);
-            let formEdit = document.querySelector('.form-edit-comment'+e.target.dataset['id']);
-            let editTextarea = document.querySelector('.content-comment-edit'+e.target.dataset['id']);
-
-            if(e.target.innerText == 'Editer')
+            button.addEventListener('click', (e) =>
             {
-                editTextarea.innerText = paragraph.innerText;
-                paragraph.style.display = 'none';
-                cancelBtn.style.display = 'initial';
-                formEdit.style.display = 'initial';
-                e.target.innerText = 'Enregistrer';
-            }
-            else if(e.target.innerText == 'Enregistrer')
-            {
-                let data = new FormData(formEdit);
-                fetch('/'+e.target.dataset['id']+'/edit', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
+                e.preventDefault();
+
+                let paragraph = document.querySelector('.content-response'+e.target.dataset['id']);
+                let cancelBtn = document.querySelector('.cancel-response'+e.target.dataset['id']);
+                let formEdit = document.querySelector('.form-edit-response'+e.target.dataset['id']);
+                let editTextarea = document.querySelector('.content-response-edit'+e.target.dataset['id']);
+
+                if(e.target.dataset['toggle'] == 'false')
+                {
+                    editTextarea.innerText = paragraph.innerText;
+                    paragraph.style.display = 'none';
+                    cancelBtn.style.display = 'initial';
+                    formEdit.style.display = 'initial';
+                    e.target.dataset['toggle'] = 'true';
+
+                    if(e.target.dataset['locale'] == 'fr_FR')
                     {
-                        paragraph.innerText = JSON.parse(promise).content;
-                    });
+                        e.target.innerText = 'Enregistrer';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Save';
+                    }
+                }
+                else if(e.target.dataset['toggle'] == 'true')
+                {
+                    let data = new FormData(formEdit);
+                    fetch('/'+e.target.dataset['id']+'/editresponse', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
+                        {
+                            paragraph.innerText = JSON.parse(promise).content;
+                        });
 
-                formEdit.style.display = 'none';
-                paragraph.style.display = 'block';
-                cancelBtn.style.display = 'none';
-                e.target.innerText = 'Editer';
-            }
+                    formEdit.style.display = 'none';
+                    paragraph.style.display = 'block';
+                    cancelBtn.style.display = 'none';
+                    e.target.dataset['toggle'] = 'false';
 
-            cancelBtn.addEventListener('click', (f) =>
-            {
-                f.preventDefault();
-                cancelBtn.style.display = 'none';
-                e.target.innerText = 'Editer';
-                paragraph.style.display = 'block';
-                formEdit.style.display = 'none';
-                editTextarea.value = paragraph.innerText;
+                    if(e.target.dataset['locale'] == 'fr_FR')
+                    {
+                        e.target.innerText = 'Editer la réponse';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Edit response'
+                    }
+                }
+
+                cancelBtn.addEventListener('click', (f) =>
+                {
+                    f.preventDefault();
+                    cancelBtn.style.display = 'none';
+                    e.target.dataset['toggle'] = 'false';
+
+                    if(e.target.dataset['locale'] == 'fr_FR')
+                    {
+                        e.target.innerText = 'Editer la réponse';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Edit response'
+                    }
+
+                    paragraph.style.display = 'block';
+                    formEdit.style.display = 'none';
+                    editTextarea.value = paragraph.innerText;
+                });
             });
-        });
+        }
+        else if(button.dataset['post'] == 'true')
+        {
+            button.addEventListener('click', (e) =>
+            {
+                e.preventDefault();
+
+                let paragraph = document.querySelector('.content-response-post'+e.target.dataset['id']);
+                let cancelBtn = document.querySelector('.cancel-response-post'+e.target.dataset['id']);
+                let formEdit = document.querySelector('.form-edit-response-post'+e.target.dataset['id']);
+                let editTextarea = document.querySelector('.content-response-edit-post'+e.target.dataset['id']);
+
+                if(e.target.dataset['toggle'] == 'false')
+                {
+                    editTextarea.innerText = paragraph.innerText;
+                    paragraph.style.display = 'none';
+                    cancelBtn.style.display = 'initial';
+                    formEdit.style.display = 'initial';
+                    e.target.dataset['toggle'] = 'true';
+
+                    if(e.target.dataset['locale'] == 'fr_FR')
+                    {
+                        e.target.innerText = 'Enregistrer';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Save';
+                    }
+                }
+                else if(e.target.dataset['toggle'] == 'true')
+                {
+                    let data = new FormData(formEdit);
+                    fetch('/'+e.target.dataset['id']+'/editresponsepost', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
+                        {
+                            paragraph.innerText = JSON.parse(promise).content;
+                        });
+
+                    formEdit.style.display = 'none';
+                    paragraph.style.display = 'block';
+                    cancelBtn.style.display = 'none';
+                    e.target.dataset['toggle'] = 'false';
+
+                    if(e.target.dataset['locale'] == 'fr_FR')
+                    {
+                        e.target.innerText = 'Editer la réponse';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Edit response'
+                    }
+                }
+
+                cancelBtn.addEventListener('click', (f) =>
+                {
+                    f.preventDefault();
+                    cancelBtn.style.display = 'none';
+                    e.target.dataset['toggle'] = 'false';
+
+                    if(e.target.dataset['locale'] == 'fr_FR')
+                    {
+                        e.target.innerText = 'Editer la réponse';
+                    }
+                    else if(e.target.dataset['locale'] == 'en')
+                    {
+                        e.target.innerText = 'Edit response'
+                    }
+
+                    paragraph.style.display = 'block';
+                    formEdit.style.display = 'none';
+                    editTextarea.value = paragraph.innerText;
+                });
+            });
+        }
     });
 }

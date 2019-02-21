@@ -76,11 +76,17 @@
                         <article class="comment-post">
                             <p class="date">{{ comment.DateCommentPost|date('d-m-Y') }}</p>
                             <p class="username username-comment">{{ comment.IdMemberFK.username }}</p>
-                            <p class="text-post-comment">{{ comment.TextCommentPost }}</p>
+                            <p class="text-post-comment content-comment-post{{ comment.id }}">{{ comment.TextCommentPost }}</p>
+
+                            <form class="form-edit-comment-post form-edit-comment-post{{ comment.id }}" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token('edit-comment-post' ~ comment.id) }}">
+                                <textarea class="content-comment-edit-post content-comment-edit-post{{ comment.id }}" name="text_comment_post"></textarea>
+                            </form>
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIFPOSTCOMMENT', comment) %}
-                                    <a class="btn-site btn-edit-comment" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" data-post="true" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ comment.id }}" href="{{ path('edit_comment_post', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
+                                    <a class="btn-site cancel-comment-post cancel-comment-post{{ comment.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                 {% endif %}
 
                                 {% if is_granted('MODIFPOSTCOMMENT', comment) %}
@@ -98,11 +104,17 @@
                             <article class="response-post">
                                 <p class="date date-response">{{ response.DateResponse|date('d-m-Y') }}</p>
                                 <p class="username">{{ response.IdMemberFK.username }}</p>
-                                <p class="text-post-response">{{ response.TextResponse }}</p>
+                                <p class="text-post-response content-response-post{{ response.id }}">{{ response.TextResponse }}</p>
+
+                                <form class="form-edit-response-post form-edit-response-post{{ response.id }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('edit-response-post' ~ response.id) }}">
+                                    <textarea class="content-response-edit-post content-response-edit-post{{ response.id }}" name="text_response_post"></textarea>
+                                </form>
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" data-post="true" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ response.id }}" href="{{ path('edit_response_post', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
+                                        <a class="btn-site cancel-response-post cancel-response-post{{ response.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                     {% endif %}
 
                                     {% if is_granted('MODIFRESPONSE', response) %}
@@ -148,5 +160,6 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/editComment.js') }}"></script>
+    <script src="{{ asset('js/editResponse.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}

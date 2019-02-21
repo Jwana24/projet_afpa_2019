@@ -20,29 +20,10 @@ class ResponseController extends AbstractController
     */
     public function edit(Request $request, Responses $response): Response
     {
-        // $form = $this->createForm(ResponseType::class, $response);
-        // $form->handleRequest($request);
-        
-        // if($form->isSubmitted() && $form->isValid())
-        // {
-        //     $this->getDoctrine()->getManager()->flush();
-        //     $this->addFlash('success', 'La réponse a été modifiée avec succès');
-            
-        //     return $this->redirectToRoute('show_article',[
-        //         'id' => $response->getIdCommentFK()->getIdArticleFK()->getId()
-        //     ]);
-        // }
-
-        // return $this->render('article/responses/edit.html.twig', [
-        //     'response' => $response,
-        //     'form' => $form->createView(),
-        //     'last_path' => 'edit_response:id='.$response->getId()
-        // ]);
-
         if($this->isCsrfTokenValid('edit-response'.$response->getId(), $request->request->get('_token')))
         {
             $responseManager = $this->getDoctrine()->getManager();
-            $response->getTextResponse();
+            $response->setTextResponse($request->request->get('text_response'));
             $responseManager->flush();
             return $this->json(['content' => $response->getTextResponse()]);
         }
@@ -72,24 +53,14 @@ class ResponseController extends AbstractController
     */
     public function editPost(Request $request, Responses $responsePost): Response
     {
-        $formPost = $this->createForm(ResponseType::class, $responsePost);
-        $formPost->handleRequest($request);
-
-        if($formPost->isSubmitted() && $formPost->isValid())
+        if($this->isCsrfTokenValid('edit-response-post'.$responsePost->getId(), $request->request->get('_token')))
         {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'La réponse a été modifiée avec succès');
-            
-            return $this->redirectToRoute('show_post',[
-                'id' => $responsePost->getIdCommentPostFK()->getIdPostFK()->getId()
-            ]);
+            $responsePostManager = $this->getDoctrine()->getManager();
+            $responsePost->setTextResponse($request->request->get('text_response_post'));
+            $responsePostManager->flush();
+            return $this->json(['content' => $responsePost->getTextResponse()]);
         }
-
-        return $this->render('forum/responsesPost/edit.html.twig', [
-            'response' => $responsePost,
-            'formPost' => $formPost->createView(),
-            'last_path' => 'edit_response_post:id='.$responsePost->getId()
-        ]);
+        return $this->redirectToRoute('accueil');
     }
 
     /**

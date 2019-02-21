@@ -20,24 +20,14 @@ class CommentPostController extends AbstractController
     */
     public function edit(Request $request, CommentsPost $comment): Response
     {
-        $form = $this->createForm(CommentPostType::class, $comment);
-        $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid())
+        if($this->isCsrfTokenValid('edit-comment-post'.$comment->getId(), $request->request->get('_token')))
         {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'Le commentaire a été modifié avec succès');
-            
-            return $this->redirectToRoute('show_post',[
-                'id' => $comment->getIdPostFK()->getId()
-            ]);
+            $commentManager = $this->getDoctrine()->getManager();
+            $comment->setTextCommentPost($request->request->get('text_comment_post'));
+            $commentManager->flush();
+            return $this->json(['content' => $comment->getTextCommentPost()]);
         }
-
-        return $this->render('forum/commentsPost/edit.html.twig', [
-            'comment' => $comment,
-            'form' => $form->createView(),
-            'last_path' => 'edit_comment_post:id='.$comment->getId()
-        ]);
+        return $this->redirectToRoute('accueil');
     }
 
 
