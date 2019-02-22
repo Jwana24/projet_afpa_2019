@@ -23,7 +23,7 @@
                     <p class="member-not-exist">[{% trans %}Ce membre n'existe plus{% endtrans %}]</p>
                     {% endif %}
                     <p>{% trans %}Catégorie{% endtrans %} : {{post.categorie | trans}}</p>
-                    <p class="text text-article">{{post.TextPost}}</p>
+                    <p class="text text-post">{{post.TextPost}}</p>
 
                     <form class="form-edit-post" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token('edit-post' ~ post.id) }}">
