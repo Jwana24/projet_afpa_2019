@@ -9,11 +9,28 @@
 
             <section class="container-article">
                 <article class="article-show">
-                    <img src="{{ asset(article.image) }}">
-                    <h2 class="title">{{article.TitleArticle}}</h2>
+
+                    <img class="image" src="{{ asset(article.image) }}" alt="Image de l'article">
+                    <h2 class="title title-article">{{article.TitleArticle}}</h2>
                     <p class="date">{{article.DateArticle|date('d-m-y')}}</p>
-                    <p class="text">{{article.TextArticle}}</p>
+                    <p class="text text-article">{{article.TextArticle}}</p>
                     
+                    <form class="form-edit-article" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{ csrf_token('edit-article' ~ article.id) }}">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title_article" value="{{ article.TitleArticle }}">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" name="text_article">{{ article.TextArticle }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" name="image">
+                        </div>
+                    </form>
+
                     {% if member_like %}
                         <div class="member-like" data-like="true" style="display:none"></div>
                     {% else %}
@@ -47,7 +64,10 @@
                         {% if is_granted('ROLE_ADMIN') %}
 
                             {{ include('Admin/article/delete.html.twig') }}
-                            <a class="btn-site" href="{{ path('article_edit', {'id' : article.Id}) }}">{% trans %}Editer l'article{% endtrans %}</a>
+
+                            <a class="btn-site btn-edit-article" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ article.id }}" href="{{ path('article_edit', {'id' : article.Id}) }}">{% trans %}Editer l'article{% endtrans %}</a>
+
+                            <a class="btn-site cancel-article" href="#">{% trans %}Annuler{% endtrans %}</a>
 
                         {% endif %}
                         </div>
@@ -162,4 +182,5 @@
     <script src="{{ asset('js/editResponse.js') }}"></script>
     <script src="{{ asset('js/likeArticle.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
+    <script src="{{ asset('js/editArticle.js') }}"></script>
 {% endblock %}

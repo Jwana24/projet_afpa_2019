@@ -76,13 +76,41 @@ class ArticleController extends AbstractController
      */
     public function edit(Request $request, Articles $article): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        // $form = $this->createForm(ArticleType::class, $article);
+        // $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $image = $form['image']->getData();
+        //     if(!is_string($image))
+        //     {
+        //         $folder = 'images/';
+        //         $newName = strtr($image->getClientOriginalName(),
+        //         'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+        //         'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+        //         $image->move($folder, $newName);
+        //         $article->setImage($folder.$newName);
+        //     }
+
+        //     $this->getDoctrine()->getManager()->flush();
+        //     $this->addFlash('success', 'L\'article a bien été modifié');
+
+        //     return $this->redirectToRoute('articles_list',[
+        //         'id' => $article->getId()
+        //     ]);
+        // }
+
+        // return $this->render('Admin/article/edit.html.twig', [
+        //     'article' => $article,
+        //     'form' => $form->createView(),
+        //     'user' => $this->getUser(),
+        //     'last_path' => 'article_edit:id='.$article->getId()
+        // ]);
+
+        if($this->isCsrfTokenValid('edit-article'.$article->getId(), $request->request->get('_token')))
         {
-            $image = $form['image']->getData();
-            if(!is_string($image))
+            $image = $request->files->get('image');
+            if($image)
             {
                 $folder = 'images/';
                 $newName = strtr($image->getClientOriginalName(),
@@ -91,20 +119,22 @@ class ArticleController extends AbstractController
                 $image->move($folder, $newName);
                 $article->setImage($folder.$newName);
             }
+            else
+            {
+                $image = $article->getImage();
+            }
 
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'L\'article a bien été modifié');
+            $articleManager = $this->getDoctrine()->getManager();
+            $article->setTitleArticle($request->request->get('title_article'));
+            $article->setTextArticle($request->request->get('text_article'));
+            $articleManager->flush();
 
-            return $this->redirectToRoute('articles_list',[
-                'id' => $article->getId()
-            ]);
+            return $this->json(['content' => [
+                'title' => $article->getTitleArticle(),
+                'text' => $article->getTextArticle(),
+                'image' =>$article->getImage()
+            ]]);
         }
-
-        return $this->render('Admin/article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-            'user' => $this->getUser(),
-            'last_path' => 'article_edit:id='.$article->getId()
-        ]);
+        return $this->redirectToRoute('accueil');
     }
 }

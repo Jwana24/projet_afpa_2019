@@ -651,12 +651,13 @@ ion-icon[name=heart-empty]
     height: 100%;
 }
 
-/* Dynamics comments, responses article + forum + edit member profile page */
+/* Dynamics comments, article page + forum + edit member profile */
 .form-edit-comment,
 .form-edit-response,
 .form-edit-comment-post,
 .form-edit-response-post,
-.form-edit-member
+.form-edit-member,
+.form-edit-article
 {
     display: none;
 }
@@ -664,10 +665,15 @@ ion-icon[name=heart-empty]
 .cancel-comment,
 .cancel-response,
 .cancel-comment-post,
-.cancel-response-post
+.cancel-response-post,
+.cancel-member,
+.cancel-article
 {
     display: none;
 }
+
+/* --- */
+
 
 .content-comment-edit,
 .content-response-edit,

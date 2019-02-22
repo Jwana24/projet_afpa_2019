@@ -197,8 +197,6 @@
             </div>
         </footer>
 
-        <script src="{{ asset('js/menu.js') }}"></script>
-
         {% if not is_granted('ROLE_USER') %}
             <script src="{{ asset('js/registration.js') }}"></script>
         {% endif %}

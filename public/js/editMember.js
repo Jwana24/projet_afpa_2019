@@ -14,7 +14,7 @@ if(document.querySelector('.btn-edit-member'))
             description = document.querySelector('.member-description'),
             avatar = document.querySelector('.avatar'),
             formEdit = document.querySelector('.form-edit-member'),
-            cancelButton = document.querySelector('.cancel-edit-member');
+            cancelButton = document.querySelector('.cancel-member');
 
         if(e.target.dataset['toggle'] == 'false')
         {

@@ -6,7 +6,6 @@ category.forEach(cat =>
 {
     cat.addEventListener('click', (e)=>
     {
-        console.log(e.target);
         formCategory.submit();
     })
 });

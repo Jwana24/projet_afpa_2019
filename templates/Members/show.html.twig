@@ -61,7 +61,7 @@
         <div class="link-article-page">
             <a class="btn-site btn-edit-member" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ member.id }}" href="{{ path('member_edit', {'id':member.id}) }}">{% trans %}Editer mon profil{% endtrans %}</a>
 
-            <a class="btn-site cancel-edit-member" href="#">Annuler</a>
+            <a class="btn-site cancel-member" href="#">{% trans %}Annuler{% endtrans %}</a>
 
             <a class="btn-site link-return-homepage" href="{{ path('accueil') }}">{% trans %}Revenir à l'accueil{% endtrans %}</a>
 
