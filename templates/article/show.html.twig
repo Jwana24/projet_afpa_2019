@@ -14,13 +14,16 @@
                     <p class="date">{{article.DateArticle|date('d-m-y')}}</p>
                     <p class="text">{{article.TextArticle}}</p>
                     
-                    <div class="like">
+                    {% if member_like %}
+                        <div class="member-like" data-like="true" style="display:none"></div>
+                    {% else %}
+                        <div class="member-like" data-like="false" style="display:none"></div>
+                    {% endif %}
+
+                    <div class="like" data-id="{{ article.id }}">
                         {% if is_granted('ROLE_USER') %}
-                            {% if member_like %}
                             <ion-icon name="heart"></ion-icon>
-                            {% else %}
                             <ion-icon name="heart-empty"></ion-icon>
-                            {% endif %}
                         {% endif %}
                     <p class="nb-like-article">{{likes}} likes</p>
                     </div>
@@ -28,10 +31,6 @@
                     <div class="container-btn-article">
                         <div class="like-article">
                         {% if is_granted('ROLE_USER') %}
-
-                            {{ form_start(formLike) }}
-                            {{ form_widget(formLike) }}
-                            {{ form_end(formLike) }}
 
                             <a class="btn-site" href="#">
                             <label for="toggle-comment">{% trans %}Commenter{% endtrans %}</label>

@@ -40,80 +40,83 @@ class ArticleController extends AbstractController
      */
     public function show(CommentsRepository $commentRepository, LikesRepository $likeRepository, Articles $article, Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
-        $comment = new Comments();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
+        if($request->request->get('ajax-like'))
         {
-            $commentManager = $this->getDoctrine()->getManager();
-            $comment->setDateComment(new \DateTime('NOW'));
-            $comment->setIdArticleFK($article);
-            $comment->setIdMemberFK($this->getUser());
-            $commentManager->persist($comment);
-            $commentManager->flush();
-            
-            return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
-        }
+            $like = new Likes();
+            $countLike = $likeRepository->findByMember($this->getUser(), $article);
 
-        $like = new Likes();
-        $formLike = $this->createForm(LikeType::class, $like);
-        $formLike->handleRequest($request);
-        $countLike = $likeRepository->findByMember($this->getUser(), $article);
-
-        $memberLike = false;
-        if(count($countLike) == 0)
-        {
-            $memberLike = false;
-
-            if($formLike->isSubmitted() && $formLike->isValid())
+            if(count($countLike) == 0)
             {
-                $memberLike = true;
                 $likeManager = $this->getDoctrine()->getManager();
                 $like->setIdArticleFK($article);
                 $like->setIdMemberFK($this->getUser());
                 $likeManager->persist($like);
                 $likeManager->flush();
+                return $this->json(['content' => true, 'nbLike' => count($article->getLikes())]);
+            }
+            else
+            {
+                $likeManager = $this->getDoctrine()->getManager();
+                $likeManager->remove($countLike[0]);
+                $likeManager->flush();
+                return $this->json(['content' => false, 'nbLike' => count($article->getLikes())]);
             }
         }
         else
         {
-            $memberLike = true;
+            $countLike = $likeRepository->findByMember($this->getUser(), $article);
+            $memberLike = false;
 
-            if($formLike->isSubmitted() && $formLike->isValid())
+            if(count($countLike) == 0)
             {
                 $memberLike = false;
-                $likeManager = $this->getDoctrine()->getManager();
-                $likeManager->remove($countLike[0]);
-                $likeManager->flush();
             }
+            else
+            {
+                $memberLike = true;
+            }
+
+            $comment = new Comments();
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $commentManager = $this->getDoctrine()->getManager();
+                $comment->setDateComment(new \DateTime('NOW'));
+                $comment->setIdArticleFK($article);
+                $comment->setIdMemberFK($this->getUser());
+                $commentManager->persist($comment);
+                $commentManager->flush();
+                
+                return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
+            }
+
+            $response = new Responses();
+            $formResponse = $this->createForm(ResponseType::class, $response);
+            $formResponse->handleRequest($request);
+
+            if($formResponse->isSubmitted() && $formResponse->isValid())
+            {
+                $responseManager = $this->getDoctrine()->getManager();
+                $response->setDateResponse(new \DateTime('NOW'));
+                $response->setIdCommentFK($commentRepository->find($request->get('id_comment')));
+                $response->setIdMemberFK($this->getUser());
+                $responseManager->persist($response);
+                $responseManager->flush();
+
+                return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
+            }
+
+            return $this->render('article/show.html.twig', [
+                'likes' => count($article->getLikes()),
+                'member_like' => $memberLike,
+                'article' => $article,
+                'form' => $form->createView(),
+                'comments' => $article->getComments(),
+                'formResponse' => $formResponse->createView(),
+                'last_path' => 'show_article:id='.$article->getId()
+            ]);
         }
-
-        $response = new Responses();
-        $formResponse = $this->createForm(ResponseType::class, $response);
-        $formResponse->handleRequest($request);
-
-        if($formResponse->isSubmitted() && $formResponse->isValid())
-        {
-            $responseManager = $this->getDoctrine()->getManager();
-            $response->setDateResponse(new \DateTime('NOW'));
-            $response->setIdCommentFK($commentRepository->find($request->get('id_comment')));
-            $response->setIdMemberFK($this->getUser());
-            $responseManager->persist($response);
-            $responseManager->flush();
-
-            return $this->redirectToRoute('show_article', ['id'=>$article->getId()]);
-        }
-
-        return $this->render('article/show.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-            'comments' => $article->getComments(),
-            'likes' => count($article->getLikes()),
-            'member_like' => $memberLike,
-            'formLike' => $formLike->createView(),
-            'formResponse' => $formResponse->createView(),
-            'last_path' => 'show_article:id='.$article->getId()
-        ]);
     }
 }
