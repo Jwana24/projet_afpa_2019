@@ -16,12 +16,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Algolia\SearchBundle\IndexManagerInterface;
 
 /**
  * @Route("/forum")
  */
 class PostController extends AbstractController
 {
+    protected $indexManager;
+
+    public function __construct(IndexManagerInterface $indexingManager)
+    {
+        $this->indexManager = $indexingManager;
+    }
+
     /**
      * @Route("/", name="posts_list", methods={"GET", "POST"})
      */
@@ -52,6 +60,9 @@ class PostController extends AbstractController
      */
     public function show(CommentsPostRepository $commentPostRepository, Posts $post, Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
+        $em = $this->getDoctrine()->getManagerForClass(Posts::class);
+        $articles = $this->indexManager->search($request->request->get('item-search'), Posts::class, $em);
+
         $comment = new CommentsPost();
         $form = $this->createForm(CommentPostType::class, $comment);
         $form->handleRequest($request);
@@ -131,24 +142,38 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Posts $post): Response
     {
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
+        // $form = $this->createForm(PostType::class, $post);
+        // $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $this->getDoctrine()->getManager()->flush();
+        //     $this->addFlash('success', 'Le post a bien été modifié');
+
+        //     return $this->redirectToRoute('show_post',[
+        //         'id' => $post->getId()
+        //     ]);
+        // }
+
+        // return $this->render('forum/edit.html.twig', [
+        //     'post' => $post,
+        //     'form' => $form->createView(),
+        //     'last_path' => 'post_edit:id='.$post->getId()
+        // ]);
+
+        if($this->isCsrfTokenValid('edit-post'.$post->getId(), $request->request->get('_token')))
         {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'Le post a bien été modifié');
+            $postManager = $this->getDoctrine()->getManager();
+            $post->setTitlePost($request->request->get('title_post'));
+            $post->setTextPost($request->request->get('text_post'));
+            $postManager->flush();
 
-            return $this->redirectToRoute('show_post',[
-                'id' => $post->getId()
-            ]);
+            return $this->json(['content' => [
+                'title' => $post->getTitlePost(),
+                'text' => $post->getTextPost()
+            ]]);
         }
-
-        return $this->render('forum/edit.html.twig', [
-            'post' => $post,
-            'form' => $form->createView(),
-            'last_path' => 'post_edit:id='.$post->getId()
-        ]);
+        return $this->redirectToRoute('accueil');
     }
 
     /**

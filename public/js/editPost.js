@@ -1,16 +1,15 @@
-if(document.querySelector('.btn-edit-article'))
+if(document.querySelector('.btn-admin-post'))
 {
-    let editButton = document.querySelector('.btn-edit-article');
+    let editButton = document.querySelector('.btn-admin-post');
 
     editButton.addEventListener('click', (e) =>
     {
         e.preventDefault();
 
-        let image = document.querySelector('.image'),
-            title = document.querySelector('.title-article'),
-            text = document.querySelector('.text-article'),
-            formEdit = document.querySelector('.form-edit-article'),
-            cancelButton = document.querySelector('.cancel-article');
+        let title = document.querySelector('.title-post'),
+            text = document.querySelector('.text-post'),
+            formEdit = document.querySelector('.form-edit-post'),
+            cancelButton = document.querySelector('.cancel-post');
         
         if(e.target.dataset['toggle'] == 'false')
         {
@@ -25,13 +24,12 @@ if(document.querySelector('.btn-edit-article'))
         {
             let data = new FormData(formEdit);
             
-            fetch('/admin/article/'+e.target.dataset['id']+'/edit', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
+            fetch('/forum/'+e.target.dataset['id']+'/editpost', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
             {
-                let article = JSON.parse(promise).content;
+                let post = JSON.parse(promise).content;
 
-                image.src = '/' + article['image'];
-                title.innerText = article['title'];
-                text.innerText = article['text'];
+                title.innerText = post['title'];
+                text.innerText = post['text'];
             });
 
             title.style.display = '';
@@ -39,7 +37,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer l\'article', 'Edit article');
+            e.target.innerText = trans(e, 'Editer le post', 'Edit post');
         }
 
         cancelButton.addEventListener('click', (f) =>
@@ -51,7 +49,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer l\'article', 'Edit article');
+            e.target.innerText = trans(e, 'Editer le post', 'Edit post');
         });
     })
 }

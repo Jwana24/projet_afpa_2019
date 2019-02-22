@@ -3,6 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block metas %}{% endblock %}
+
         <title>{% block title %}Les NAC{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
@@ -60,7 +63,7 @@
                 </ul>
 
                 <form class="form-inline my-2 my-md-0">
-                    <input class="form-control" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
+                    <input class="form-control" name="item-search" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
                 </form>
             </div>
         </nav>

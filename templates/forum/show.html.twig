@@ -10,7 +10,7 @@
             <section class="container-forum">
                 <article class="forum-show">
 
-                    <h2 class="title">{{post.TitlePost}}
+                    <h2 class="title title-post">{{post.TitlePost}}
                         {% if post.Resolve == 'resolve' %}
                             <span>[{% trans %}Post résolu{% endtrans %}]</span>
                         {% endif %}
@@ -23,7 +23,19 @@
                     <p class="member-not-exist">[{% trans %}Ce membre n'existe plus{% endtrans %}]</p>
                     {% endif %}
                     <p>{% trans %}Catégorie{% endtrans %} : {{post.categorie | trans}}</p>
-                    <p class="text">{{post.TextPost}}</p>
+                    <p class="text text-article">{{post.TextPost}}</p>
+
+                    <form class="form-edit-post" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token('edit-post' ~ post.id) }}">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title_post" value="{{ post.TitlePost }}">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" name="text_post">{{ post.TextPost }}</textarea>
+                        </div>
+                    </form>
 
                     <div class="container-btn-post">
 
@@ -37,7 +49,9 @@
                             {% if is_granted('MODIFPOST', post) %}
 
                                 {{ include('forum/delete.html.twig') }}
-                                <a class="btn-site" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+                                <a class="btn-site btn-edit-post"  data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ post.id }}" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+
+                                <a class="btn-site cancel-post" href="#">{% trans %}Annuler{% endtrans %}</a>
 
                                 {% if post.Resolve != 'resolve' %}
                                 <form method="post">
@@ -161,5 +175,6 @@
 {% block javascripts %}
     <script src="{{ asset('js/editComment.js') }}"></script>
     <script src="{{ asset('js/editResponse.js') }}"></script>
+    <script src="{{ asset('js/editPost.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
 {% endblock %}

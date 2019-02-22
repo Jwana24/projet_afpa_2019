@@ -76,37 +76,6 @@ class ArticleController extends AbstractController
      */
     public function edit(Request $request, Articles $article): Response
     {
-        // $form = $this->createForm(ArticleType::class, $article);
-        // $form->handleRequest($request);
-
-        // if($form->isSubmitted() && $form->isValid())
-        // {
-        //     $image = $form['image']->getData();
-        //     if(!is_string($image))
-        //     {
-        //         $folder = 'images/';
-        //         $newName = strtr($image->getClientOriginalName(),
-        //         'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
-        //         'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-        //         $image->move($folder, $newName);
-        //         $article->setImage($folder.$newName);
-        //     }
-
-        //     $this->getDoctrine()->getManager()->flush();
-        //     $this->addFlash('success', 'L\'article a bien été modifié');
-
-        //     return $this->redirectToRoute('articles_list',[
-        //         'id' => $article->getId()
-        //     ]);
-        // }
-
-        // return $this->render('Admin/article/edit.html.twig', [
-        //     'article' => $article,
-        //     'form' => $form->createView(),
-        //     'user' => $this->getUser(),
-        //     'last_path' => 'article_edit:id='.$article->getId()
-        // ]);
-
         if($this->isCsrfTokenValid('edit-article'.$article->getId(), $request->request->get('_token')))
         {
             $image = $request->files->get('image');

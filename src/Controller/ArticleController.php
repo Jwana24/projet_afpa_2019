@@ -17,12 +17,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Algolia\SearchBundle\IndexManagerInterface;
 
 /**
  * @Route("/article")
  */
 class ArticleController extends AbstractController
 {
+    protected $indexManager;
+
+    public function __construct(IndexManagerInterface $indexingManager)
+    {
+        $this->indexManager = $indexingManager;
+    }
+
     /**
      * @Route("/", name="articles_list")
      */
@@ -64,6 +72,11 @@ class ArticleController extends AbstractController
         }
         else
         {
+            $itemSearch = $request->request->get('item-search') ? $request->request->get('item-search') : '';
+
+            $em = $this->getDoctrine()->getManagerForClass(Articles::class);
+            $articles = $this->indexManager->search($itemSearch, Articles::class, $em, 1, 500);
+            dump($articles);
             $countLike = $likeRepository->findByMember($this->getUser(), $article);
             $memberLike = false;
 

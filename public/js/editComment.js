@@ -4,7 +4,6 @@ if(document.querySelectorAll('.btn-edit-comment'))
 
     editButton.forEach((button) =>
     {
-        // console.log(e.target.dataset['post']);
         if(button.dataset['post'] == 'false')
         {
             button.addEventListener('click', (e) =>
