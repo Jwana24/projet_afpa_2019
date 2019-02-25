@@ -914,6 +914,14 @@ ion-icon[name=heart-empty]
 }
 
 
+/* ADMIN PAGE */
+
+.table-list-members
+{
+    margin: 20px 0 20px 0;
+}
+
+
 /* MEDIA QUERY */
 
 @media all and (max-width: 415px)

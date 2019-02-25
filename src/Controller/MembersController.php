@@ -52,6 +52,18 @@ class MembersController extends Controller implements EventSubscriberInterface
     }
 
     /**
+     * @Route("/", name="members_list")
+     */
+    public function list(Request $request, MembersRepository $membersRepository): Response
+    {
+
+        return $this->render('Admin/security/members.html.twig', [
+            'members' => $membersRepository->findAll(),
+            'last_path' => 'members_list'
+        ]);
+    }
+
+    /**
      * @Route("/{id}", requirements={"id"="[0-9]{1,}"}, name="member_show", methods="GET")
      * @Security("is_granted('ROLE_USER')")
      */
