@@ -28,6 +28,15 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function search($search)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.title_article LIKE :searchContent')
+            ->orWhere('s.text_article LIKE :searchContent')
+            ->setParameter('searchContent', '%'.$search.'%')
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Articles[] Returns an array of Articles objects

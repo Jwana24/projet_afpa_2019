@@ -1,6 +1,6 @@
-if(document.querySelector('.btn-admin-post'))
+if(document.querySelector('.btn-edit-post'))
 {
-    let editButton = document.querySelector('.btn-admin-post');
+    let editButton = document.querySelector('.btn-edit-post');
 
     editButton.addEventListener('click', (e) =>
     {

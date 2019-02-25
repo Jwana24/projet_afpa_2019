@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Votre recherche{% endtrans %}{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid">
+
+    <div class="title-article-search">
+        <h3>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %} :</h3>
+    </div>
+
+    <div class="row justify-content-md-center">
+        
+        {% for article in articles %}
+            <div class="card article-card-search" style="max-width: 18rem;">
+                <img src="{{ asset(article.image) }}" class="card-img-top" alt="Image de l'article">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.TitleArticle }}</h5>
+                    <p class="card-text">{{ article.TextArticle }}</p>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="{{ path('show_article', {'id' : article.Id}) }}" class="btn btn-primary">Voir</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="title-post-search">
+        <h3>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %} :</h3>
+    </div>
+
+    <div class="row justify-content-md-center">
+        {% for post in posts %}
+            <div class="card bg-light post-card-search" style="max-width: 18rem;">
+                <div class="card-header">{{ post.TitlePost}}</div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.TextPost}}</p>
+                </div>
+
+                <div class="card-footer">
+                    <a href="{{ path('show_post', {'id' : post.Id}) }}" class="btn btn-primary">Voir</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    
+    </main>
+
+{% endblock %}

@@ -10,14 +10,14 @@
                 <div class="card">
                     <div class="card-header" id="heading{{ article.Id }}">
                         <h2 class="mb-0 article-header">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="true" aria-controls="collapse{{ article.Id }}">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
                                 <span class="article-card-title">{{article.TitleArticle}}</span>
                             </button>
                             <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span>
                         </h2>
                     </div>
 
-                    <div id="collapse{{ article.Id }}" class="collapse show" aria-labelledby="heading{{ article.Id }}" data-parent="#accordionExample">
+                    <div id="collapse{{ article.Id }}" class="collapse" aria-labelledby="heading{{ article.Id }}" data-parent="#accordionExample">
                         <div class="card-body">
                             
                             <p>{{article.TextArticle|slice(0, 150)}}</p>

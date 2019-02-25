@@ -30,6 +30,16 @@ class PostsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function search($search)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.title_post LIKE :searchContent')
+            ->orWhere('s.text_post LIKE :searchContent')
+            ->setParameter('searchContent', '%'.$search.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Posts[] Returns an array of Posts objects
     //  */

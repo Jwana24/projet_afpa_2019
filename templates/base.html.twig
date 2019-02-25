@@ -62,7 +62,7 @@
                 
                 </ul>
 
-                <form class="form-inline my-2 my-md-0">
+                <form class="form-inline my-2 my-md-0" action="{{ path('search') }}" method="post">
                     <input class="form-control" name="item-search" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
                 </form>
             </div>
@@ -78,7 +78,7 @@
                         <div id="member">
 
                             <div>
-                                <input type="text" placeholder="Nom" id="member_last_name" name="member[last_name]" required="required" maxlength="50" />
+                                <input type="text" placeholder="Nom" id="member_last_name" name="member[last_name]" required="required" maxlength="50"/>
                             </div>
 
                             <div>

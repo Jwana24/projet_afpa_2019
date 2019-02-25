@@ -23,6 +23,9 @@ formContainerInsc.addEventListener('submit',(e) =>
 
     let data = new FormData(e.target);
 
+    // formContainerInsc[0].focus();
+    // modalInsc.focus();
+
     fetch('/members/inscription', {method: 'POST', body: data}).then(promise => promise.text()).then(promise => {
 
         modalInsc.style.display = 'none';
@@ -60,14 +63,6 @@ btnInsc.addEventListener('click', (e) =>
         modalInsc.style.display = 'none';
     }
 });
-
-// window.addEventListener('click', function(e)
-// {
-//     if(e.target != modalInsc && modalInsc.style.display == 'flex' && e.target != btnInsc)
-//     {
-//         modalInsc.style.display = 'none';
-//     }
-// })
 
 
 // CONNECTION
