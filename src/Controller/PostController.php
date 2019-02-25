@@ -16,20 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Algolia\SearchBundle\IndexManagerInterface;
 
 /**
  * @Route("/forum")
  */
 class PostController extends AbstractController
 {
-    protected $indexManager;
-
-    public function __construct(IndexManagerInterface $indexingManager)
-    {
-        $this->indexManager = $indexingManager;
-    }
-
     /**
      * @Route("/", name="posts_list", methods={"GET", "POST"})
      */
@@ -60,9 +52,6 @@ class PostController extends AbstractController
      */
     public function show(CommentsPostRepository $commentPostRepository, Posts $post, Request $request, AuthorizationCheckerInterface $authChecker): Response
     {
-        $em = $this->getDoctrine()->getManagerForClass(Posts::class);
-        $articles = $this->indexManager->search($request->request->get('item-search'), Posts::class, $em);
-
         $comment = new CommentsPost();
         $form = $this->createForm(CommentPostType::class, $comment);
         $form->handleRequest($request);
