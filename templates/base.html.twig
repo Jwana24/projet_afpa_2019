@@ -79,27 +79,27 @@
                         <div id="member">
 
                             <div>
-                                <input type="text" placeholder="Nom" id="member_last_name" name="member[last_name]" required="required" maxlength="50"/>
+                                <input type="text" placeholder="Nom" id="member_last_name" name="member[last_name]" required maxlength="50" pattern="^[a-zA-Z \-]{5,50}$" title="Votre nom n'est pas valide, il ne doit contenir aucun accent"/>
                             </div>
 
                             <div>
-                                <input type="text" placeholder="Prénom" id="member_first_name" name="member[first_name]" required="required" maxlength="50" />
+                                <input type="text" placeholder="Prénom" id="member_first_name" name="member[first_name]" required maxlength="50" pattern="^[a-zA-Z \-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ]{5,50}$" title="Votre prénom n'est pas valide"/>
                             </div>
 
                             <div>
-                                <input type="text" placeholder="Pseudo" id="member_username" name="member[username]" required="required" maxlength="50" pattern=".{2,}" />
+                                <input type="text" placeholder="Pseudo" id="member_username" name="member[username]" required maxlength="50" pattern=".{2,50}" title="Votre pseudo doit faire entre 2 et 50 caractères" />
                             </div>
 
                             <div>
-                                <input type="password" id="member_password_first" placeholder="Mot de passe" name="member[password][first]" class="password-field" />
+                                <input type="password" id="member_password_first" placeholder="Mot de passe" name="member[password][first]" class="password-field" required pattern="^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!&+=]).{8,})$" title="Votre mot de passe doit contenir au minimum 8 caractères, au moins un chiffre, une lettre et un caractère spécial tel que (@, #, $, %, !, &, + et =)" />
                             </div>
 
                             <div>
-                                <input type="password" id="member_password_second" placeholder="Confirmation du mot de passe" name="member[password][second]" class="password-field" />
+                                <input type="password" id="member_password_second" placeholder="Confirmation du mot de passe" name="member[password][second]" class="password-field" required />
                             </div>
 
                             <div>
-                                <input type="email" placeholder="Email" id="member_mail" name="member[mail]" required="required" maxlength="200" />
+                                <input type="email" placeholder="Email" id="member_mail" name="member[mail]" required maxlength="200" />
                             </div>
 
                             <div>
@@ -128,11 +128,11 @@
                         <div id="member-co">
                             <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
                             <div>
-                                <input type="text" name="_username" placeholder="Pseudo">
+                                <input type="text" name="_username" placeholder="Pseudo" required="">
                             </div>
 
                             <div>
-                                <input type="password" name="_password" placeholder="Mot de passe">
+                                <input type="password" name="_password" placeholder="Mot de passe" required>
                             </div>
 
                             <div>
@@ -153,6 +153,12 @@
         <div class="alert alert-success inscription-success" role="alert">
             Vous avez été inscrit avec succès !
         </div>
+
+        <div class="alert alert-danger inscription-error" role="alert">
+            Une erreur s'est produite
+        </div>
+
+        
 
         {% block body %}{% endblock %}
 

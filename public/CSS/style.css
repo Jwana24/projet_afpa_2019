@@ -103,10 +103,6 @@ footer .logo-30MAmis:hover
     height: 40px;
 }
 
-.alert
-{
-    margin-top: 20px;
-}
 
 /* BUTTON STYLE FOR ALL THE SITE */
 
@@ -167,7 +163,7 @@ footer .logo-30MAmis:hover
 .modal_connection
 {
     display: none;
-    z-index: 999999999999;
+    z-index: 10;
     position: fixed;
     width: 30vw;
     height: 85vh;
@@ -282,10 +278,25 @@ footer .logo-30MAmis:hover
     font-size: 30px;
 }
 
-.inscription-success
+.inscription-success,
+.inscription-error
 {
+    z-index: 8;
     display: none;
+    position: fixed;
+    top: 100px;
+    left: 10px;
 }
+
+
+/* CONNECTION PAGE */
+
+/* .login-page
+{
+    width: 100%;
+    margin: auto;
+} */
+
 
 /* HOME PAGE */
 
@@ -413,7 +424,7 @@ footer .logo-30MAmis:hover
 
 .message-cookie
 {
-    z-index: 10000;
+    z-index: 10;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -935,31 +946,10 @@ ion-icon[name=heart-empty]
         height: 50vh;
     }
 
-    /* .slide
+    .carousel-item span
     {
-        background-size: contain; 
-    } */
-
-    .arrow
-    {
-        top: 28%;
-    }
-
-    #arrow-left
-    {
-        border-width: 10px 15px 10px 0;
-    }
-
-    #arrow-right
-    {
-        border-width: 10px 0px 10px 15px;
-    }
-
-    .slide-content span
-    {
-        font-size: 1rem;
-        top: 50px;
-        left: 50px;
+        font-size: 13px;
+        left: 10px;
     }
 
     .homepage

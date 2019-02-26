@@ -4,20 +4,36 @@
 
 {% block body %}
 
-<div class="login-container">
+    <main class="container">
 
-    {% if error %}
-        <span>{{ error.messageKey }}</span>
-    {% endif %}
+        <div class="justify-content-md-center login-page">
 
-    <form action="{{ path('login') }}" method="POST">
-        <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
-        <input type="text" name="_username" value="{{ last_username }}" placeholder="pseudo ...">
-        <input type="password" name="_password">
-        <input type="submit" value="Se connecter">
-    </form>
+            {% if error %}
+                <span>{{ error.messageKey }}</span>
+            {% endif %}
 
-    <a href="{{ path('lostpassword') }}">Mot de passe oublié ?</a>
-    <a href="{{ path('accueil') }}">Revenir à la page d'accueil</a>
-</div>
+            <form class="form-signin" action="{{ path('login') }}" method="post">
+                <input type="hidden" name="_target_path" value="{{ path('accueil') }}" />
+
+                <div class="text-center mb-4">
+                    <h1 class="h3 mb-3 font-weight-normal title-co">Connexion</h1>
+                </div>
+
+                <div class="form-label-group">
+                    <input class="form-control" type="text" name="_username" value="{{ last_username }}" placeholder="Pseudo" required="" autofocus="">
+                </div>
+
+                <div class="form-label-group">
+                    <input class="form-control" type="password" name="_password" placeholder="Mot de passe" required="">
+                </div>
+                {# <input type="submit" value="Se connecter"> #}
+                <button class="btn btn-lg btn-primary btn-block">Se connecter</button>
+                <a class="btn-site" href="{{ path('lostpassword') }}">Mot de passe oublié ?</a>
+                <a class="btn-site" href="{{ path('accueil') }}">Revenir à la page d'accueil</a>
+            </form>
+
+        </div>
+
+    </main>
+
 {% endblock %}

@@ -12,7 +12,6 @@ class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
-     * @Security("is_granted('ROLE_USER')")
      */
     public function login(Request $request, AuthenticationUtils $utils)
     {

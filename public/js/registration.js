@@ -1,6 +1,7 @@
 // INSCRIPTION
 let formContainerInsc = document.querySelector('form[name=member]');
-let messageSuccess = document.querySelector('.alert');
+let messageSuccess = document.querySelector('.inscription-success');
+let messageError = document.querySelector('.inscription-error');
 
 let closeModal = document.querySelector('.cross-close');
 let modalInsc = document.querySelector('.modal_inscription');
@@ -23,9 +24,6 @@ formContainerInsc.addEventListener('submit',(e) =>
 
     let data = new FormData(e.target);
 
-    // formContainerInsc[0].focus();
-    // modalInsc.focus();
-
     fetch('/members/inscription', {method: 'POST', body: data}).then(promise => promise.text()).then(promise => {
 
         modalInsc.style.display = 'none';
@@ -35,11 +33,24 @@ formContainerInsc.addEventListener('submit',(e) =>
             formContainerInsc[i].value = '';
         }
 
-        messageSuccess.style.display = 'flex';
-        setTimeout(()=>
+        let statut = JSON.parse(promise).statut;
+
+        if(statut == 'success')
         {
-            messageSuccess.style.display = 'none';
-        }, 5000);
+            messageSuccess.style.display = 'flex';
+            setTimeout(()=>
+            {
+                messageSuccess.style.display = 'none';
+            }, 5000);
+        }
+        else if(statut == 'error')
+        {
+            messageError.style.display ='flex';
+            setTimeout(()=>
+            {
+                messageError.style.display = 'none';
+            }, 5000);
+        }
     })
 })
 

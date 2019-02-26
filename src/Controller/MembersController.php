@@ -84,7 +84,7 @@ class MembersController extends Controller implements EventSubscriberInterface
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
+        if($form->isSubmitted() && $form->isValid() && preg_match('#^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@\#\$%!&+=]).{8,})$#', $form['password']->getData()))
         {
             $avatar = $form['avatar']->getData();
             
@@ -103,17 +103,18 @@ class MembersController extends Controller implements EventSubscriberInterface
             }
 
             $memberManager = $this->getDoctrine()->getManager();
+            $member->setLastName(strtoupper($form['last_name']->getData()));
+            $member->setFirstName(ucfirst($form['first_name']->getData()));
             $member->setDateInscription(new \DateTime('NOW'));
             $member->setRoles(['ROLE_USER']);
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);
             $memberManager->flush();
+            
+            return $this->json(['statut' => 'success']);
         }
 
-        return $this->render('Members/inscription.html.twig', [
-            'member' => $member,
-            'form' => $form->createView()
-        ]);
+        return $this->json(['statut' => 'error']);
     }
 
     /**

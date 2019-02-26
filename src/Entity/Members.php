@@ -23,11 +23,15 @@ class Members implements UserInterface, EquatableInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Regex(pattern="#^[a-zA-Z \-]{5,50}$#")
      */
     private $last_name;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Regex(pattern="#^[a-zA-Z \-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ]{5,50}$#")
      */
     private $first_name;
 
@@ -45,7 +49,8 @@ class Members implements UserInterface, EquatableInterface
 
     /**
      * @ORM\Column(type="string", length=200)
-     * @Assert\Email()
+     * @Assert\NotBlank()
+     * @Assert\Email(message="Cet email n'est pas valide")
      */
     private $mail;
 
