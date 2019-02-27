@@ -135,7 +135,7 @@ class MembersController extends Controller implements EventSubscriberInterface
     {
         if($this->isCsrfTokenValid('edit-member'.$member->getId(), $request->request->get('_token')))
         {
-            if($request->request->get('password') === $request->request->get('password_verify') || $request->request->get('password') == '' && $request->request->get('password_verify') == '')
+            if(preg_match('#^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@\#\$%!&+=]).{8,})$#', $request->request->get('password')) && ($request->request->get('password') === $request->request->get('password_verify')) || $request->request->get('password') == '' && $request->request->get('password_verify') == '')
             {
                 $username =($request->request->get('username') == '') ? $member->getUsername() : $request->request->get('username');
                 $lastName =($request->request->get('last_name') == '') ? $member->getLastName() : $request->request->get('last_name');
@@ -175,10 +175,11 @@ class MembersController extends Controller implements EventSubscriberInterface
                     'mail' => $member->getMail(),
                     'description' => $member->getDescription(),
                     'avatar' => $member->getAvatar()
-                ]]);
+                ],
+                'statut' => 'success']);
             }
         }
-        return $this->redirectToRoute('accueil');
+        return $this->json(['statut' => 'error']);
     }
 
     /**

@@ -68,11 +68,14 @@
             {{ include('Members/desinscription.html.twig') }}
         </div>
 
-        {% for message in app.flashes('success') %}
-            <div id="flash-notice" class="text-center mx-auto">
-                {{ message }}
-            </div>
-        {% endfor %}
+        <div class="alert alert-success edit-success" role="alert">
+            Votre profil a bien été édité
+        </div>
+
+        <div class="alert alert-danger edit-error" role="alert">
+            Une erreur s'est produite lors de l'édition de votre profil
+        </div>
+
     </main>
 
 {% endblock %}

@@ -279,7 +279,9 @@ footer .logo-30MAmis:hover
 }
 
 .inscription-success,
-.inscription-error
+.inscription-error,
+.edit-success,
+.edit-error
 {
     z-index: 8;
     display: none;

@@ -1,6 +1,8 @@
 if(document.querySelector('.btn-edit-member'))
 {
     let editButton = document.querySelector('.btn-edit-member');
+    let messageSuccess = document.querySelector('.edit-success');
+    let messageError = document.querySelector('.edit-error');
 
     editButton.addEventListener('click', (e) =>
     {
@@ -31,6 +33,24 @@ if(document.querySelector('.btn-edit-member'))
             fetch('/members/'+e.target.dataset['id']+'/edit', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
             {
                 let member = JSON.parse(promise).content;
+                let statut = JSON.parse(promise).statut;
+
+                if(statut === 'success')
+                {
+                    messageSuccess.style.display = 'flex';
+                    setTimeout(()=>
+                    {
+                        messageSuccess.style.display = 'none';
+                    }, 5000);
+                }
+                else if(statut === 'error')
+                {
+                    messageError.style.display ='flex';
+                    setTimeout(()=>
+                    {
+                        messageError.style.display = 'none';
+                    }, 5000);
+                }
 
                 username.innerText = member['username'];
                 lastName.innerText = trans(e, 'Nom : ','Last name : ') + member['last_name'];

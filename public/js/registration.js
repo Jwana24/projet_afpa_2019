@@ -24,7 +24,8 @@ formContainerInsc.addEventListener('submit',(e) =>
 
     let data = new FormData(e.target);
 
-    fetch('/members/inscription', {method: 'POST', body: data}).then(promise => promise.text()).then(promise => {
+    fetch('/members/inscription', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
+    {
 
         modalInsc.style.display = 'none';
 

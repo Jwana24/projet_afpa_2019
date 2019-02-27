@@ -75,12 +75,18 @@
             {{ form_end(form) }}
         </aside>
 
-        {% for message in app.flashes('success') %}
-            <div id="flash-notice" class="text-center mx-auto">
-                {{ message }}
-            </div>
-        {% endfor %}
-
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
     
     </main>
 
