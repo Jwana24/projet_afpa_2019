@@ -19,6 +19,7 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
+    // To untie an id member on a post if the member doesn't exist anymore, allow to keep this post still available 
     public function setNullById($id)
     {
         return $this->createQueryBuilder('p')
@@ -30,6 +31,7 @@ class PostsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // Allow to realize the search on the title and the content of a post, depending on an identical word
     public function search($search)
     {
         return $this->createQueryBuilder('s')

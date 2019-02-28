@@ -19,6 +19,7 @@ class ArticlesRepository extends ServiceEntityRepository
         parent::__construct($registry, Articles::class);
     }
 
+    // We create this function to realize a custom SQL request. This function get the last 4 articles in the database
     public function last_articles()
     {
         return $this->createQueryBuilder('a')
@@ -28,6 +29,7 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // Allow to realize the search on the title and the content of an article, depending on an identical word
     public function search($search)
     {
         return $this->createQueryBuilder('s')

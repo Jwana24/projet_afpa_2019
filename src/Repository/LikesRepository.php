@@ -19,6 +19,7 @@ class LikesRepository extends ServiceEntityRepository
         parent::__construct($registry, Likes::class);
     }
 
+    // Get the like depending on a member and an article bound to this like
     public function findByMember($member, $article)
     {
         return $this->createQueryBuilder('a')

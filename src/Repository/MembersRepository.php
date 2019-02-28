@@ -19,6 +19,7 @@ class MembersRepository extends ServiceEntityRepository
         parent::__construct($registry, Members::class);
     }
 
+    // Permet de vérifier que le mail inscrit est identique à l'un des mails de la base de données Allow to verify to the mail put in the field is identical to one (and one only) of the mails in the database
     public function findByEmail($email)
     {
         return $this->createQueryBuilder('a')
@@ -26,7 +27,6 @@ class MembersRepository extends ServiceEntityRepository
             ->setParameter('val', $email)
             ->getQuery()
             ->getOneOrNullResult();
-            // ->getResult();
     }
 
     // /**

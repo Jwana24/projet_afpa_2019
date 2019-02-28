@@ -15,6 +15,7 @@ class LocaleLanguage implements EventSubscriberInterface
         $this->defaultLocale = $defaultLocale;
     }
 
+    // Get the request on the event
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
@@ -34,6 +35,7 @@ class LocaleLanguage implements EventSubscriberInterface
         }
     }
 
+    // Inscription to an event with a maximum priority (17) on the request
     public static function getSubscribedEvents()
     {
         return [
