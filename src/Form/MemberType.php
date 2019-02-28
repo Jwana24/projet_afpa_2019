@@ -22,7 +22,7 @@ class MemberType extends AbstractType
             ->add('last_name')
             ->add('first_name')
             ->add('username')
-            ->add('password', RepeatedType::class, [
+            ->add('password', RepeatedType::class, [ // we want to the user confirm is password in an input 'confirm password' : we indicate to this input is a repeated type compared to the input's password
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe ne correspond pas',
                 'options' => ['attr' => ['class' => 'password-field']],

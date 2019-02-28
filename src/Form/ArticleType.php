@@ -18,6 +18,7 @@ class ArticleType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // We add some fields we need in the form, depending on their type (text, file etc.)
         $this->article = $options['data'];
         $builder
             ->add('title_article', TextType::class, [
@@ -31,6 +32,7 @@ class ArticleType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class);
 
+        // Allow to keep the image registered on the article when the form is submitted if the image remains unchanged
         $builder
         ->get('image')
         ->addModelTransformer(new CallbackTransformer(
