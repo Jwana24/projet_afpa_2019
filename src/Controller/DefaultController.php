@@ -21,8 +21,10 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="accueil", methods="GET|POST")
      */
-    public function list(SessionInterface $session, ArticlesRepository $articlesRepository, PostsRepository $postRepository,MembersRepository $memberRepository, Request $request, \Swift_Mailer $mailer): Response
+    public function index(SessionInterface $session, ArticlesRepository $articlesRepository, PostsRepository $postRepository,MembersRepository $memberRepository, Request $request, \Swift_Mailer $mailer): Response
     {
+        // We cannot delete a connected member, we change the member's status on 'delete', we disconnect the member and redirect on the homepage
+        // We create a foreach to browse members who have the 'delete' status
         foreach($memberRepository->findBy(['statut' => 'delete']) as $member)
         {
             $postRepository->setNullById($member->getId());
@@ -36,9 +38,10 @@ class DefaultController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
-        {
+        {   
             $errors = [];
 
+            // We verify the validity of the fields with Regex
             if(!preg_match('#^[a-zA-Z \-]{5,50}$#', $form['lastname']->getData()))
             {
                 $errors[] = 'Votre nom n\'est pas valide, il ne doit contenir aucun accent';
@@ -56,11 +59,13 @@ class DefaultController extends AbstractController
 
             if(count($errors) == 0)
             {
+                // We use the library Swift Mailer to create a message with Swift Message object
                 $message = (new \Swift_Message('Quelqu\'un vous a contacté via le site'))
                         ->setFrom($form['mail']->getData())
                         ->setTo('contact@exemple.com')
                         ->setBody(
                             $this->renderView(
+                                // We get the informations send in the contacts form, and we send it in the twig view to generate the body of the mail
                                 'emails/contact.html.twig',
                                 [
                                     'lastname' => $form['lastname']->getData(),
@@ -69,6 +74,7 @@ class DefaultController extends AbstractController
                                     'message' => $form['message']->getData()
                                 ]
                             ),
+                            // Define the mail's format
                             'text/html'
                         );
 
@@ -97,6 +103,7 @@ class DefaultController extends AbstractController
      */
     public function mentionsLegales(): Response
     {
+        // We create a cookie bandeau bound to the legacy notices's page, when the visitor go to this page, the cookie are accepted for 1 year
         setcookie('cookie-bandeauCookie', 'myseconddata', time() + 32140800, "/");
 
         return $this->render('general/mentionslegales.html.twig', [

@@ -68,6 +68,7 @@ class ResponseController extends AbstractController
     */
     public function deletePost(Request $request, Responses $responsePost): Response
     {
+        // If we delete a post, the responses bound to this post are deleted on cascade
         if($this->isCsrfTokenValid('delete'.$responsePost->getId(), $request->request->get('_token')))
         {
             $responsePostManager = $this->getDoctrine()->getManager();

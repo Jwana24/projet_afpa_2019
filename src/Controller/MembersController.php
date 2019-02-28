@@ -27,11 +27,13 @@ class MembersController extends Controller implements EventSubscriberInterface
 {
     private $session;
 
+    // A component, SessionInterface, who manage all the data in a session (id, name, isStarted etc.)
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
 
+    // Allow to keep the language who's stock in the database, on the member, with Symfony's events
     public function onLogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
@@ -42,6 +44,7 @@ class MembersController extends Controller implements EventSubscriberInterface
         }
     }
 
+    // Inscription to an event with a maximum priority (15) on the connection
     public static function getSubscribedEvents()
     {
         return [
@@ -64,7 +67,7 @@ class MembersController extends Controller implements EventSubscriberInterface
     }
 
     /**
-     * @Route("/{id}", requirements={"id"="[0-9]{1,}"}, name="member_show", methods="GET")
+     * @Route("/{id}", requirements={"id"="[0-9]{1,}"}, name="member_show", methods="GET") 
      * @Security("is_granted('ROLE_USER')")
      */
     public function show(Request $request, Members $member): Response
@@ -84,6 +87,7 @@ class MembersController extends Controller implements EventSubscriberInterface
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
 
+        // Verify if the form is submitted and the password according to the Regex
         if($form->isSubmitted() && $form->isValid() && preg_match('#^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@\#\$%!&+=]).{8,})$#', $form['password']->getData()))
         {
             $avatar = $form['avatar']->getData();
@@ -107,6 +111,7 @@ class MembersController extends Controller implements EventSubscriberInterface
             $member->setFirstName(ucfirst($form['first_name']->getData()));
             $member->setDateInscription(new \DateTime('NOW'));
             $member->setRoles(['ROLE_USER']);
+            // It's a component who hash the password
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);
             $memberManager->flush();
@@ -137,6 +142,7 @@ class MembersController extends Controller implements EventSubscriberInterface
         {
             if(preg_match('#^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@\#\$%!&+=]).{8,})$#', $request->request->get('password')) && ($request->request->get('password') === $request->request->get('password_verify')) || $request->request->get('password') == '' && $request->request->get('password_verify') == '')
             {
+                // Condition using 2 ternary operators ('?' if the condition is true, ':' if the condition is false)
                 $username =($request->request->get('username') == '') ? $member->getUsername() : $request->request->get('username');
                 $lastName =($request->request->get('last_name') == '') ? $member->getLastName() : $request->request->get('last_name');
                 $firstName =($request->request->get('first_name') == '') ? $member->getFirstName() : $request->request->get('first_name');
@@ -176,6 +182,7 @@ class MembersController extends Controller implements EventSubscriberInterface
                     'description' => $member->getDescription(),
                     'avatar' => $member->getAvatar()
                 ],
+                // We define the statut to 'success' and we get this status in JavaScript for create a success alert 
                 'statut' => 'success']);
             }
         }
@@ -198,11 +205,24 @@ class MembersController extends Controller implements EventSubscriberInterface
         return $this->redirectToRoute('logout');
     }
 
+    // A function to generate random characters
+    public function generateToken($var)
+    {
+        $string = "";
+        $chaine = "a0b1c2d3e4f5g6h7i8j9klmnpqrstuvwxy123456789"; // All the characters who can selected to generate the token
+        srand((double)microtime()*1000000); // initialize the random creation
+        for($i=0; $i<$var; $i++) // at each loop we add a random character in the variable 'string'
+        {
+            $string .= $chaine[rand()%strlen($chaine)]; // we keep the value of 'string' and we add the value of 'chaine'
+        }
+        return $string;
+    }
+
     /**
      * @Route("/motdepasseoublie", name="lostpassword", methods={"POST", "GET"})
      * @Security("is_granted('ROLE_USER')")
      */
-    public function lostPassword(Request $request, MembersRepository $membersRepository): Response
+    public function lostPassword(Request $request, MembersRepository $membersRepository, \Swift_Mailer $mailer): Response
     {
         $form = $this->createForm(LostPasswordType::class);
         $form->handleRequest($request);
@@ -210,6 +230,7 @@ class MembersController extends Controller implements EventSubscriberInterface
         if ($form->isSubmitted() && $form->isValid())
         {
             $member = $membersRepository->findByEmail($form['email']->getData());
+            // We use the 'generateToken' function and we indicate the lenght of the token (50)
             $token = $this->generateToken(50);
 
             if($member)
@@ -238,17 +259,5 @@ class MembersController extends Controller implements EventSubscriberInterface
         return $this->render('Members/lostpassword.html.twig', [
             'form' => $form->createView()
             ]);
-    }
-
-    public function generateToken($var)
-    {
-        $string = "";
-        $chaine = "a0b1c2d3e4f5g6h7i8j9klmnpqrstuvwxy123456789";
-        srand((double)microtime()*1000000);
-        for($i=0; $i<$var; $i++)
-        {
-            $string .= $chaine[rand()%strlen($chaine)];
-        }
-        return $string;
     }
 }

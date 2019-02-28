@@ -29,19 +29,19 @@ class TranslationController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        $this->session->set('_locale', $_language);
+        $this->session->set('_locale', $_language); // we update the 'locale' key in the session and the element in the route (fr_FR or en)
 
-        $path = explode(':', $last_path);
+        $path = explode(':', $last_path); // we cut the parameters on the route, we keep some of them, while the others change depending on the page who we are
         
-        if(count($path) > 1)
+        if(count($path) > 1) // we verify the existence of ':' to know if there is just a route or a route with parameters
         {
-            $params = explode('=', $path[1]);
+            $params = explode('=', $path[1]); // the '=' cut the names of the parameters and their values
 
-            return $this->redirectToRoute($path[0], [$params[0] => $params[1]]);
+            return $this->redirectToRoute($path[0], [$params[0] => $params[1]]); // we redirect depending on the route and the parameter(s) get it before
         }
         else
         {
-            return $this->redirectToRoute($path[0]);
+            return $this->redirectToRoute($path[0]); // we redirect depending on the route without parameter(s)
         }
     }
 }

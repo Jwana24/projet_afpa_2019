@@ -36,6 +36,7 @@ class CommentController extends AbstractController
     */
     public function delete(Request $request, Comments $comment): Response
     {
+        // If we delete a post, the comments bound to this post are deleted on cascade
         if($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token')))
         {
             $commentManager = $this->getDoctrine()->getManager();

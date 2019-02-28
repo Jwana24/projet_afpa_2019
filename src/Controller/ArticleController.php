@@ -43,6 +43,7 @@ class ArticleController extends AbstractController
         if($request->request->get('ajax-like'))
         {
             $like = new Likes();
+            // Get a method in the LikesRepository to retrieve a member's likes regarding an article
             $countLike = $likeRepository->findByMember($this->getUser(), $article);
 
             if(count($countLike) == 0)
@@ -52,6 +53,7 @@ class ArticleController extends AbstractController
                 $like->setIdMemberFK($this->getUser());
                 $likeManager->persist($like);
                 $likeManager->flush();
+                
                 return $this->json(['content' => true, 'nbLike' => count($article->getLikes())]);
             }
             else

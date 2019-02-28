@@ -80,6 +80,7 @@ class PostController extends AbstractController
             $responseManager->flush();
         }
 
+        // If we detect a 'resolve' value in the post, we update the field 'resolve' in the post on 'resolve'
         if($request->get('resolve'))
         {
             $post->setResolve('resolve');
@@ -131,25 +132,6 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Posts $post): Response
     {
-        // $form = $this->createForm(PostType::class, $post);
-        // $form->handleRequest($request);
-
-        // if($form->isSubmitted() && $form->isValid())
-        // {
-        //     $this->getDoctrine()->getManager()->flush();
-        //     $this->addFlash('success', 'Le post a bien été modifié');
-
-        //     return $this->redirectToRoute('show_post',[
-        //         'id' => $post->getId()
-        //     ]);
-        // }
-
-        // return $this->render('forum/edit.html.twig', [
-        //     'post' => $post,
-        //     'form' => $form->createView(),
-        //     'last_path' => 'post_edit:id='.$post->getId()
-        // ]);
-
         if($this->isCsrfTokenValid('edit-post'.$post->getId(), $request->request->get('_token')))
         {
             $postManager = $this->getDoctrine()->getManager();

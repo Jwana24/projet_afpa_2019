@@ -19,7 +19,7 @@ class SearchController extends AbstractController
      */
     public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository): Response
     {
-
+        // We use our function (create in the repository) on the articles and posts
         return $this->render('general/search.html.twig', [
             'articles' => $articlesRepository->search($request->request->get('item-search')),
             'posts' => $postsRepository->search($request->request->get('item-search')),
