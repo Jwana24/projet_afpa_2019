@@ -11,9 +11,9 @@ class CommentPostVoter extends Voter
 {
     const MODIFPOSTCOMMENT = 'MODIFPOSTCOMMENT';
 
+    // Determines if all the parameters are valid in the voter
     protected function supports($attribute, $subject)
     {
-        // if the attribute isn't one we support, return false
         if(!in_array($attribute, [self::MODIFPOSTCOMMENT]))
         {
             return false;
@@ -38,19 +38,20 @@ class CommentPostVoter extends Voter
             return false;
         }
 
-        // you know $subject is a Post object, thanks to supports
         /** @var Post $post */
         $comment = $subject;
 
+        // Verify if the attribute(s) match to the constant
         switch ($attribute)
         {
             case self::MODIFPOSTCOMMENT:
                 return $this->canModif($comment, $member);
         }
 
-        throw new \LogicException('This code should not be reached!');
+        throw new \LogicException('This code should not be reached!'); // Generate a Symfony's error
     }
 
+    // The modifications can be effectued by the member bound to the comment or by an admin (defined by 'ROLE_ADMIN')
     private function canModif($comment, $member)
     {
         return $member === $comment->getIdMemberFK() || $member->getRoles()[0] === 'ROLE_ADMIN';

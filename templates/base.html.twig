@@ -40,7 +40,9 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
                                 <a class="dropdown-item" href="{{ path('logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
                                 <a class="dropdown-item" href="{{ path('member_show', {'id':app.user.id}) }}">{% trans %}Profil de{% endtrans %} {{ app.user.username }}</a>
-                                <a class="dropdown-item" href="{{ path('members_list', {'id':app.user.id}) }}">Liste des membres</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="dropdown-item" href="{{ path('members_list', {'id':app.user.id}) }}">Liste des membres</a>
+                                {% endif %}
                             </div>
                         </li>
                     
