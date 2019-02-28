@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Les articles{% endtrans %}{% endblock %}
+{% block title %}{% trans %}Les articles{% endtrans %}{% endblock %} {# Trans tags for translate the word #}
 
 {% block body %}
 
     <main class="list-articles">
-        <div class="accordion" id="accordionExample">
+        <div class="accordion" id="accordionExample"> {# Bootstrap classes #}
             {% for article in articles %}
                 <div class="card">
                     <div class="card-header" id="heading{{ article.Id }}">
@@ -13,14 +13,14 @@
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
                                 <span class="article-card-title">{{article.TitleArticle}}</span>
                             </button>
-                            <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span>
+                            <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span> {# Change the format of the date #}
                         </h2>
                     </div>
 
                     <div id="collapse{{ article.Id }}" class="collapse" aria-labelledby="heading{{ article.Id }}" data-parent="#accordionExample">
                         <div class="card-body">
                             
-                            <p>{{article.TextArticle|slice(0, 150)}}</p>
+                            <p>{{article.TextArticle|slice(0, 150)}}</p> {# Allow to get only the 150 first characters #}
                             <a class="btn btn-primary" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}Voir{% endtrans %}</a>
                         </div>
                     </div>
@@ -38,6 +38,7 @@
             {% endif %}
         </div>
 
+        {# Show flash success if the message is create in the Controller #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success" role="alert">
                 {{ message }}

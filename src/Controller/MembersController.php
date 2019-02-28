@@ -56,6 +56,7 @@ class MembersController extends Controller implements EventSubscriberInterface
 
     /**
      * @Route("/", name="members_list")
+     * @Security("is_granted('ROLE_ADMIN')") // Protected URL depending on the role (role_admin)
      */
     public function list(Request $request, MembersRepository $membersRepository): Response
     {
