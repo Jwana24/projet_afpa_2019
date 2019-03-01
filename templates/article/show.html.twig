@@ -31,6 +31,7 @@
                         </div>
                     </form>
 
+                    {# Pass the value from Twig to JS if the connected member has already liked or not #}
                     {% if member_like %}
                         <div class="member-like" data-like="true" style="display:none"></div>
                     {% else %}

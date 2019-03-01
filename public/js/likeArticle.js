@@ -1,4 +1,4 @@
-let like = document.querySelector('.like'); // Récupère la div qui englobe les 2 icônes
+let like = document.querySelector('.like');
 let heartEmpty = document.querySelector('ion-icon[name=heart-empty]');
 let heartFull = document.querySelector('ion-icon[name=heart]');
 let countLike = document.querySelector('.nb-like-article');
@@ -7,11 +7,11 @@ like.addEventListener('click', (e) =>
 {
     let data = new FormData();
 
-    data.append('ajax-like', 'true');
+    data.append('ajax-like', 'true'); // make the same action to a hidden input where the value is true
     fetch('/article/'+like.dataset['id']+'/show', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
         {
             let isLiked = JSON.parse(promise);
-            countLike.innerText = isLiked.nbLike+' likes';
+            countLike.innerText = isLiked.nbLike+' likes'; // get to our JS object the number of likes
 
             if(isLiked.content)
             {

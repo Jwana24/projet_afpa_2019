@@ -29,6 +29,7 @@ formContainerInsc.addEventListener('submit',(e) =>
 
         modalInsc.style.display = 'none';
 
+        // Browse all the inputs and clear their values
         for(let i = 0; i <= 7; i++)
         {
             formContainerInsc[i].value = '';
@@ -60,6 +61,7 @@ closeModal.addEventListener('click', () =>
     modalInsc.style.display = 'none';
 });
 
+// Show or hide the modal depending on the clicked buttons
 btnInsc.addEventListener('click', (e) =>
 {
     e.preventDefault();

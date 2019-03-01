@@ -12,6 +12,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit = document.querySelector('.form-edit-article'),
             cancelButton = document.querySelector('.cancel-article');
         
+        // Depending to the data-set in the html page (edit.html.twig)
         if(e.target.dataset['toggle'] == 'false')
         {
             title.style.display = 'none';
@@ -19,15 +20,16 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'initial';
             cancelButton.style.display = 'inline-block';
             e.target.dataset['toggle'] = 'true';
-            e.target.innerText = trans(e, 'Enregistrer', 'Save');
+            e.target.innerText = trans(e, 'Enregistrer', 'Save'); // a custom function to translate the word on the button
         }
         else if(e.target.dataset['toggle'] == 'true')
         {
-            let data = new FormData(formEdit);
+            let data = new FormData(formEdit); // Instantiate formData object with the formEdit in parameters
             
+            // Make an Ajax request on the edit article page, we spend data of the form, we return a promise (a tool for managing asynchronous operations)
             fetch('/admin/article/'+e.target.dataset['id']+'/edit', {method: 'POST', body: data}).then(promise => promise.text()).then(promise =>
             {
-                let article = JSON.parse(promise).content;
+                let article = JSON.parse(promise).content; // In the variable 'article' we stock data from the edit article
 
                 image.src = '/' + article['image'];
                 title.innerText = article['title'];
@@ -56,6 +58,7 @@ if(document.querySelector('.btn-edit-article'))
     })
 }
 
+// Stock a language in a parameter. Return the parameter depending to the selected language
 function trans(e, a, b)
 {
     if(e.target.dataset['locale'] == 'fr_FR')
