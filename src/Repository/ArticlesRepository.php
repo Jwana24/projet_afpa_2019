@@ -29,8 +29,20 @@ class ArticlesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // Allow to realize the search on the title and the content of an article, depending on an identical word
-    public function search($search)
+    // Allow to realize the search on the title and the content of an article, depending on an identical word. We add pâgination and define the results at 8 per page 
+    public function search($search, $offset = 0, $limit = 8)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.title_article LIKE :searchContent')
+            ->orWhere('s.text_article LIKE :searchContent')
+            ->setParameter('searchContent', '%'.$search.'%')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function searchCount($search)
     {
         return $this->createQueryBuilder('s')
             ->where('s.title_article LIKE :searchContent')

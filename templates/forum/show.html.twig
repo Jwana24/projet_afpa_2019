@@ -53,7 +53,7 @@
 
                                 <a class="btn-site cancel-post" href="#">{% trans %}Annuler{% endtrans %}</a>
 
-                                {% if post.Resolve != 'resolve' and is_granted('MODIFPOST', post) %}
+                                {% if post.Resolve != 'resolve' and is_granted('MODIFPOST', post) %} {# the button is show only if the post is not resolved and if the connected user is Admin, or has the post #}
                                 <form method="post">
                                     <input type="hidden" name="resolve" value="resolve">
                                     <input class="btn-site btn-resolve" type="submit" value="Résoudre">
