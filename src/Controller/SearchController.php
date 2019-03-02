@@ -20,10 +20,6 @@ class SearchController extends AbstractController
     public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository, $page, $page2): Response
     {
         // We use our function (create in the repository) on the articles and posts
-        $article = $articlesRepository->search($request->request->get('item-search'));
-        $post = $postsRepository->search($request->request->get('item-search'));
-
-        $searchResults = array_merge($article, $post);
 
         return $this->render('general/search.html.twig', [
             'last_path' => 'search',
