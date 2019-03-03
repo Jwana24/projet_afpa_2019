@@ -15,21 +15,41 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/{page}/{page2}", name="search", methods="POST|GET")
+     * @Route("/{pageArticle}/{pagePost}", name="search", methods="POST|GET")
      */
-    public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository, $page, $page2): Response
+    public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository, $pageArticle, $pagePost): Response
     {
         // We use our function (create in the repository) on the articles and posts
+        $pageArticles = $pageArticle;
+        $pagePosts = $pagePost;
+
+        if($pagePosts <= 1)
+        {
+            $pagePosts = 0;
+        }
+        else
+        {
+            $pagePosts = ($pagePosts - 1) * 8;
+        }
+
+        if($pageArticles <= 1)
+        {
+            $pageArticles = 0;
+        }
+        else
+        {
+            $pageArticles = ($pageArticles - 1) * 8;
+        }
 
         return $this->render('general/search.html.twig', [
             'last_path' => 'search',
-            'nb_page' => count($searchResults) / 8,
-            'articles' => $articlesRepository->search($request->request->get('item-search')),
-            'posts' => $postsRepository->search($request->request->get('item-search')),
-            'nombre-page-article' => $page,
-            'nombre-page-post' => $page2,
-            'number-page-post' => count($postsRepository->searchCount($request->request->get('item-search'))) / 8,
-            'number-page-article' => count($articlesRepository->search($request->request->get('item-search'))) / 8
+            'articles' => $articlesRepository->search($request->query->get('s'), $pageArticles),
+            'posts' => $postsRepository->search($request->query->get('s'), $pagePosts),
+            'page_article' => $pageArticle,
+            'page_post' => $pagePost,
+            'number_page_post' => ceil(count($postsRepository->searchCount($request->query->get('s'))) / 8),
+            'number_page_article' => ceil(count($articlesRepository->searchCount($request->query->get('s'))) / 8),
+            'query' => $request->query->get('s')
         ]);
     }
 }

@@ -6,27 +6,33 @@
 
     <main class="container-fluid">
 
+    <div class="title-article-search">
+        <h3>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %} :</h3>
+    </div>
+
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <a class="page-link" href="{{ path('search', {'pageArticle': 1, 'pagePost': page_post}) }}?s={{ query }}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">{{ dump(test) }}</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {% if (page_article + 1) <= number_page_article %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article + 1, 'pagePost': page_post}) }}?s={{ query }}">{{ page_article + 1 }}</a></li>
+            {% endif %}
+            {% if (page_article + 2) <= number_page_article %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article + 2, 'pagePost': page_post}) }}?s={{ query }}">{{ page_article + 2 }}</a></li>
+            {% endif %}
+            {% if (page_article + 3) <= number_page_article %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article + 3, 'pagePost': page_post}) }}?s={{ query }}">{{ page_article + 3 }}</a></li>
+            {% endif %}
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <a class="page-link" href="{{ path('search', {'pageArticle': number_page_article, 'pagePost': page_post}) }}?s={{ query }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
         </ul>
     </nav>
-
-    <div class="title-article-search">
-        <h3>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %} :</h3>
-    </div>
 
     <div class="row justify-content-md-center">
         
@@ -48,6 +54,30 @@
     <div class="title-post-search">
         <h3>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %} :</h3>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{{ path('search', {'pageArticle': page_article, 'pagePost': 1}) }}?s={{ query }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% if (page_post + 1) <= number_page_post %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article, 'pagePost': page_post + 1}) }}?s={{ query }}">{{ page_post + 1 }}</a></li>
+            {% endif %}
+            {% if (page_post + 2) <= number_page_post %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article, 'pagePost': page_post + 2}) }}?s={{ query }}">{{ page_post + 2 }}</a></li>
+            {% endif %}
+            {% if (page_post + 3) <= number_page_post %}
+                <li class="page-item"><a class="page-link" href="{{ path('search', {'pageArticle': page_article, 'pagePost': page_post + 3}) }}?s={{ query }}">{{ page_post + 3 }}</a></li>
+            {% endif %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path('search', {'pageArticle': page_article, 'pagePost': number_page_post}) }}?s={{ query }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="row justify-content-md-center">
         {% for post in posts %}
