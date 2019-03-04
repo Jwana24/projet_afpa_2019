@@ -944,11 +944,10 @@ ion-icon[name=heart-empty]
     margin-top: 20px;
 }
 
-/* .arrow-first,
-.arrow-end
+.page-link
 {
-    height: 10px;
-} */
+    line-height: inherit !important;
+}
 
 
 /* ADMIN PAGE */

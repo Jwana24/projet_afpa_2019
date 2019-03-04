@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="title-article-search">
-                        <h5>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %}</h5>
+                        <h5>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %} : {{ resultSearch }}</h5>
                 </div>
 
                 <div class="row justify-content-md-center">
@@ -100,7 +100,7 @@
                             {% if numberPagePost > 1 %}
                                 <li class="page-item">
                                     <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': 1}) }}" aria-label="Previous">
-                                        <span class="arrow-first" aria-hidden="true">&laquo;</span>
+                                        <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -145,7 +145,7 @@
                             {% if (numberPagePost + 2) <= postsPages %}
                                 <li class="page-item">
                                     <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': postsPages}) }}" aria-label="Next">
-                                        <span class="arrow-end" aria-hidden="true">&raquo;</span>
+                                        <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="title-post-search">
-                        <h5>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %}</h5>
+                        <h5>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %} : {{ resultSearch }}</h5>
                 </div>
 
                 <div class="row justify-content-md-center">
