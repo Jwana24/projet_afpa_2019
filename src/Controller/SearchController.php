@@ -15,21 +15,44 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/{page}/{page2}", name="search", methods="POST|GET")
+     * @Route("/{pageArticle}/{pagePost}", name="search", methods="POST|GET")
      */
-    public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository, $page, $page2): Response
+    public function search(Request $request, ArticlesRepository $articlesRepository, PostsRepository $postsRepository, $pageArticle, $pagePost): Response
     {
         // We use our function (create in the repository) on the articles and posts
 
+        $paginationArt = $pageArticle;
+        $paginationPo = $pagePost;
+
+        // Make pagination only for articles (just 8 items on the page)
+        if($paginationArt <= 1)
+        {
+            $paginationArt = 0;
+        }
+        else
+        {
+            $paginationArt = ($paginationArt - 1) * 8;
+        }
+
+        // Make pagination only for posts (just 8 items on the page)
+        if($paginationPo <= 1)
+        {
+            $paginationPo = 0;
+        }
+        else
+        {
+            $paginationPo = ($paginationPo - 1) * 8;
+        }
+
         return $this->render('general/search.html.twig', [
             'last_path' => 'search',
-            'nb_page' => count($searchResults) / 8,
-            'articles' => $articlesRepository->search($request->request->get('item-search')),
-            'posts' => $postsRepository->search($request->request->get('item-search')),
-            'nombre-page-article' => $page,
-            'nombre-page-post' => $page2,
-            'number-page-post' => count($postsRepository->searchCount($request->request->get('item-search'))) / 8,
-            'number-page-article' => count($articlesRepository->search($request->request->get('item-search'))) / 8
+            'articles' => $articlesRepository->search($request->query->get('itemSearch'), $paginationArt),
+            'posts' => $postsRepository->search($request->query->get('itemSearch'), $paginationPo),
+            'numberPageArticle' => $pageArticle,
+            'numberPagePost' => $pagePost,
+            'postsPages' => ceil(count($postsRepository->searchCount($request->query->get('item-search'))) / 8),
+            'articlesPages' => ceil(count($articlesRepository->searchCount($request->query->get('item-search'))) / 8),
+            'resultSearch' => $request->query->get('itemSearch')
         ]);
     }
 }

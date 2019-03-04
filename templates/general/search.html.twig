@@ -5,65 +5,176 @@
 {% block body %}
 
     <main class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-6 border">
+                <div class="row justify-content-md-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center pagination-articles">
+                            {# The arrow appears if the current page is not the first page #}
+                            {% if numberPageArticle > 1 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': 1,'pagePost': numberPagePost}) }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">{{ dump(test) }}</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+                            {% if articlesPages <= 3 %}
+                                <li class="page-item {% if numberPageArticle == 1 %}active{% endif %}">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': 1,'pagePost': numberPagePost}) }}">1</a>
+                                </li>
 
-    <div class="title-article-search">
-        <h3>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %} :</h3>
-    </div>
+                                {% if articlesPages >= 2 %}
+                                    <li class="page-item {% if numberPageArticle == 2 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': 2,'pagePost': numberPagePost}) }}">2</a>
+                                    </li>
+                                {% endif %}
 
-    <div class="row justify-content-md-center">
-        
-        {% for article in articles %}
-            <div class="card article-card-search" style="max-width: 18rem;">
-                <img src="{{ asset(article.image) }}" class="card-img-top" alt="Image de l'article">
-                <div class="card-body">
-                    <h5 class="card-title">{{ article.TitleArticle }}</h5>
-                    <p class="card-text">{{ article.TextArticle }}</p>
+                                {% if articlesPages >= 3 %}
+                                    <li class="page-item {% if numberPageArticle == 3 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': 3,'pagePost': numberPagePost}) }}">3</a>
+                                    </li>
+                                {% endif %}
+
+                            {# If there are more than 3 pages, it's show the current page and the next two #}
+                            {% else %}
+
+                                <li class="page-item active">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': numberPagePost}) }}">{{ numberPageArticle }}</a>
+                                </li>
+
+                                {% if (numberPageArticle + 1) <= articlesPages %}
+                                    <li class="page-item {% if numberPageArticle == numberPageArticle + 1 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle + 1,'pagePost': numberPagePost}) }}">{{ numberPageArticle + 1 }}</a>
+                                    </li>
+                                {% endif %}
+
+                                {% if (numberPageArticle + 2) <= articlesPages %}
+                                    <li class="page-item {% if numberPageArticle == numberPageArticle + 2 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle + 2,'pagePost': numberPagePost}) }}">{{ numberPageArticle + 2 }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endif %}
+
+                            {# The arrow appears if the current page is not the last page #}
+                            {% if (numberPageArticle + 2) <= articlesPages %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': articlesPages,'pagePost': numberPagePost}) }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+
                 </div>
-                
-                <div class="card-footer">
-                    <a href="{{ path('show_article', {'id' : article.Id}) }}" class="btn btn-primary">Voir</a>
+
+                <div class="title-article-search">
+                        <h5>{% trans %}Article(s) lié(s) à votre recherche{% endtrans %}</h5>
+                </div>
+
+                <div class="row justify-content-md-center">
+
+                    {% for article in articles %}
+                        <div class="card article-card-search" style="max-width: 18rem;">
+                            <img src="{{ asset(article.image) }}" class="card-img-top" alt="Image de l'article">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.TitleArticle }}</h5>
+                                <p class="card-text">{{ article.TextArticle }}</p>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <a href="{{ path('show_article', {'id' : article.Id}) }}" class="btn btn-primary">Voir</a>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
-    </div>
 
-    <div class="title-post-search">
-        <h3>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %} :</h3>
-    </div>
+            <div class="col-6 border">
+                <div class="row justify-content-md-center">
 
-    <div class="row justify-content-md-center">
-        {% for post in posts %}
-            <div class="card bg-light post-card-search" style="max-width: 18rem;">
-                <div class="card-header">{{ post.TitlePost}}</div>
-                <div class="card-body">
-                    <p class="card-text">{{ post.TextPost}}</p>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-posts">
+                            {% if numberPagePost > 1 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': 1}) }}" aria-label="Previous">
+                                        <span class="arrow-first" aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if postsPages <= 3 %}
+                                <li class="page-item {% if numberPagePost == 1 %}active{% endif %}">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': 1}) }}">1</a>
+                                </li>
+
+                                {% if postsPages >= 2 %}
+                                    <li class="page-item {% if numberPagePost == 2 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': 2}) }}">2</a>
+                                    </li>
+                                {% endif %}
+
+                                {% if postsPages >= 3 %}
+                                    <li class="page-item {% if numberPagePost == 3 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': 3}) }}">3</a>
+                                    </li>
+                                {% endif %}
+
+                            {% else %}
+
+                                <li class="page-item active">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': numberPagePost}) }}">{{ numberPagePost }}</a>
+                                </li>
+
+                                {% if (numberPagePost + 1) <= postsPages %}
+                                    <li class="page-item {% if numberPagePost == numberPagePost + 1 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': numberPagePost + 1}) }}">{{ numberPagePost + 1 }}</a>
+                                    </li>
+                                {% endif %}
+
+                                {% if (numberPagePost + 2) <= postsPages %}
+                                    <li class="page-item {% if numberPagePost == numberPagePost + 2 %}active{% endif %}">
+                                        <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': numberPagePost + 2}) }}">{{ numberPagePost + 2 }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endif %}
+
+                            {% if (numberPagePost + 2) <= postsPages %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('search', {'pageArticle': numberPageArticle,'pagePost': postsPages}) }}" aria-label="Next">
+                                        <span class="arrow-end" aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+
                 </div>
 
-                <div class="card-footer">
-                    <a href="{{ path('show_post', {'id' : post.Id}) }}" class="btn btn-primary">Voir</a>
+                <div class="title-post-search">
+                        <h5>{% trans %}Post(s) lié(s) à votre recherche{% endtrans %}</h5>
+                </div>
+
+                <div class="row justify-content-md-center">
+                    {% for post in posts %}
+                        <div class="card bg-light post-card-search" style="max-width: 18rem;">
+                            <div class="card-header">{{ post.TitlePost}}</div>
+                            <div class="card-body">
+                                <p class="card-text">{{ post.TextPost}}</p>
+                            </div>
+
+                            <div class="card-footer">
+                                <a href="{{ path('show_post', {'id' : post.Id}) }}" class="btn btn-primary">Voir</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
                 </div>
             </div>
-
-        {% endfor %}
-    </div>
+        </div>
     
     </main>
 

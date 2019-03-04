@@ -68,8 +68,8 @@
                 
                 </ul>
 
-                <form class="form-inline my-2 my-md-0" action="{{ path('search', {'page': 1,'page2': 1}) }}" method="post">
-                    <input class="form-control" name="item-search" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
+                <form class="form-inline my-2 my-md-0" action="{{ path('search', {'pageArticle': 1,'pagePost': 1}) }}" method="get">
+                    <input class="form-control" name="itemSearch" type="text" placeholder="{% trans %}Recherche{% endtrans %}">
                 </form>
             </div>
         </nav>

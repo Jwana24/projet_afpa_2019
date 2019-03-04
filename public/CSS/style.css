@@ -17,7 +17,7 @@
 main
 {
     min-height: 100vh;
-    padding-top: 58px;
+    padding-top: 80px;
 }
 
 
@@ -934,8 +934,21 @@ ion-icon[name=heart-empty]
 .title-article-search,
 .title-post-search
 {
-    margin: 40px 0 0 140px;
+    margin-top: 40px;
+    text-align: center;
 }
+
+.pagination-articles,
+.pagination-posts
+{
+    margin-top: 20px;
+}
+
+/* .arrow-first,
+.arrow-end
+{
+    height: 10px;
+} */
 
 
 /* ADMIN PAGE */
