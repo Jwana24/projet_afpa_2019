@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header" id="heading{{ article.Id }}">
                         <h2 class="mb-0 article-header">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
+                            <button class="btn btn-link btn-open" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
                                 <span class="article-card-title">{{article.TitleArticle}}</span>
                             </button>
                             <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span> {# Change the format of the date #}
@@ -24,9 +24,17 @@
                             <a class="btn btn-primary" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}Voir{% endtrans %}</a>
                         </div>
                     </div>
-
                 </div>
             {% endfor %}
+
+            <div class="container-arrows">
+                <a class="arrow-down">
+                    <i class="fas fa-angle-down fa-2x icon-arrow-down"></i>
+                </a>
+                <a class="arrow-up">
+                    <i class="fas fa-angle-up fa-2x icon-arrow-up"></i>
+                </a>
+            </div>
         
         </div>
 
@@ -46,4 +54,8 @@
         {% endfor %}
     </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/scrollBtn.js') }}"></script>
 {% endblock %}

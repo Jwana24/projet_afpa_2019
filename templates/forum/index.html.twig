@@ -35,6 +35,15 @@
                 </form>
             </div>
 
+            <div class="container-arrows-forum">
+                <a class="arrow-down-f">
+                    <i class="fas fa-angle-down fa-2x icon-arrow-down-f"></i>
+                </a>
+                <a class="arrow-up-f">
+                    <i class="fas fa-angle-up fa-2x icon-arrow-up-f"></i>
+                </a>
+            </div>
+            
             <div class="col-12">
                 <div class="btn-link-forum">
                     {% if is_granted('ROLE_USER') %}
@@ -59,5 +68,6 @@
 {% block javascripts %}
 
     <script src="{{ asset('js/category.js') }}"></script>
+    <script src="{{ asset('js/scrollBtn.js') }}"></script>
 
 {% endblock %}

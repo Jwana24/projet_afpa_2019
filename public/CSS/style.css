@@ -12,6 +12,7 @@
     line-height: 1.6;
     font-weight: 500;
     cursor: default;
+    scroll-behavior: smooth;
 }
 
 main
@@ -34,6 +35,7 @@ main
 
 footer
 {
+    z-index:  -1;
     position: relative;
     width: 100%;
     font-family: 'Segoe UI';
@@ -536,6 +538,51 @@ footer .logo-30MAmis:hover
 
 /* LIST ARTICLES PAGE */
 /* Index */
+
+.arrow-down,
+.arrow-up,
+.arrow-down-f,
+.arrow-up-f
+{
+    z-index: 200;
+    position: fixed;
+    right: 25px;
+    bottom: 35px;
+    color: black;
+}
+
+.arrow-down-f,
+.arrow-up-f
+{
+    bottom: 55px;
+}
+
+.container-arrows,
+.container-arrows-forum
+{
+    display: none;
+    position: fixed;
+    right: 10px;
+    bottom: 30px;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.arrow-up,
+.arrow-up-f
+{
+    display: none;
+}
+
+.icon-arrow-down,
+.icon-arrow-up,
+.icon-arrow-down-f,
+.icon-arrow-up-f
+{
+    cursor: pointer;
+}
 
 .article-header .article-card-date
 {
@@ -1091,6 +1138,14 @@ ion-icon[name=heart-empty]
     .sidebox form
     {
         font-size: 14px;
+    }
+
+    /* INDEX ARTICLES PAGE */
+
+    .container-arrows,
+    .container-arrows-forum
+    {
+        display: initial;
     }
 
     /* SHOW ARTICLE PAGE */
