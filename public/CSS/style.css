@@ -972,13 +972,48 @@ ion-icon[name=heart-empty]
     .slide
     {
         width: 100%;
-        height: 50vh;
+    }
+
+    .carousel-item
+    {
+        height: 35vh;
     }
 
     .carousel-item span
     {
-        font-size: 13px;
+        font-size: 15px;
         left: 10px;
+        top: 35px !important;
+        height: 45px !important;
+    }
+
+    .text-pug
+    {
+        width: 30% !important;
+    }
+
+    .text-foal
+    {
+        width: 50% !important;
+    }
+
+    .carousel-control-prev
+    {
+        left: 50vw !important;
+        transform: translate(-100%, 0) !important;
+    }
+
+    .carousel-control-next
+    {
+        right: 50vw !important;
+        transform: translate(100%, 0) !important;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next
+    {
+        height: 45px !important;
+        top: 170px;
     }
 
     .homepage,
