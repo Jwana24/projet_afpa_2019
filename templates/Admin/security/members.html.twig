@@ -6,31 +6,32 @@
 
     <main class="container">
     
-    <table class="table table-dark table-list-members">
-        <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">{% trans %}Nom{% endtrans %}</th>
-                <th scope="col">{% trans %}Prénom{% endtrans %}</th>
-                <th scope="col">{% trans %}Email{% endtrans %}</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr>
-                    <th scope="row">{{ member.id }}</th>
-                    <td>{{ member.LastName }}</td>
-                    <td>{{ member.FirstName }}</td>
-                    <td>{{ member.Mail }}</td>
-                    <td>{{ member.Description }}</td>
-                    <td><a class="btn btn-light" href="{{ path('member_show', {'id' : member.Id}) }}">{% trans %}Voir{% endtrans %}</a></td>
-                </tr>
-            {% endfor %}
-            
-        </tbody>
-</table>
-    
+        <div class="table-responsive">
+            <table class="table table-dark table-list-members">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                        <th scope="col">{% trans %}Prénom{% endtrans %}</th>
+                        <th scope="col">{% trans %}Email{% endtrans %}</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <th scope="row">{{ member.id }}</th>
+                            <td>{{ member.LastName }}</td>
+                            <td>{{ member.FirstName }}</td>
+                            <td>{{ member.Mail }}</td>
+                            <td>{{ member.Description }}</td>
+                            <td><a class="btn btn-light" href="{{ path('member_show', {'id' : member.Id}) }}">{% trans %}Voir{% endtrans %}</a></td>
+                        </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
     
     </main>
 

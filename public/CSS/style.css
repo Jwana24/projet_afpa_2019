@@ -458,7 +458,7 @@ footer .logo-30MAmis:hover
 
 .main-profile
 {
-    margin-left: 20px;
+    margin-left: 350px;
 }
 
 .profile-show
@@ -1242,5 +1242,35 @@ ion-icon[name=heart-empty]
     .forum-comment .link-post-page a
     {
         margin-left: 0;
+    }
+
+    /* PROFILE PAGE */
+
+    .main-profile
+    {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .profile-show
+    {
+        flex-direction: column;
+    }
+
+    .avatar
+    {
+        margin-left: -12px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .form-edit-member
+    {
+        margin: 15px 15px 0 0;
+    }
+
+    .info-profile
+    {
+        margin-top: 30px;
     }
 }
