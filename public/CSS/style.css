@@ -964,7 +964,11 @@ ion-icon[name=heart-empty]
 {
     /* HOMEPAGE */
 
-    #slider,
+    .slider-content
+    {
+        padding-top: 60px;
+    }
+
     .slide
     {
         width: 100%;
@@ -977,9 +981,30 @@ ion-icon[name=heart-empty]
         left: 10px;
     }
 
-    .homepage
+    .homepage,
+    .article-box .article
     {
         flex-direction: column;
+    }
+
+    .homepage
+    {
+        align-items: center;
+    }
+
+    .article-box
+    {
+        margin-left: 0;
+    }
+
+    .article-box .article
+    {
+        align-items: center;
+    }
+
+    .article-box .article .div-img
+    {
+        margin-bottom: 20px;
     }
 
     .sidebox

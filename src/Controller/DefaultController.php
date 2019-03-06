@@ -13,13 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @Route("/accueil")
- */
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/", name="accueil", methods="GET|POST")
+     * @Route("/")
+     */
+    public function name() // if we are on the Symfony default page, we redirect on the homepage
+    {
+        return $this->redirectToRoute('accueil');
+    }
+
+    /**
+     * @Route("/accueil", name="accueil", methods="GET|POST")
      */
     public function index(SessionInterface $session, ArticlesRepository $articlesRepository, PostsRepository $postRepository,MembersRepository $memberRepository, Request $request, \Swift_Mailer $mailer): Response
     {
