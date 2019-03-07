@@ -1249,6 +1249,12 @@ ion-icon[name=heart-empty]
         width: 100% !important;
     }
 
+    .cancel-response,
+    .btn-edit-response
+    {
+        margin-right: 2px !important;
+    }
+
     .article-comment .link-return-articles,
     .forum-comment .link-return-posts
     {
