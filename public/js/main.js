@@ -12,17 +12,16 @@ function trans(e, a, b)
 }
 
 // A function for transform the text if the page is smaller (responsive) with the translation in english
-function transformText(elements, fr, en)
+function transformText(elements, fr, en, fr2, en2)
 {
     if(document.querySelector(elements))
     {
+        let textBtn = document.querySelectorAll(elements);
+
         if(document.body.clientWidth < 415)
         {
-            let textBtn = document.querySelectorAll(elements);
-
             textBtn.forEach(element =>
             {
-                console.log(element);
                 if(element.localName == 'a')
                 {
                     element.innerText = trans(element.dataset['locale'], fr, en);
@@ -30,6 +29,20 @@ function transformText(elements, fr, en)
                 else if(element.localName == 'input')
                 {
                     element.value = trans(element.dataset['locale'], fr, en);
+                }
+            });
+        }
+        else
+        {
+            textBtn.forEach(element =>
+            {
+                if(element.localName == 'a')
+                {
+                    element.innerText = trans(element.dataset['locale'], fr2, en2);
+                }
+                else if(element.localName == 'input')
+                {
+                    element.value = trans(element.dataset['locale'], fr2, en2);
                 }
             });
         }
