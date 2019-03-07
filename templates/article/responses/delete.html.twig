@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('delete_response', {'id': response.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cette réponse ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ response.id) }}">
-    <input class="btn-site" value="{% trans %}Supprimer la réponse{% endtrans %}" type="submit">
+    <input class="btn-site delete-response-article" data-locale="{{ app.session.get('_locale') }}" value="{% trans %}Supprimer réponse{% endtrans %}" type="submit">
 </form>

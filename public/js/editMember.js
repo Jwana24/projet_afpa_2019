@@ -24,7 +24,7 @@ if(document.querySelector('.btn-edit-member'))
             formEdit.style.display = 'initial';
             cancelButton.style.display = 'inline-block';
             e.target.dataset['toggle'] = 'true';
-            e.target.innerText = trans(e, 'Enregistrer', 'Save');
+            e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save');
         }
 
         else if(e.target.dataset['toggle'] == 'true')
@@ -53,9 +53,9 @@ if(document.querySelector('.btn-edit-member'))
                 }
 
                 username.innerText = member['username'];
-                lastName.innerText = trans(e, 'Nom : ','Last name : ') + member['last_name'];
-                firstName.innerText = trans(e, 'Prénom : ','First name : ') + member['first_name'];
-                mail.innerText = trans(e, 'Email : ','Mail : ') + member['mail'];
+                lastName.innerText = trans(e.target.dataset['locale'], 'Nom : ','Last name : ') + member['last_name'];
+                firstName.innerText = trans(e.target.dataset['locale'], 'Prénom : ','First name : ') + member['first_name'];
+                mail.innerText = trans(e.target.dataset['locale'], 'Email : ','Mail : ') + member['mail'];
                 description.innerText = 'Description : ' + member['description'];
                 avatar.src = '/' + member['avatar'];
             });
@@ -64,7 +64,7 @@ if(document.querySelector('.btn-edit-member'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer mon profil', 'Edit profile');
+            e.target.innerText = trans(e.target.dataset['locale'], 'Editer mon profil', 'Edit profile');
         }
 
         cancelButton.addEventListener('click', (f) =>
@@ -75,19 +75,7 @@ if(document.querySelector('.btn-edit-member'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer mon profil', 'Edit profile');
+            e.target.innerText = trans(e.target.dataset['locale'], 'Editer mon profil', 'Edit profile');
         });
     });
-}
-
-function trans(e, a, b)
-{
-    if(e.target.dataset['locale'] == 'fr_FR')
-    {
-        return a;
-    }
-    else if(e.target.dataset['locale'] == 'en')
-    {
-        return b;
-    }
 }

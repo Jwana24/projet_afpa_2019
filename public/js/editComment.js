@@ -23,14 +23,7 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     formEdit.style.display = 'initial';
                     e.target.dataset['toggle'] = 'true';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
-                    {
-                        e.target.innerText = 'Enregistrer';
-                    }
-                    else if(e.target.dataset['locale'] == 'en')
-                    {
-                        e.target.innerText = 'Save';
-                    }
+                    e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save');
                 }
                 else if(e.target.dataset['toggle'] == 'true')
                 {
@@ -45,13 +38,13 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer le commentaire';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit comment'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer le commentaire', 'Edit comment');
                     }
                 }
 
@@ -61,13 +54,13 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer le commentaire';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit comment'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer le commentaire', 'Edit comment');
                     }
 
                     paragraph.style.display = 'block';
@@ -95,14 +88,7 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     formEdit.style.display = 'initial';
                     e.target.dataset['toggle'] = 'true';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
-                    {
-                        e.target.innerText = 'Enregistrer';
-                    }
-                    else if(e.target.dataset['locale'] == 'en')
-                    {
-                        e.target.innerText = 'Save';
-                    }
+                    e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save');
                 }
                 else if(e.target.dataset['toggle'] == 'true')
                 {
@@ -117,13 +103,13 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer le commentaire';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit comment'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer le commentaire', 'Edit comment');
                     }
                 }
 
@@ -133,13 +119,13 @@ if(document.querySelectorAll('.btn-edit-comment'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
                     
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer le commentaire';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit comment'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer le commentaire', 'Edit comment');
                     }
 
                     paragraph.style.display = 'block';

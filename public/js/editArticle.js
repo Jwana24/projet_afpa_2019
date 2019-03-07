@@ -20,7 +20,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'initial';
             cancelButton.style.display = 'inline-block';
             e.target.dataset['toggle'] = 'true';
-            e.target.innerText = trans(e, 'Enregistrer', 'Save'); // a custom function to translate the word on the button
+            e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save'); // a custom function to translate the word on the button
         }
         else if(e.target.dataset['toggle'] == 'true')
         {
@@ -41,7 +41,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer l\'article', 'Edit article');
+            e.target.innerText = trans(e.target.dataset['locale'], 'Editer l\'article', 'Edit article');
         }
 
         cancelButton.addEventListener('click', (f) =>
@@ -53,20 +53,7 @@ if(document.querySelector('.btn-edit-article'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e, 'Editer l\'article', 'Edit article');
+            e.target.innerText = trans(e.target.dataset['locale'], 'Editer l\'article', 'Edit article');
         });
     })
-}
-
-// Stock a language in a parameter. Return the parameter depending to the selected language
-function trans(e, a, b)
-{
-    if(e.target.dataset['locale'] == 'fr_FR')
-    {
-        return a;
-    }
-    else if(e.target.dataset['locale'] == 'en')
-    {
-        return b;
-    }
 }

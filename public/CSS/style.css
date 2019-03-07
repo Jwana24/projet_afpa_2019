@@ -35,7 +35,6 @@ main
 
 footer
 {
-    z-index:  -1;
     position: relative;
     width: 100%;
     font-family: 'Segoe UI';
@@ -1009,6 +1008,11 @@ ion-icon[name=heart-empty]
 
 @media all and (max-width: 415px)
 {
+    .btn-site
+    {
+        font-size: 12px;
+    }
+
     /* HOMEPAGE */
 
     .slider-content
@@ -1116,13 +1120,6 @@ ion-icon[name=heart-empty]
         width: 150px;
     }
 
-    .article-box .article a,
-    .article-box .article a:visited,
-    .sidebox form input[type=submit]
-    {
-        font-size: 12px;
-    }
-
     .sidebox form input[type=submit]
     {
         width: 30%;
@@ -1150,6 +1147,11 @@ ion-icon[name=heart-empty]
 
     /* SHOW ARTICLE PAGE */
 
+    .article-page .btn-site
+    {
+        height: 32px !important;
+    }
+
     .article-show .text,
     .article-show .title,
     .forum-show .text,
@@ -1169,6 +1171,17 @@ ion-icon[name=heart-empty]
         font-size: 15px !important;
     }
 
+    .form-edit-article input[type=file]
+    {
+        width: 100%;
+    }
+
+    .btn-edit-article,
+    .cancel-article
+    {
+        margin-left: 5px !important;
+    }
+
     .container-btn-article,
     .container-btn-post
     {
@@ -1182,25 +1195,7 @@ ion-icon[name=heart-empty]
     .btn-admin-article input[type=submit],
     .btn-admin-article a
     {
-        font-size: 12px;
         margin-bottom: 20px;
-    }
-
-    .form-comment-article .btn-send-comment-article,
-    .article-show .date,
-    .article-comment .response-article .date,
-    .article-comment .comment-article .date,
-    .article-comment .btn-comment a,
-    .article-comment .btn-comment input[type=submit],
-    .article-comment .response-btn,
-    .response-article .btn-response a,
-    .response-article .btn-response input[type=submit],
-    .article-comment .a-article-list,
-    .article-comment .a-accueil,
-    .response-post .btn-reponse a,
-    .reponse-post .btn-response input[type=submit]
-    {
-        font-size: 12px !important;
     }
 
     .btn-admin-article,
@@ -1212,6 +1207,11 @@ ion-icon[name=heart-empty]
     .article-page .form-comment-article
     {
         margin-top: 0;
+    }
+
+    .comment-article .date
+    {
+        margin-top: 0 !important;
     }
 
     .article-page .article-comment .username,
@@ -1226,10 +1226,27 @@ ion-icon[name=heart-empty]
         width: 95%;
     }
 
+    .contain-form-response
+    {
+        width: 80%;
+        margin-left: 40px;
+    }
+
+    .contain-form-response input[type=submit]
+    {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
     .response-article,
     .response-post
     {
         margin-left: -10px;
+    }
+
+    .message-edit-response
+    {
+        width: 100% !important;
     }
 
     .article-comment .link-return-articles,
@@ -1238,11 +1255,17 @@ ion-icon[name=heart-empty]
         margin-top: 0 !important;
     }
 
+    .link-return-articles
+    {
+        margin-bottom: 10px;
+    }
+
     .article-comment .link-article-page a,
     .forum-comment .link-post-page a
     {
         margin-left: 0;
     }
+
 
     /* PROFILE PAGE */
 
@@ -1272,5 +1295,24 @@ ion-icon[name=heart-empty]
     .info-profile
     {
         margin-top: 30px;
+    }
+
+
+    /* CONNECTION MODAL */
+
+    .modal_connection
+    {
+        width: 100%;
+        height: 52%;
+    }
+
+
+    /* INSCRIPTION MODAL */
+
+    .modal_inscription
+    {
+        width: 100%;
+        height: 90%;
+        top: 55vh;
     }
 }

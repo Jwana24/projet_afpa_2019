@@ -66,7 +66,7 @@
 
                             {{ include('Admin/article/delete.html.twig') }}
 
-                            <a class="btn-site btn-edit-article" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ article.id }}" href="{{ path('article_edit', {'id' : article.Id}) }}">{% trans %}Editer l'article{% endtrans %}</a>
+                            <a class="btn-site btn-edit-article" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ article.id }}" href="{{ path('article_edit', {'id' : article.Id}) }}">{% trans %}Editer article{% endtrans %}</a>
 
                             <a class="btn-site cancel-article" href="#">{% trans %}Annuler{% endtrans %}</a>
 
@@ -104,7 +104,7 @@
 
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
-                                    <a class="btn-site btn-edit-comment" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ comment.id }}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer le commentaire{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-comment" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ comment.id }}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer commentaire{% endtrans %}</a>
                                     <a class="btn-site cancel-comment cancel-comment{{ comment.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                 {% endif %}
 
@@ -132,7 +132,7 @@
 
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
-                                        <a class="btn-site btn-edit-response" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ response.id }}" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer la réponse{% endtrans %}</a>
+                                        <a class="btn-site btn-edit-response" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ response.id }}" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer réponse{% endtrans %}</a>
                                         <a class="btn-site cancel-response cancel-response{{ response.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                     {% endif %}
 
@@ -153,7 +153,7 @@
 
                 <div class="contain-form-response">
                     {{ form_start(formResponse) }}
-                    {{ form_widget(formResponse.text_response) }}
+                    {{ form_widget(formResponse.text_response, {'attr': {'class': 'message-edit-response'} }) }}
                     <input type="hidden" value="" name="id_comment">
                     <input class="btn-site" type="submit" value="Envoyer">
                     {{ form_end(formResponse) }}
@@ -184,4 +184,5 @@
     <script src="{{ asset('js/likeArticle.js') }}"></script>
     <script src="{{ asset('js/toggle-response.js') }}"></script>
     <script src="{{ asset('js/editArticle.js') }}"></script>
+    <script src="{{ asset('js/textTransform.js') }}"></script>
 {% endblock %}

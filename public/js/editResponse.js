@@ -23,14 +23,7 @@ if(document.querySelectorAll('.btn-edit-response'))
                     formEdit.style.display = 'initial';
                     e.target.dataset['toggle'] = 'true';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
-                    {
-                        e.target.innerText = 'Enregistrer';
-                    }
-                    else if(e.target.dataset['locale'] == 'en')
-                    {
-                        e.target.innerText = 'Save';
-                    }
+                    e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save');
                 }
                 else if(e.target.dataset['toggle'] == 'true')
                 {
@@ -45,13 +38,13 @@ if(document.querySelectorAll('.btn-edit-response'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer la réponse';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit response'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer la réponse', 'Edit response');
                     }
                 }
 
@@ -61,13 +54,13 @@ if(document.querySelectorAll('.btn-edit-response'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer la réponse';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit response'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer la réponse', 'Edit response');
                     }
 
                     paragraph.style.display = 'block';
@@ -95,14 +88,7 @@ if(document.querySelectorAll('.btn-edit-response'))
                     formEdit.style.display = 'initial';
                     e.target.dataset['toggle'] = 'true';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
-                    {
-                        e.target.innerText = 'Enregistrer';
-                    }
-                    else if(e.target.dataset['locale'] == 'en')
-                    {
-                        e.target.innerText = 'Save';
-                    }
+                    e.target.innerText = trans(e.target.dataset['locale'], 'Enregistrer', 'Save');
                 }
                 else if(e.target.dataset['toggle'] == 'true')
                 {
@@ -117,13 +103,13 @@ if(document.querySelectorAll('.btn-edit-response'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer la réponse';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit response'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer la réponse', 'Edit response');
                     }
                 }
 
@@ -133,13 +119,13 @@ if(document.querySelectorAll('.btn-edit-response'))
                     cancelBtn.style.display = 'none';
                     e.target.dataset['toggle'] = 'false';
 
-                    if(e.target.dataset['locale'] == 'fr_FR')
+                    if(document.body.clientWidth < 415)
                     {
-                        e.target.innerText = 'Editer la réponse';
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
                     }
-                    else if(e.target.dataset['locale'] == 'en')
+                    else
                     {
-                        e.target.innerText = 'Edit response'
+                        e.target.innerText = trans(e.target.dataset['locale'], 'Editer la réponse', 'Edit response');
                     }
 
                     paragraph.style.display = 'block';
