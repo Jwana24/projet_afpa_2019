@@ -1145,9 +1145,10 @@ ion-icon[name=heart-empty]
         display: initial;
     }
 
-    /* SHOW ARTICLE PAGE */
+    /* SHOW ARTICLE PAGE + SHOW FORUM PAGE*/
 
-    .article-page .btn-site
+    .article-page .btn-site,
+    .forum-page .btn-site
     {
         height: 32px !important;
     }
@@ -1166,18 +1167,23 @@ ion-icon[name=heart-empty]
         font-size: 18px;
     }
 
-    .article-show .text-article
+    .article-show .text-article,
+    .forum-show .text-post,
+    .category-post
     {
         font-size: 15px !important;
     }
 
-    .form-edit-article input[type=file]
+    .form-edit-article input[type=file],
+    .form-edit-post input[type=file]
     {
         width: 100%;
     }
 
     .btn-edit-article,
-    .cancel-article
+    .cancel-article,
+    .btn-edit-post,
+    .cancel-post
     {
         margin-left: 5px !important;
     }
@@ -1193,35 +1199,42 @@ ion-icon[name=heart-empty]
     .like-article .btn-like-article,
     .like-article a,
     .btn-admin-article input[type=submit],
-    .btn-admin-article a
+    .btn-admin-article a,
+    .btn-admin-post input[type=submit],
+    .btn-admin-post a,
+    .response-btn
     {
         margin-bottom: 20px;
     }
 
     .btn-admin-article,
-    .like-article
+    .like-article,
+    .btn-admin-post
     {
         position: initial !important;
     }
 
-    .article-page .form-comment-article
+    .article-page .form-comment-article,
+    .forum-page .form-comment-post
     {
         margin-top: 0;
     }
 
-    .comment-article .date
+    .comment-article .date,
+    .comment-post .date
     {
         margin-top: 0 !important;
     }
 
     .article-page .article-comment .username,
-    .article-page .article-comment .username
+    .forum-page .post-comment .username
     {
         font-weight: 600;
         font-size: 14px;
     }
 
-    .article-page .article-comment .text-article-comment
+    .article-page .article-comment .text-article-comment,
+    .forum-page .post-comment .text-post-comment
     {
         width: 95%;
     }
@@ -1244,26 +1257,26 @@ ion-icon[name=heart-empty]
         margin-left: -10px;
     }
 
-    .message-edit-response
+    .message-edit-response,
+    .content-comment-edit
     {
         width: 100% !important;
     }
 
     .cancel-response,
-    .btn-edit-response
+    .btn-edit-response,
+    .cancel-response-post,
+    .cancel-comment-post,
+    .btn-edit-comment
     {
         margin-right: 2px !important;
     }
 
     .article-comment .link-return-articles,
-    .forum-comment .link-return-posts
+    .post-comment .link-return-posts
     {
         margin-top: 0 !important;
-    }
-
-    .link-return-articles
-    {
-        margin-bottom: 10px;
+        margin-bottom: 10px !important;
     }
 
     .article-comment .link-article-page a,
