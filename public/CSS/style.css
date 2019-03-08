@@ -1,6 +1,6 @@
 @font-face
 {
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI' !important;
     src: url('fonts/segoeui.ttf') format('truetype');
     src: url('fonts/segoeuib.ttf') format('truetype');
     src: url('fonts/segoeuii.ttf') format('truetype');
@@ -55,9 +55,7 @@ footer
 
 footer .footer-elements
 {
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0 20px 20px;
 }
 
 footer a,
@@ -91,16 +89,7 @@ footer .logos
 {
     display: flex;
     height: 70px;
-    padding-left: 20px;
-    padding-bottom: 40px;
-    padding-top: 10px;
-}
-
-footer .logo-30MA,
-footer .logo-spa
-{
-    height: 50px;
-    width: 50px;
+    padding: 10px 0 40px 20px;
 }
 
 footer .logo-spa
@@ -222,8 +211,7 @@ footer .logo-30MAmis:hover
 .center_modal_inscription h4,
 .center_modal_connection h4
 {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px 0 30px 0;
     text-align: center;
     font-weight: 700;
 }
@@ -352,10 +340,15 @@ footer .logo-30MAmis:hover
     object-fit: contain;
 }
 
-.homepage
+.homepage,
+.article-box,
+.article-box .article
 {
     display: flex;
-    width: 100%;
+}
+
+.homepage
+{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     position: relative;
     padding: 0;
@@ -365,7 +358,6 @@ footer .logo-30MAmis:hover
 {
     right: 0;
     width: 375px;
-    height: 100%;
     padding: 40px;
     background: #FBFBFB;
     position: absolute;
@@ -382,25 +374,28 @@ footer .logo-30MAmis:hover
     font-size: 17px;
 }
 
+.homepage,
 .sidebox form input,
 .sidebox .area-message
 {
     width: 100%;
 }
 
+.article-box,
+.sidebox
+{
+    height: 100%;
+}
+
 .article-box
 {
-    display: flex;
     flex-direction: column;
-    margin-left: 20px;
     width: 70%;
-    height: 100%;
 }
 
 .article-box .article
 {
     margin-bottom: 50px;
-    display: flex;
 }
 
 .article-box .article .div-img img
@@ -408,21 +403,28 @@ footer .logo-30MAmis:hover
     width: 200px;
 }
 
+.article-box,
 .article-box .article .containt-article
 {
     margin-left: 20px;
 }
 
-.article:first-child
+.article:first-child,
+.btn-submit-contact
 {
     margin-top: 20px;
+}
+
+.article-box .title-article,
+.article-box .text-article
+{
+    word-wrap: break-word;
 }
 
 .article-box .title-article
 {
     font-size: 30px;
     font-weight: 600;
-    word-wrap: break-word;
 }
 
 .article-box .date-article
@@ -436,12 +438,6 @@ footer .logo-30MAmis:hover
 {
     font-size: 18px;
     font-weight: 100;
-    word-wrap: break-word;
-}
-
-.btn-submit-contact
-{
-    margin-top: 20px;
 }
 
 .message-cookie
@@ -482,8 +478,7 @@ footer .logo-30MAmis:hover
 
 .info-profile
 {
-    margin-left: 50px;
-    margin-top: 60px;
+    margin: 60px 0 0 50px;
 }
 
 .username-profile
@@ -520,9 +515,9 @@ footer .logo-30MAmis:hover
 .notices-show h3
 {
     font-weight: 700;
-    margin-bottom: 40px;
 }
 
+.notices-show h3,
 .notices-show div
 {
     margin-bottom: 40px;
@@ -551,7 +546,7 @@ footer .logo-30MAmis:hover
 .arrow-down-f,
 .arrow-up-f
 {
-    z-index: 200;
+    z-index: 20;
     position: fixed;
     right: 25px;
     bottom: 35px;
@@ -567,7 +562,6 @@ footer .logo-30MAmis:hover
 .container-arrows,
 .container-arrows-forum
 {
-    display: none;
     position: fixed;
     right: 10px;
     bottom: 30px;
@@ -578,7 +572,9 @@ footer .logo-30MAmis:hover
 }
 
 .arrow-up,
-.arrow-up-f
+.arrow-up-f,
+.container-arrows,
+.container-arrows-forum
 {
     display: none;
 }
@@ -605,9 +601,7 @@ footer .logo-30MAmis:hover
 
 .list-articles .link-homepage
 {
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0 20px 20px;
 }
 
 
@@ -690,7 +684,10 @@ ion-icon[name=heart-empty]
     margin-right: 10px;
 }
 
-.like
+.like,
+.article-page .like-article,
+.btn-admin-article,
+.btn-admin-post
 {
     display: flex;
 }
@@ -699,7 +696,6 @@ ion-icon[name=heart-empty]
 .btn-admin-article,
 .btn-admin-post
 {
-    display: flex;
     position: absolute;
 }
 
@@ -735,17 +731,14 @@ ion-icon[name=heart-empty]
 }
 
 /* Dynamics comments, article page + post page + edit member profile */
+
 .form-edit-comment,
 .form-edit-response,
 .form-edit-comment-post,
 .form-edit-response-post,
 .form-edit-member,
 .form-edit-article,
-.form-edit-post
-{
-    display: none;
-}
-
+.form-edit-post,
 .cancel-comment,
 .cancel-response,
 .cancel-comment-post,
@@ -757,13 +750,16 @@ ion-icon[name=heart-empty]
     display: none;
 }
 
+
 /* --- */
 
 
 .content-comment-edit,
 .content-response-edit,
 .content-comment-edit-post,
-.content-response-edit-post
+.content-response-edit-post,
+.response-article .btn-response,
+.response-post .btn-response
 {
     margin-bottom: 20px;
 }
@@ -775,7 +771,9 @@ ion-icon[name=heart-empty]
 }
 
 .article-page input[type=checkbox],
-.forum-page input[type=checkbox]
+.forum-page input[type=checkbox],
+.article-page .form-comment-article,
+.forum-page .form-comment-post
 {
     display: none;
 }
@@ -797,10 +795,16 @@ ion-icon[name=heart-empty]
 .article-page .form-comment-article,
 .forum-page .form-comment-post
 {
-    display: none;
+    margin-top: 80px;
+}
+
+.article-page .form-comment-article,
+.forum-page .form-comment-post,
+.article-page .article-comment,
+.forum-page .post-comment
+{
     width: 80%;
     margin: 0 auto;
-    margin-top: 80px;
 }
 
 .forum-page .form-comment-post
@@ -813,16 +817,27 @@ ion-icon[name=heart-empty]
 {
     width: 100%;
     bottom: 40px;
+}
+
+.article-page .form-comment-article .message-comment-article,
+.forum-page .form-comment-post .message-comment-post,
+.article-page .article-comment .text-article-comment,
+.article-page .article-comment .text-article-response,
+.contain-form-response textarea,
+.forum-page .post-comment .text-post-comment,
+.forum-page .post-comment .text-post-response,
+.content-comment-edit,
+.content-response-edit,
+.content-comment-edit-post,
+.content-response-edit-post
+{
     border-radius: 10px;
 }
 
 .article-page .article-comment,
 .forum-page .post-comment
 {
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0 20px 0;
 }
 
 .article-page .article-comment .date,
@@ -830,8 +845,7 @@ ion-icon[name=heart-empty]
 {
     font-style: italic;
     font-weight: 300;
-    margin-bottom: 5px;
-    margin-top: 30px;
+    margin: 30px 0 5px 0;
 }
 
 .article-page .article-comment .text-article-comment,
@@ -855,7 +869,6 @@ ion-icon[name=heart-empty]
 {
     border: #dfe6e9 solid 0.3px;
     background-color: #dfe6e9;
-    border-radius: 10px;
     padding: 7px;
     font-size: 14px;
     font-weight: 100;
@@ -867,7 +880,11 @@ ion-icon[name=heart-empty]
 .contain-form-response,
 .forum-page .post-comment .username,
 .forum-page .post-comment .date-response,
-.forum-page .post-comment .btn-edit-response
+.forum-page .post-comment .btn-edit-response,
+.article-page .article-comment .text-article-response,
+.forum-page .post-comment .text-post-response,
+.content-response-edit,
+.content-response-edit-post
 {
     margin-left: 50px;
 }
@@ -880,8 +897,7 @@ ion-icon[name=heart-empty]
 .cancel-comment-post,
 .cancel-response-post
 {
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 0;
 }
 
 .article-page .article-comment .username-comment,
@@ -898,27 +914,20 @@ ion-icon[name=heart-empty]
 .content-response-edit-post
 {
     width: 75%;
-    margin-left: 50px;
 }
 
 .article-page .article-comment .btn-comment,
-.forum-page .post-comment .btn-comment
-{
-    display: flex;
-}
-
+.forum-page .post-comment .btn-comment,
 .response-article .btn-response,
 .response-post .btn-response
 {
     display: flex;
-    margin-bottom: 20px;
 }
 
 .link-return-articles,
 .link-return-posts
 {
-    margin-top: 20px;
-    margin-right: 10px;
+    margin: 20px 10px 0 0;
 }
 
 
@@ -940,8 +949,7 @@ ion-icon[name=heart-empty]
 
 .navigation > div
 {
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
 
 
@@ -962,7 +970,9 @@ ion-icon[name=heart-empty]
 /* ADD POST PAGE */
 
 .btn-send-new-post,
-.btn-send-new-article
+.btn-send-new-article,
+.add-post-page,
+.add-article-page
 {
     margin-top: 20px;
 }
@@ -970,9 +980,7 @@ ion-icon[name=heart-empty]
 .add-post-page,
 .add-article-page
 {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
+    margin: 0 20px 0 20px;
 }
 
 
@@ -1104,7 +1112,8 @@ ion-icon[name=heart-empty]
         flex-direction: column;
     }
 
-    .homepage
+    .homepage,
+    .article-box .article
     {
         align-items: center;
     }
@@ -1112,11 +1121,6 @@ ion-icon[name=heart-empty]
     .article-box
     {
         margin-left: 0;
-    }
-
-    .article-box .article
-    {
-        align-items: center;
     }
 
     .article-box .article .div-img
@@ -1246,11 +1250,7 @@ ion-icon[name=heart-empty]
     }
 
     .article-page .form-comment-article,
-    .forum-page .form-comment-post
-    {
-        margin-top: 0;
-    }
-
+    .forum-page .form-comment-post,
     .comment-article .date,
     .comment-post .date
     {
@@ -1321,8 +1321,7 @@ ion-icon[name=heart-empty]
 
     .main-profile
     {
-        margin-left: 20px;
-        margin-bottom: 20px;
+        margin: 0 0 20px 20px;
     }
     
     .profile-show
