@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -54,6 +54,8 @@ class Articles
      */
     private $image;
 
+    private $session;
+    
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -99,6 +101,27 @@ class Articles
         $this->date_article = $date_article;
 
         return $this;
+    }
+
+    // function to tranform the date format (ex : 'Tue 10 May 2019')
+    
+    public function dateFormat()
+    {
+        $dateArticle = $this->date_article->format('D d M Y');
+        
+        $dateArticle = str_replace(
+            [
+                'Mon','Tue','Wed','Thu','Fri','Sat','Sun',
+                'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug'
+            ],
+            [
+                'Lun','Mar','Mer','Jeu','Ven','Sam','Dim',
+                'Fev', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou'
+            ],
+        $dateArticle
+        );
+        
+        return $dateArticle;
     }
 
     public function getIdMemberFK(): ?members

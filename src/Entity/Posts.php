@@ -99,6 +99,25 @@ class Posts
         return $this;
     }
 
+    public function dateFormat()
+    {
+        $datePost = $this->date_post->format('D d M Y');
+        
+        $datePost = str_replace(
+            [
+                'Mon','Tue','Wed','Thu','Fri','Sat','Sun',
+                'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug'
+            ],
+            [
+                'Lun','Mar','Mer','Jeu','Ven','Sam','Dim',
+                'Fev', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou'
+            ],
+        $datePost
+        );
+        
+        return $datePost;
+    }
+
     public function getIdMemberFK(): ?members
     {
         return $this->id_member_FK;

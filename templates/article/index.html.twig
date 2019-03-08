@@ -13,7 +13,11 @@
                             <button class="btn btn-link btn-open" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
                                 <span class="article-card-title">{{article.TitleArticle}}</span>
                             </button>
-                            <span class="article-card-date">{{article.DateArticle|date('d-m-y')}}</span> {# Change the format of the date #}
+                            {% if app.session.get('_locale') == 'fr_FR' %}
+                                <span class="article-card-date">{{ article.dateFormat }}</span> {# Change the format of the date and transform them on format (ex : 'Tue 10 May 2019') #}
+                            {% else %}
+                                <span class="article-card-date">{{ article.DateArticle|date('D d M Y') }}</span>{# Change the format of the date without the transform format #}
+                            {% endif %}
                         </h2>
                     </div>
 

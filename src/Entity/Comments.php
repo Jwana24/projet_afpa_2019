@@ -79,6 +79,25 @@ class Comments
         return $this;
     }
 
+    public function dateFormat()
+    {
+        $dateComment = $this->date_comment->format('D d M Y');
+        
+        $dateComment = str_replace(
+            [
+                'Mon','Tue','Wed','Thu','Fri','Sat','Sun',
+                'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug'
+            ],
+            [
+                'Lun','Mar','Mer','Jeu','Ven','Sam','Dim',
+                'Fev', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou'
+            ],
+        $dateComment
+        );
+        
+        return $dateComment;
+    }
+
     public function getIdMemberFK(): ?members
     {
         return $this->id_member_FK;

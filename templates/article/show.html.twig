@@ -12,7 +12,11 @@
 
                     <img class="image" src="{{ asset(article.image) }}" alt="Image de l'article">
                     <h2 class="title title-article">{{article.TitleArticle}}</h2>
-                    <p class="date">{{article.DateArticle|date('d-m-y')}}</p>
+                    {% if app.session.get('_locale') == 'fr_FR' %}
+                        <p class="date">{{ article.dateFormat }}</p>
+                    {% else %}
+                        <p class="date">{{ article.DateArticle|date('D d M Y') }}</p>
+                    {% endif %}
                     <p class="text text-article">{{article.TextArticle}}</p>
                     
                     <form class="form-edit-article" method="post" enctype="multipart/form-data">
@@ -93,7 +97,11 @@
                 {% for comment in comments %}
                     <section class="comment-response-article">
                         <article class="comment-article">
-                            <p class="date">{{ comment.DateComment|date('d-m-Y') }}</p>
+                            {% if app.session.get('_locale') == 'fr_FR' %}
+                                <p class="date">{{ comment.dateFormat }}</p>
+                            {% else %}
+                                <p class="date">{{ comment.DateComment|date('D d M Y') }}</p>
+                            {% endif %}
                             <p class="username username-comment">{{ comment.IdMemberFK.username }}</p>
                             <p class="text-article-comment content-comment{{ comment.id }}">{{ comment.TextComment }}</p>
                             
@@ -121,7 +129,11 @@
                         {% for response in comment.getResponses %}
 
                             <article class="response-article">
-                                <p class="date date-response">{{ response.DateResponse|date('d-m-Y') }}</p>
+                                {% if app.session.get('_locale') == 'fr_FR' %}
+                                    <p class="date date-response">{{ response.dateFormat }}</p>
+                                {% else %}
+                                    <p class="date date-response">{{ response.DateResponse|date('D d M Y') }}</p>
+                                {% endif %}
                                 <p class="username">{{ response.IdMemberFK.username }}</p>
                                 <p class="text-article-response content-response{{ response.id }}">{{ response.TextResponse }}</p>
 

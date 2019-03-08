@@ -106,4 +106,23 @@ class Responses
 
         return $this;
     }
+
+    public function dateFormat()
+    {
+        $dateResponse = $this->date_response->format('D d M Y');
+        
+        $dateResponse = str_replace(
+            [
+                'Mon','Tue','Wed','Thu','Fri','Sat','Sun',
+                'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug'
+            ],
+            [
+                'Lun','Mar','Mer','Jeu','Ven','Sam','Dim',
+                'Fev', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou'
+            ],
+        $dateResponse
+        );
+        
+        return $dateResponse;
+    }
 }

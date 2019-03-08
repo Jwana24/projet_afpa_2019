@@ -14,7 +14,11 @@
 
                     <div class="card-body">
                         <h2 class="card-title">{{post.TitlePost}}</h2>
-                        <p>{{post.DatePost|date('d-m-y')}}</p>
+                        {% if app.session.get('_locale') == 'fr_FR' %}
+                            <p>{{ post.dateFormat }}</p>
+                        {% else %}
+                            <p>{{ post.DatePost|date('D d M Y') }}</p>
+                        {% endif %}
                         <a class="btn btn-primary" href="{{ path('show_post', {'id' : post.Id}) }}">{% trans %}Voir{% endtrans %}</a>
                     </div>
                 </div>
