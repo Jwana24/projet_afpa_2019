@@ -2,6 +2,17 @@
 {
     font-family: 'Segoe UI';
     src: url('fonts/segoeui.ttf') format('truetype');
+    src: url('fonts/segoeuib.ttf') format('truetype');
+    src: url('fonts/segoeuii.ttf') format('truetype');
+    src: url('fonts/segoeuil.ttf') format('truetype');
+    src: url('fonts/segoeuisl.ttf') format('truetype');
+    src: url('fonts/segoeuiz.ttf') format('truetype');
+    src: url('fonts/segoeuibl.ttf') format('truetype');
+    src: url('fonts/segoeuibli.ttf') format('truetype');
+    src: url('fonts/segoeuili.ttf') format('truetype');
+    src: url('fonts/segoeuisb.ttf') format('truetype');
+    src: url('fonts/segoeuisbi.ttf') format('truetype');
+    src: url('fonts/segoeuisli.ttf') format('truetype');
 }
 
 *
@@ -13,6 +24,7 @@
     font-weight: 500;
     cursor: default;
     scroll-behavior: smooth;
+    font-family: 'Segoe UI';
 }
 
 main
@@ -37,7 +49,6 @@ footer
 {
     position: relative;
     width: 100%;
-    font-family: 'Segoe UI';
     background-color: #007BFF;
     color: white;
 }
@@ -622,7 +633,6 @@ footer .logo-30MAmis:hover
 .main-forum,
 .container-notices
 {
-    font-family: 'Segoe UI';
     flex-direction: column;
     background-color: #FBFBFB;
 }
