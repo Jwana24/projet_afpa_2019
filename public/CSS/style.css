@@ -1,7 +1,7 @@
 @font-face
 {
-    font-family: 'PiqueMyInterest';
-    src: url('fonts/PiqueMyInterest.ttf') format('truetype');
+    font-family: 'Segoe UI';
+    src: url('fonts/Segoe UI.woff') format('woff');
 }
 
 *
@@ -17,7 +17,7 @@
 
 main
 {
-    min-height: 100vh;
+    min-height: calc(100vh - 206.8px);
     padding-top: 80px;
 }
 
@@ -180,7 +180,7 @@ footer .logo-30MAmis:hover
     position: fixed;
     width: 30vw;
     height: 85vh;
-    top: 50vh;
+    top: 55vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     background-color: rgba(178, 190, 195, .70);
@@ -316,7 +316,6 @@ footer .logo-30MAmis:hover
 
 .carousel-item
 {
-    height: 100vh;
     position: relative;
 }
 
@@ -385,7 +384,6 @@ footer .logo-30MAmis:hover
     margin-left: 20px;
     width: 70%;
     height: 100%;
-    padding-top: 20px;
 }
 
 .article-box .article
@@ -397,7 +395,6 @@ footer .logo-30MAmis:hover
 .article-box .article .div-img img
 {
     width: 200px;
-    height: auto;
 }
 
 .article-box .article .containt-article
@@ -1010,6 +1007,25 @@ ion-icon[name=heart-empty]
 
 
 /* MEDIA QUERY */
+
+@media all and (max-width: 900px)
+{
+    .modal_connection,
+    .modal_inscription
+    {
+        width: 50vw !important;
+    }
+
+    .modal_connection
+    {
+        height: 25vh;
+    }
+
+    .modal_inscription
+    {
+        height: 45vh;
+    }
+}
 
 @media all and (max-width: 415px)
 {
