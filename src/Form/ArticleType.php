@@ -25,7 +25,7 @@ class ArticleType extends AbstractType
                 'label'=> ' '
             ])
             ->add('text_article', TextareaType::class, [
-                'label'=> ' '
+                'label'=> ' ', 'required' => false
             ])
             ->add('image', FileType::class, ['label' => 'Image',
             'data_class' => null, 'required' => true

@@ -30,7 +30,7 @@ class PostType extends AbstractType
                 ])
 
             ->add('text_post', TextareaType::class, [
-                'label' => ' '
+                'label' => ' ', 'required' => false
             ])
             ->add('Envoyer', SubmitType::class);
     }

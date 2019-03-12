@@ -17,7 +17,7 @@
                     {% else %}
                         <p class="date">{{ article.DateArticle|date('D d M Y') }}</p>
                     {% endif %}
-                    <p class="text text-article">{{article.TextArticle}}</p>
+                    <p class="text text-article">{{ article.TextArticle|raw }}</p>
                     
                     <form class="form-edit-article" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token('edit-article' ~ article.id) }}">

@@ -10,7 +10,7 @@
             
                 {{ form_row(form.title_article, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Titre de l\'article'} }) }}
             
-                {{ form_row(form.text_article, { 'attr': {'class': 'form-control', 'placeholder': 'Contenu de l\'article', 'rows': '3'} }) }}
+                {{ form_row(form.text_article, { 'id': 'editor', 'attr': {'class': 'form-control','placeholder': 'Contenu de l\'article', 'rows': '3'} }) }}
 
                 {{ form_row(form.image, { 'attr': {'class': 'form-control-file'} }) }}
 

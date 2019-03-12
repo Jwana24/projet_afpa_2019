@@ -15,7 +15,7 @@
 
                 {{ form_widget(form.categorie, { 'attr': {'class': 'form-control form-control-sm'} }) }}
             
-                {{ form_row(form.text_post, { 'attr': {'class': 'form-control', 'placeholder': 'Contenu du post', 'rows': '3'} }) }}
+                {{ form_row(form.text_post, { 'id': 'editor', 'attr': {'class': 'form-control', 'placeholder': 'Contenu du post', 'rows': '3'} }) }}
 
                 {{ form_row(form.Envoyer, { 'attr': {'class': 'btn btn-primary btn-send-new-post'} }) }}
 

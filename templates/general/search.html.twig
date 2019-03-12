@@ -78,7 +78,7 @@
                             <img src="{{ asset(article.image) }}" class="card-img-top" alt="Image de l'article">
                             <div class="card-body">
                                 <h5 class="card-title">{{ article.TitleArticle }}</h5>
-                                <p class="card-text">{{ article.TextArticle }}</p>
+                                <p class="card-text">{{ article.TextArticle|slice(0, 150)|raw }}</p>
                             </div>
                             
                             <div class="card-footer">
@@ -157,7 +157,7 @@
                         <div class="card col-md-6 bg-light post-card-search" style="max-width: 18rem;">
                             <div class="card-header" style="width: 100%;">{{ post.TitlePost}}</div>
                             <div class="card-body">
-                                <p class="card-text">{{ post.TextPost}}</p>
+                                <p class="card-text">{{ post.TextPost|slice(0, 150)|raw }}</p>
                             </div>
 
                             <div class="card-footer">

@@ -24,7 +24,7 @@
                     <div id="collapse{{ article.Id }}" class="collapse" aria-labelledby="heading{{ article.Id }}" data-parent="#accordionExample">
                         <div class="card-body">
                             
-                            <p>{{article.TextArticle|slice(0, 150)}}</p> {# Allow to get only the 150 first characters #}
+                            <p>{{ article.TextArticle|slice(0, 150)|raw }}</p> {# Allow to get only the 150 first characters #}
                             <a class="btn btn-primary" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}Voir{% endtrans %}</a>
                         </div>
                     </div>

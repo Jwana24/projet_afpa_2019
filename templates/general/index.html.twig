@@ -47,13 +47,13 @@
                     </div>
 
                     <div class="containt-article">
-                        <h2 class="title-article">{{article.TitleArticle}}</h2>
+                        <h2 class="title-article">{{ article.TitleArticle }}</h2>
                         {% if app.session.get('_locale') == 'fr_FR' %}
                             <p class="date-article">{{ article.dateFormat }}</p>
                         {% else %}
                             <p class="date-article">{{ article.DateArticle|date('D d M Y') }}</p>
                         {% endif %}
-                        <p class="text-article">{{article.TextArticle|slice(0, 150)}}</p>
+                        <p class="text-article">{{ article.TextArticle|slice(0, 150)|raw }}</p>
                         <a class="btn-site" href="{{ path('show_article', {'id' : article.Id}) }}">{% trans %}En voir plus{% endtrans %}</a>
                     </div>
                     
