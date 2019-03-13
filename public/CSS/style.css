@@ -587,6 +587,12 @@ footer .logo-30MAmis:hover
     cursor: pointer;
 }
 
+.articles-card-header
+{
+    display: flex;
+    align-items: center;
+}
+
 .article-header .article-card-date
 {
     font-size: 13px;
@@ -795,7 +801,7 @@ ion-icon[name=heart-empty]
 .article-page .form-comment-article,
 .forum-page .form-comment-post
 {
-    margin-top: 80px;
+    margin-top: 80px !important;
 }
 
 .article-page .form-comment-article,
@@ -1043,6 +1049,17 @@ ion-icon[name=heart-empty]
     {
         height: 45vh;
     }
+
+    /* Show article */
+    .link-article-page
+    {
+        margin-top: 20px;
+    }
+
+    .btn-send-response
+    {
+        width: 15% !important;
+    }
 }
 
 @media all and (max-width: 415px)
@@ -1178,6 +1195,11 @@ ion-icon[name=heart-empty]
     .container-arrows-forum
     {
         display: initial;
+    }
+
+    .articles-card-header
+    {
+        flex-direction: column;
     }
 
     /* SHOW ARTICLE PAGE + SHOW FORUM PAGE*/
@@ -1351,7 +1373,7 @@ ion-icon[name=heart-empty]
 
     .modal_connection
     {
-        width: 100%;
+        width: 100% !important;
         height: 52%;
     }
 
@@ -1360,7 +1382,7 @@ ion-icon[name=heart-empty]
 
     .modal_inscription
     {
-        width: 100%;
+        width: 100% !important;
         height: 90%;
         top: 55vh;
     }

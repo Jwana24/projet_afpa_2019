@@ -228,11 +228,12 @@
 
         <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
         <script>
-            ClassicEditor
-                .create( document.querySelector( '#editor' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
+            if(document.querySelector('#editor'))
+            {
+                ClassicEditor
+                    .create( document.querySelector( '#editor' ) )
+                    .catch( error => {} );
+            }
         </script>
 
         {% block javascripts %}{% endblock %}

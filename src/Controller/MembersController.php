@@ -112,6 +112,7 @@ class MembersController extends Controller implements EventSubscriberInterface
             $member->setFirstName(ucfirst($form['first_name']->getData()));
             $member->setDateInscription(new \DateTime('NOW'));
             $member->setRoles(['ROLE_USER']);
+            $member->setLocale('fr_FR'); // language by default for a new member
             // It's a component who hash the password
             $member->setPassword($encoder->encodePassword($member, $form['password']->getData()));
             $memberManager->persist($member);

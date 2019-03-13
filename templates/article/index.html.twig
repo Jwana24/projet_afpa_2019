@@ -8,8 +8,8 @@
         <div class="accordion" id="accordionExample"> {# Bootstrap classes #}
             {% for article in articles %}
                 <div class="card">
-                    <div class="card-header" id="heading{{ article.Id }}">
-                        <h2 class="mb-0 article-header">
+                    <div class="card-header container-card-articles" id="heading{{ article.Id }}">
+                        <h2 class="mb-0 article-header articles-card-header">
                             <button class="btn btn-link btn-open" type="button" data-toggle="collapse" data-target="#collapse{{ article.Id }}" aria-expanded="false" aria-controls="collapse{{ article.Id }}">
                                 <span class="article-card-title">{{article.TitleArticle}}</span>
                             </button>

@@ -17,16 +17,23 @@ class SecurityController extends Controller
     {
         // Get errors when the user logs in
         $error = $utils->getLastAuthenticationError();
-
+        
         // Get the username of the last connected user
         $lastUsername = $utils->getLastUsername();
 
-        // Create a flash message if the connection is a success
-        $this->addFlash('success', 'Vous êtes connecté');
+        if(!$error)
+        {
+            // Create a flash message if the connection is a success
+            $this->addFlash('success', 'Vous êtes connecté');
+        }
+        else
+        {
+            $errorLogin = 'Identifiant ou mot de passe incorrect';
+        }
 
         // Get the view Twig 'login.html.twig' bound to this code and send variables (error, last_username and last_path)
         return $this->render('Admin/Security/login.html.twig', [
-            'error' => $error,
+            'error' => $errorLogin ?? '',
             'last_username' => $lastUsername,
             // Stock the route of the current page
             'last_path' => 'login'
