@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" name="text_post">{{ post.TextPost }}</textarea>
+                            <textarea class="form-control" id="editor" name="text_post">{{ post.TextPost }}</textarea>
                         </div>
                     </form>
 
@@ -50,12 +50,16 @@
                         </div>
 
                         <div class="btn-admin-post">
+                            
                             {% if is_granted('MODIFPOST', post) %}
 
-                                {{ include('forum/delete.html.twig') }}
-                                <a class="btn-site btn-edit-post"  data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ post.id }}" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+                                <div>
+                                    {{ include('forum/delete.html.twig') }}
 
-                                <a class="btn-site cancel-post" href="#">{% trans %}Annuler{% endtrans %}</a>
+                                    <a class="btn-site btn-edit-post"  data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ post.id }}" href="{{ path('post_edit', {'id' : post.Id}) }}">{% trans %}Editer le post{% endtrans %}</a>
+
+                                    <a class="btn-site cancel-post" href="#">{% trans %}Annuler{% endtrans %}</a>
+                                </div>
 
                                 {% if post.Resolve != 'resolve' and is_granted('MODIFPOST', post) %} {# the button is show only if the post is not resolved and if the connected user is Admin, or has the post #}
                                 <form method="post">

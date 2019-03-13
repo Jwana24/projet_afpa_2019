@@ -37,7 +37,15 @@ if(document.querySelector('.btn-edit-post'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e.target.dataset['locale'], 'Editer le post', 'Edit post');
+
+            if(document.body.clientWidth < 415)
+            {
+                e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
+            }
+            else
+            {
+                e.target.innerText = trans(e.target.dataset['locale'], 'Editer le post', 'Edit post');
+            }
         }
 
         cancelButton.addEventListener('click', (f) =>
@@ -49,7 +57,15 @@ if(document.querySelector('.btn-edit-post'))
             formEdit.style.display = 'none';
             cancelButton.style.display = 'none';
             e.target.dataset['toggle'] = 'false';
-            e.target.innerText = trans(e.target.dataset['locale'], 'Editer le post', 'Edit post');
+            
+            if(document.body.clientWidth < 415)
+            {
+                e.target.innerText = trans(e.target.dataset['locale'], 'Editer', 'Edit');
+            }
+            else
+            {
+                e.target.innerText = trans(e.target.dataset['locale'], 'Editer le post', 'Edit post');
+            }
         });
     })
 }

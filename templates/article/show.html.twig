@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" name="text_article">{{ article.TextArticle }}</textarea>
+                            <textarea class="form-control" id="editor" name="text_article">{{ article.TextArticle }}</textarea>
                         </div>
 
                         <div class="form-group">
@@ -86,7 +86,7 @@
                 {% if is_granted('ROLE_USER') %}
 
                     {{ form_start(form) }}
-                    {{ form_widget(form.text_comment, {'attr': {'rows': '2', 'class': 'message-comment-article'} }) }}
+                    {{ form_widget(form.text_comment, { 'attr': {'rows': '2', 'class': 'message-comment-article'} }) }}
                     <input class="btn-site" type="submit" value="{% trans %}Envoyer{% endtrans %}">
                     {{ form_end(form) }}
 
@@ -113,6 +113,7 @@
                             <div class="btn-comment">
                                 {% if is_granted('MODIF', comment) %}
                                     <a class="btn-site btn-edit-comment" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ comment.id }}" href="{{ path('edit_comment', {'id':comment.Id}) }}">{% trans %}Editer commentaire{% endtrans %}</a>
+
                                     <a class="btn-site cancel-comment cancel-comment{{ comment.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                 {% endif %}
 
@@ -145,6 +146,7 @@
                                 <div class="btn-response">
                                     {% if is_granted('MODIFRESPONSE', response) %}
                                         <a class="btn-site btn-edit-response" data-post="false" data-locale="{{ app.session.get('_locale') }}" data-toggle="false" data-id="{{ response.id }}" href="{{ path('edit_response', {'id':response.Id}) }}">{% trans %}Editer réponse{% endtrans %}</a>
+                                        
                                         <a class="btn-site cancel-response cancel-response{{ response.id }}" href="#">{% trans %}Annuler{% endtrans %}</a>
                                     {% endif %}
 
