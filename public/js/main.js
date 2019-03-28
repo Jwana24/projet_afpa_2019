@@ -1,7 +1,7 @@
 // Stock a language in a parameter. Return the parameter depending to the selected language
 function trans(e, a, b)
 {
-    if(e == 'fr_FR')
+    if(e == 'fr')
     {
         return a;
     }

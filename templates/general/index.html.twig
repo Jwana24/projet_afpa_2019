@@ -48,7 +48,7 @@
 
                     <div class="containt-article">
                         <h2 class="title-article">{{ article.TitleArticle }}</h2>
-                        {% if app.session.get('_locale') == 'fr_FR' %}
+                        {% if app.session.get('_locale') == 'fr' %}
                             <p class="date-article">{{ article.dateFormat }}</p>
                         {% else %}
                             <p class="date-article">{{ article.DateArticle|date('D d M Y') }}</p>

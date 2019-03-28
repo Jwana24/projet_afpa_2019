@@ -16,7 +16,7 @@
                         {% endif %}
                     
                     </h2>
-                    {% if app.session.get('_locale') == 'fr_FR' %}
+                    {% if app.session.get('_locale') == 'fr' %}
                         <p class="date">{{ post.dateFormat }}</p>
                     {% else %}
                         <p class="date">{{ post.DatePost|date('D d M Y') }}</p>
@@ -96,7 +96,7 @@
                 {% for comment in comments %}
                     <section class="comment-response-forum">
                         <article class="comment-post">
-                            {% if app.session.get('_locale') == 'fr_FR' %}
+                            {% if app.session.get('_locale') == 'fr' %}
                                 <p class="date">{{ comment.dateFormat }}</p>
                             {% else %}
                                 <p class="date">{{ comment.DateCommentPost|date('D d M Y') }}</p>
@@ -128,7 +128,7 @@
                         {% for response in comment.getResponses %}
 
                             <article class="response-post">
-                                {% if app.session.get('_locale') == 'fr_FR' %}
+                                {% if app.session.get('_locale') == 'fr' %}
                                     <p class="date date-response">{{ response.dateFormat }}</p>
                                 {% else %}
                                     <p class="date date-response">{{ response.DateResponse|date('D d M Y') }}</p>

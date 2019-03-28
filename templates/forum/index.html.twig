@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <h2 class="card-title">{{post.TitlePost}}</h2>
-                        {% if app.session.get('_locale') == 'fr_FR' %}
+                        {% if app.session.get('_locale') == 'fr' %}
                             <p>{{ post.dateFormat }}</p>
                         {% else %}
                             <p>{{ post.DatePost|date('D d M Y') }}</p>

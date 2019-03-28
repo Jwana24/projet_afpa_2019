@@ -29,7 +29,7 @@ class TranslationController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        $this->session->set('_locale', $_language); // we update the 'locale' key in the session and the element in the route (fr_FR or en)
+        $this->session->set('_locale', $_language); // we update the 'locale' key in the session and the element in the route (fr or en)
 
         $path = explode(':', $last_path); // we cut the parameters on the route, we keep some of them, while the others change depending on the page who we are
         
